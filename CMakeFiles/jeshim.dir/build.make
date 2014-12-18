@@ -35,10 +35,10 @@ RM = /usr/local/Cellar/cmake/3.0.2/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/samdoiron/Code/C++/Jeshim
+CMAKE_SOURCE_DIR = /Users/samdoiron/Code/Jeshim
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/samdoiron/Code/C++/Jeshim
+CMAKE_BINARY_DIR = /Users/samdoiron/Code/Jeshim
 
 # Include any dependencies generated for this target.
 include CMakeFiles/jeshim.dir/depend.make
@@ -51,17 +51,17 @@ include CMakeFiles/jeshim.dir/flags.make
 
 CMakeFiles/jeshim.dir/jeshim.cc.o: CMakeFiles/jeshim.dir/flags.make
 CMakeFiles/jeshim.dir/jeshim.cc.o: jeshim.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/C++/Jeshim/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/jeshim.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/jeshim.cc.o -c /Users/samdoiron/Code/C++/Jeshim/jeshim.cc
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/jeshim.cc.o -c /Users/samdoiron/Code/Jeshim/jeshim.cc
 
 CMakeFiles/jeshim.dir/jeshim.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jeshim.dir/jeshim.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/C++/Jeshim/jeshim.cc > CMakeFiles/jeshim.dir/jeshim.cc.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/Jeshim/jeshim.cc > CMakeFiles/jeshim.dir/jeshim.cc.i
 
 CMakeFiles/jeshim.dir/jeshim.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jeshim.dir/jeshim.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/C++/Jeshim/jeshim.cc -o CMakeFiles/jeshim.dir/jeshim.cc.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/Jeshim/jeshim.cc -o CMakeFiles/jeshim.dir/jeshim.cc.s
 
 CMakeFiles/jeshim.dir/jeshim.cc.o.requires:
 .PHONY : CMakeFiles/jeshim.dir/jeshim.cc.o.requires
@@ -81,7 +81,6 @@ jeshim_EXTERNAL_OBJECTS =
 
 jeshim: CMakeFiles/jeshim.dir/jeshim.cc.o
 jeshim: CMakeFiles/jeshim.dir/build.make
-jeshim: /usr/local/lib/libBox2D.dylib
 jeshim: CMakeFiles/jeshim.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable jeshim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/jeshim.dir/link.txt --verbose=$(VERBOSE)
@@ -98,6 +97,6 @@ CMakeFiles/jeshim.dir/clean:
 .PHONY : CMakeFiles/jeshim.dir/clean
 
 CMakeFiles/jeshim.dir/depend:
-	cd /Users/samdoiron/Code/C++/Jeshim && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/samdoiron/Code/C++/Jeshim /Users/samdoiron/Code/C++/Jeshim /Users/samdoiron/Code/C++/Jeshim /Users/samdoiron/Code/C++/Jeshim /Users/samdoiron/Code/C++/Jeshim/CMakeFiles/jeshim.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/samdoiron/Code/Jeshim && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/samdoiron/Code/Jeshim /Users/samdoiron/Code/Jeshim /Users/samdoiron/Code/Jeshim /Users/samdoiron/Code/Jeshim /Users/samdoiron/Code/Jeshim/CMakeFiles/jeshim.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/jeshim.dir/depend
 

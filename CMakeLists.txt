@@ -18,13 +18,6 @@ if (SFML_FOUND)
   target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 endif()
 
-find_package(Box2D REQUIRED)
-
-if (BOX2D_FOUND)
-  include_directories(${BOX2D_INCLUDE_DIR})
-  target_link_libraries(${EXECUTABLE_NAME} ${BOX2D_LIBRARIES})
-endif()
-
 set (HACK_VERSION_MAJOR 0)
 set (HACK_VERSION_MINOR 1)
 

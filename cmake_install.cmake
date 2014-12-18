@@ -1,4 +1,4 @@
-# Install script for directory: /Users/samdoiron/Code/C++/Jeshim
+# Install script for directory: /Users/samdoiron/Code/Jeshim
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +33,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "/Users/samdoiron/Code/C++/Jeshim/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "/Users/samdoiron/Code/Jeshim/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/Users/samdoiron/Code/C++/Jeshim/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "/Users/samdoiron/Code/Jeshim/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()
