@@ -6,13 +6,11 @@
 
 namespace jesh {
 
-Entity::Entity(Dimensions dim, Point pos) {
-    this->position = pos;
-    this->dimensions = dim;
+Entity::Entity(Dimensions dim, Point pos) :
+    position(pos),
+    dimensions(dim) { 
 }
 
-Entity::Entity() {
-}
 
 }
 

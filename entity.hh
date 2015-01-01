@@ -2,7 +2,13 @@
 #ifndef JESH_ENTITY_H_
 #define JESH_ENTITY_H_
 
+#include "point.hh"
+#include "dimensions.hh"
+#include "rendersurface.hh"
+
 namespace jesh {
+
+class RenderSurface;
 
 class Entity {
     public:
@@ -11,7 +17,8 @@ class Entity {
     private:
         Dimensions dimensions;
         Point position;
-}
+        void render(RenderSurface);
+};
 
 }
 

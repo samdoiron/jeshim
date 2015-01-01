@@ -1,12 +1,12 @@
+#include "point.hh"
 
 namespace jesh {
 
-class Point {
-    public:
-        Point(float, float);
-    private:
-        float x, y;
+Point::Point(float _x, float _y) {
+    this->x = _x;
+    this->y = _y;
 }
+
 
 }
 

@@ -59,7 +59,7 @@ CMAKE_BINARY_DIR = /Users/samdoiron/Code/Jeshim
 CMakeFiles/jeshim.dir/all:
 	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/depend
 	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/build
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles  1
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles  1 2 3 4 5
 	@echo "Built target jeshim"
 .PHONY : CMakeFiles/jeshim.dir/all
 
@@ -69,7 +69,7 @@ all: CMakeFiles/jeshim.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/jeshim.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samdoiron/Code/Jeshim/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samdoiron/Code/Jeshim/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/jeshim.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/samdoiron/Code/Jeshim/CMakeFiles 0
 .PHONY : CMakeFiles/jeshim.dir/rule

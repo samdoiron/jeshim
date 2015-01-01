@@ -115,6 +115,54 @@ jeshim/fast:
 	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/build
 .PHONY : jeshim/fast
 
+dimensions.o: dimensions.cc.o
+.PHONY : dimensions.o
+
+# target to build an object file
+dimensions.cc.o:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/dimensions.cc.o
+.PHONY : dimensions.cc.o
+
+dimensions.i: dimensions.cc.i
+.PHONY : dimensions.i
+
+# target to preprocess a source file
+dimensions.cc.i:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/dimensions.cc.i
+.PHONY : dimensions.cc.i
+
+dimensions.s: dimensions.cc.s
+.PHONY : dimensions.s
+
+# target to generate assembly for a file
+dimensions.cc.s:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/dimensions.cc.s
+.PHONY : dimensions.cc.s
+
+entity.o: entity.cc.o
+.PHONY : entity.o
+
+# target to build an object file
+entity.cc.o:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/entity.cc.o
+.PHONY : entity.cc.o
+
+entity.i: entity.cc.i
+.PHONY : entity.i
+
+# target to preprocess a source file
+entity.cc.i:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/entity.cc.i
+.PHONY : entity.cc.i
+
+entity.s: entity.cc.s
+.PHONY : entity.s
+
+# target to generate assembly for a file
+entity.cc.s:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/entity.cc.s
+.PHONY : entity.cc.s
+
 jeshim.o: jeshim.cc.o
 .PHONY : jeshim.o
 
@@ -139,6 +187,54 @@ jeshim.cc.s:
 	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/jeshim.cc.s
 .PHONY : jeshim.cc.s
 
+point.o: point.cc.o
+.PHONY : point.o
+
+# target to build an object file
+point.cc.o:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/point.cc.o
+.PHONY : point.cc.o
+
+point.i: point.cc.i
+.PHONY : point.i
+
+# target to preprocess a source file
+point.cc.i:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/point.cc.i
+.PHONY : point.cc.i
+
+point.s: point.cc.s
+.PHONY : point.s
+
+# target to generate assembly for a file
+point.cc.s:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/point.cc.s
+.PHONY : point.cc.s
+
+rendersurface.o: rendersurface.cc.o
+.PHONY : rendersurface.o
+
+# target to build an object file
+rendersurface.cc.o:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/rendersurface.cc.o
+.PHONY : rendersurface.cc.o
+
+rendersurface.i: rendersurface.cc.i
+.PHONY : rendersurface.i
+
+# target to preprocess a source file
+rendersurface.cc.i:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/rendersurface.cc.i
+.PHONY : rendersurface.cc.i
+
+rendersurface.s: rendersurface.cc.s
+.PHONY : rendersurface.s
+
+# target to generate assembly for a file
+rendersurface.cc.s:
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/rendersurface.cc.s
+.PHONY : rendersurface.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -148,9 +244,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... jeshim"
 	@echo "... rebuild_cache"
+	@echo "... dimensions.o"
+	@echo "... dimensions.i"
+	@echo "... dimensions.s"
+	@echo "... entity.o"
+	@echo "... entity.i"
+	@echo "... entity.s"
 	@echo "... jeshim.o"
 	@echo "... jeshim.i"
 	@echo "... jeshim.s"
+	@echo "... point.o"
+	@echo "... point.i"
+	@echo "... point.s"
+	@echo "... rendersurface.o"
+	@echo "... rendersurface.i"
+	@echo "... rendersurface.s"
 .PHONY : help
 
 

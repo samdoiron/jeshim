@@ -1,37 +1,31 @@
-#include <iostream>
-
+#include <SFML/OpenGL.hpp>
 #include <SFML/window.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/OpenGL.hpp>
+
+#include <iostream>
+#include <thread>
+#include <vector>
+
+#include "rendersurface.hh"
+#include "entity.hh"
+#include "point.hh"
+#include "dimensions.hh"
 
 #define WORLD_HEIGHT 600
 #define WORLD_WIDTH 800
 
 int main(void) {
-    sf::RenderWindow window(sf::VideoMode(WORLD_WIDTH, WORLD_HEIGHT), "My Window");
-    window.setVerticalSyncEnabled(true);
-    sf::Texture player;
+    // Create the window
+    jesh::RenderSurface surface(WORLD_WIDTH, WORLD_HEIGHT);
 
-    if (!player.loadFromFile("guy.png", sf::IntRect(10, 10, 32, 64))) {
-        return -1;
+    // Create the player
+    jesh::Entity guy(jesh::Dimensions(32, 64), jesh::Point(10, 10));
+
+    // Add player to world
+    surface.addEntity(/*guy*/);
+
+    for (;;) {
+        surface.tick();
     }
-
-    sf::Sprite sprite;
-    sprite.setTexture(player);
-    sprite.setScale(sf::Vector2f(2.0f, 2.0f));
-    while (window.isOpen()) {
-        sf::Event event;
-
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-
-        window.clear(sf::Color::Black);
-        window.draw(sprite);
-        window.display();
-    }
-    return 0;
 }
 

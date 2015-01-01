@@ -49,9 +49,55 @@ include CMakeFiles/jeshim.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/jeshim.dir/flags.make
 
+CMakeFiles/jeshim.dir/dimensions.cc.o: CMakeFiles/jeshim.dir/flags.make
+CMakeFiles/jeshim.dir/dimensions.cc.o: dimensions.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_1)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/dimensions.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/dimensions.cc.o -c /Users/samdoiron/Code/Jeshim/dimensions.cc
+
+CMakeFiles/jeshim.dir/dimensions.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jeshim.dir/dimensions.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/Jeshim/dimensions.cc > CMakeFiles/jeshim.dir/dimensions.cc.i
+
+CMakeFiles/jeshim.dir/dimensions.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jeshim.dir/dimensions.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/Jeshim/dimensions.cc -o CMakeFiles/jeshim.dir/dimensions.cc.s
+
+CMakeFiles/jeshim.dir/dimensions.cc.o.requires:
+.PHONY : CMakeFiles/jeshim.dir/dimensions.cc.o.requires
+
+CMakeFiles/jeshim.dir/dimensions.cc.o.provides: CMakeFiles/jeshim.dir/dimensions.cc.o.requires
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/dimensions.cc.o.provides.build
+.PHONY : CMakeFiles/jeshim.dir/dimensions.cc.o.provides
+
+CMakeFiles/jeshim.dir/dimensions.cc.o.provides.build: CMakeFiles/jeshim.dir/dimensions.cc.o
+
+CMakeFiles/jeshim.dir/entity.cc.o: CMakeFiles/jeshim.dir/flags.make
+CMakeFiles/jeshim.dir/entity.cc.o: entity.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_2)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/entity.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/entity.cc.o -c /Users/samdoiron/Code/Jeshim/entity.cc
+
+CMakeFiles/jeshim.dir/entity.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jeshim.dir/entity.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/Jeshim/entity.cc > CMakeFiles/jeshim.dir/entity.cc.i
+
+CMakeFiles/jeshim.dir/entity.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jeshim.dir/entity.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/Jeshim/entity.cc -o CMakeFiles/jeshim.dir/entity.cc.s
+
+CMakeFiles/jeshim.dir/entity.cc.o.requires:
+.PHONY : CMakeFiles/jeshim.dir/entity.cc.o.requires
+
+CMakeFiles/jeshim.dir/entity.cc.o.provides: CMakeFiles/jeshim.dir/entity.cc.o.requires
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/entity.cc.o.provides.build
+.PHONY : CMakeFiles/jeshim.dir/entity.cc.o.provides
+
+CMakeFiles/jeshim.dir/entity.cc.o.provides.build: CMakeFiles/jeshim.dir/entity.cc.o
+
 CMakeFiles/jeshim.dir/jeshim.cc.o: CMakeFiles/jeshim.dir/flags.make
 CMakeFiles/jeshim.dir/jeshim.cc.o: jeshim.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/jeshim.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/jeshim.cc.o -c /Users/samdoiron/Code/Jeshim/jeshim.cc
 
@@ -72,14 +118,68 @@ CMakeFiles/jeshim.dir/jeshim.cc.o.provides: CMakeFiles/jeshim.dir/jeshim.cc.o.re
 
 CMakeFiles/jeshim.dir/jeshim.cc.o.provides.build: CMakeFiles/jeshim.dir/jeshim.cc.o
 
+CMakeFiles/jeshim.dir/point.cc.o: CMakeFiles/jeshim.dir/flags.make
+CMakeFiles/jeshim.dir/point.cc.o: point.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/point.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/point.cc.o -c /Users/samdoiron/Code/Jeshim/point.cc
+
+CMakeFiles/jeshim.dir/point.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jeshim.dir/point.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/Jeshim/point.cc > CMakeFiles/jeshim.dir/point.cc.i
+
+CMakeFiles/jeshim.dir/point.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jeshim.dir/point.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/Jeshim/point.cc -o CMakeFiles/jeshim.dir/point.cc.s
+
+CMakeFiles/jeshim.dir/point.cc.o.requires:
+.PHONY : CMakeFiles/jeshim.dir/point.cc.o.requires
+
+CMakeFiles/jeshim.dir/point.cc.o.provides: CMakeFiles/jeshim.dir/point.cc.o.requires
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/point.cc.o.provides.build
+.PHONY : CMakeFiles/jeshim.dir/point.cc.o.provides
+
+CMakeFiles/jeshim.dir/point.cc.o.provides.build: CMakeFiles/jeshim.dir/point.cc.o
+
+CMakeFiles/jeshim.dir/rendersurface.cc.o: CMakeFiles/jeshim.dir/flags.make
+CMakeFiles/jeshim.dir/rendersurface.cc.o: rendersurface.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /Users/samdoiron/Code/Jeshim/CMakeFiles $(CMAKE_PROGRESS_5)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/jeshim.dir/rendersurface.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/jeshim.dir/rendersurface.cc.o -c /Users/samdoiron/Code/Jeshim/rendersurface.cc
+
+CMakeFiles/jeshim.dir/rendersurface.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/jeshim.dir/rendersurface.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /Users/samdoiron/Code/Jeshim/rendersurface.cc > CMakeFiles/jeshim.dir/rendersurface.cc.i
+
+CMakeFiles/jeshim.dir/rendersurface.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/jeshim.dir/rendersurface.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /Users/samdoiron/Code/Jeshim/rendersurface.cc -o CMakeFiles/jeshim.dir/rendersurface.cc.s
+
+CMakeFiles/jeshim.dir/rendersurface.cc.o.requires:
+.PHONY : CMakeFiles/jeshim.dir/rendersurface.cc.o.requires
+
+CMakeFiles/jeshim.dir/rendersurface.cc.o.provides: CMakeFiles/jeshim.dir/rendersurface.cc.o.requires
+	$(MAKE) -f CMakeFiles/jeshim.dir/build.make CMakeFiles/jeshim.dir/rendersurface.cc.o.provides.build
+.PHONY : CMakeFiles/jeshim.dir/rendersurface.cc.o.provides
+
+CMakeFiles/jeshim.dir/rendersurface.cc.o.provides.build: CMakeFiles/jeshim.dir/rendersurface.cc.o
+
 # Object files for target jeshim
 jeshim_OBJECTS = \
-"CMakeFiles/jeshim.dir/jeshim.cc.o"
+"CMakeFiles/jeshim.dir/dimensions.cc.o" \
+"CMakeFiles/jeshim.dir/entity.cc.o" \
+"CMakeFiles/jeshim.dir/jeshim.cc.o" \
+"CMakeFiles/jeshim.dir/point.cc.o" \
+"CMakeFiles/jeshim.dir/rendersurface.cc.o"
 
 # External object files for target jeshim
 jeshim_EXTERNAL_OBJECTS =
 
+jeshim: CMakeFiles/jeshim.dir/dimensions.cc.o
+jeshim: CMakeFiles/jeshim.dir/entity.cc.o
 jeshim: CMakeFiles/jeshim.dir/jeshim.cc.o
+jeshim: CMakeFiles/jeshim.dir/point.cc.o
+jeshim: CMakeFiles/jeshim.dir/rendersurface.cc.o
 jeshim: CMakeFiles/jeshim.dir/build.make
 jeshim: CMakeFiles/jeshim.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable jeshim"
@@ -89,7 +189,11 @@ jeshim: CMakeFiles/jeshim.dir/link.txt
 CMakeFiles/jeshim.dir/build: jeshim
 .PHONY : CMakeFiles/jeshim.dir/build
 
+CMakeFiles/jeshim.dir/requires: CMakeFiles/jeshim.dir/dimensions.cc.o.requires
+CMakeFiles/jeshim.dir/requires: CMakeFiles/jeshim.dir/entity.cc.o.requires
 CMakeFiles/jeshim.dir/requires: CMakeFiles/jeshim.dir/jeshim.cc.o.requires
+CMakeFiles/jeshim.dir/requires: CMakeFiles/jeshim.dir/point.cc.o.requires
+CMakeFiles/jeshim.dir/requires: CMakeFiles/jeshim.dir/rendersurface.cc.o.requires
 .PHONY : CMakeFiles/jeshim.dir/requires
 
 CMakeFiles/jeshim.dir/clean:
