@@ -13,7 +13,11 @@ void RenderSurface::addEntity() {
 }
 
 void RenderSurface::tick() {
-    // TODO
+    sf::Event event;
+    this->window.pollEvent(event);
+    if (event.type == sf::Event::Closed) {
+        window.close();
+    }
 }
 
 }

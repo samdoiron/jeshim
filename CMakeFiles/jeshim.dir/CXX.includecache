@@ -6,19 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/samdoiron/Code/Jeshim/dimensions.cc
-dimensions.hh
 /Users/samdoiron/Code/Jeshim/dimensions.hh
-
-/Users/samdoiron/Code/Jeshim/dimensions.hh
-
-/Users/samdoiron/Code/Jeshim/entity.cc
-entity.hh
-/Users/samdoiron/Code/Jeshim/entity.hh
-dimensions.hh
-/Users/samdoiron/Code/Jeshim/dimensions.hh
-point.hh
-/Users/samdoiron/Code/Jeshim/point.hh
 
 /Users/samdoiron/Code/Jeshim/entity.hh
 point.hh
@@ -49,10 +37,6 @@ point.hh
 /Users/samdoiron/Code/Jeshim/point.hh
 dimensions.hh
 /Users/samdoiron/Code/Jeshim/dimensions.hh
-
-/Users/samdoiron/Code/Jeshim/point.cc
-point.hh
-/Users/samdoiron/Code/Jeshim/point.hh
 
 /Users/samdoiron/Code/Jeshim/point.hh
 
