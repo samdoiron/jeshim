@@ -10,6 +10,7 @@ Window::Window(std::string title, Dimensions dim) :
     sfmlWindow(sf::VideoMode(dim.getWidth(), dim.getHeight()), title),
     dimensions(dim)
     {
+    this->sfmlWindow.setVerticalSyncEnabled(true);
 }
 
 void Window::render(Sprite toRender) {
@@ -29,7 +30,7 @@ bool Window::isOpen() {
 }
 
 void Window::clear() {
-    this->sfmlWindow.clear(sf::Color(sf::Color::Black));
+    this->sfmlWindow.clear(sf::Color(sf::Color(rand() % 64, rand() % 64, rand() % 64)));
 }
 
 // --- private

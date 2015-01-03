@@ -14,6 +14,7 @@ class Sprite {
         sf::Sprite asSFMLSprite();
     private:
         sf::Sprite sfmlSprite;
+        sf::Texture spriteTexture;
         Point position;
         Dimensions dimensions;
 };
