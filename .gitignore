@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io
 
 ### CMake ###
+jeshim
 CMakeCache.txt
 CMakeFiles
 Makefile
