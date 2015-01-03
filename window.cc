@@ -1,4 +1,3 @@
-
 #include "window.hh"
 
 #include <iostream>
