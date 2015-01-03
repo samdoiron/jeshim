@@ -7,10 +7,13 @@ set (EXECUTABLE_NAME "jeshim")
 add_executable(${EXECUTABLE_NAME} 
   dimensions.cc
   entity.cc
+  game.cc
+  gamestate.cc
   jeshim.cc
   point.cc
   rendersurface.cc
   sprite.cc
+  view.cc
   window.cc
 )
 

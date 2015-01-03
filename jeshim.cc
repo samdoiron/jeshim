@@ -12,9 +12,6 @@
 #include "point.hh"
 #include "dimensions.hh"
 
-#define WORLD_HEIGHT 600
-#define WORLD_WIDTH 800
-
 int main(void) {
 
     jesh::Window window("Jeshim", jesh::Dimensions(WORLD_WIDTH, WORLD_HEIGHT));
@@ -27,4 +24,3 @@ int main(void) {
     }
 
 }
-
