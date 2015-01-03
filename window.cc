@@ -8,9 +8,13 @@ namespace jesh {
 
 Window::Window(std::string title, Dimensions dim) :
     sfmlWindow(sf::VideoMode(dim.getWidth(), dim.getHeight()), title),
-    dimensions(dim), 
-    surface(dim)
+    dimensions(dim)
     {
+    this->sfmlWindow.setVerticalSyncEnabled(true);
+}
+
+void Window::render(Sprite toRender) {
+    this->sfmlWindow.draw(toRender.asSFMLSprite());
 }
 
 // TODO this should be somewhere else.
@@ -18,18 +22,11 @@ Window::Window(std::string title, Dimensions dim) :
 //---------------------------------------------------
 void Window::update() {
     this->pollEvents();
-
-    this->sfmlWindow.clear(sf::Color::Black);
-
-    sf::Sprite screenSprite;
-    screenSprite.setTexture(this->surface.asSFMLTexture());
-
-    this->sfmlWindow.draw(screenSprite);
     this->sfmlWindow.display();
 }
 
-RenderSurface *Window::getSurface() {
-    return &this->surface;
+void Window::clear() {
+    this->sfmlWindow.clear(sf::Color(255, 0, 255));
 }
 
 // --- private

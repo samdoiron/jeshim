@@ -4,6 +4,7 @@
 
 #include "dimensions.hh"
 #include "rendersurface.hh"
+#include "sprite.hh"
 
 #include <SFML/Window.hpp>
 
@@ -11,13 +12,13 @@
 
 namespace jesh {
 
-class Window {
+class Window : RenderSurface {
     public:
         Window(std::string, Dimensions);
-        RenderSurface *getSurface();
+        void clear();
+        void render(Sprite);
         void update();
     private:
-        RenderSurface surface;
         sf::RenderWindow sfmlWindow;
         Dimensions dimensions;
         void pollEvents();

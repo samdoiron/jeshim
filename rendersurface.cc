@@ -9,19 +9,7 @@
 
 namespace jesh {
 
-RenderSurface::RenderSurface(Dimensions dim) {
-    if (!this->texture.create(dim.getWidth(), dim.getHeight())) {
-        throw std::runtime_error("Unable to create RenderSurface texture.");
-    }
-}
-
-void RenderSurface::render(Sprite sprite) {
-    this->texture.draw(sprite.asSFMLSprite());
-    this->texture.display();
-}
-
-sf::Texture RenderSurface::asSFMLTexture() {
-    return this->texture.getTexture();
+void RenderSurface::anchor() {
 }
 
 }

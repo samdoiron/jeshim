@@ -14,14 +14,14 @@
 
 namespace jesh {
 
-class RenderSurface {
+/* abstract */ class RenderSurface {
     public:
-        RenderSurface(Dimensions);
-        sf::Texture asSFMLTexture();
-        void render(Sprite);
+        virtual void clear() = 0;
+        virtual void render(Sprite) = 0;
+        virtual void update() = 0;
 
     private:
-        sf::RenderTexture texture;
+        void anchor();
 };
 
 }

@@ -19,10 +19,10 @@ int main(void) {
 
     jesh::Window window("Jeshim", jesh::Dimensions(WORLD_WIDTH, WORLD_HEIGHT));
     jesh::Sprite guy("guy.png", jesh::Dimensions(32, 64), jesh::Point(10, 1));
-    jesh::RenderSurface *surface = window.getSurface();
 
     for (;;) {
-        surface->render(guy);
+        window.clear();
+        window.render(guy);
         window.update();
     }
 
