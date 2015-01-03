@@ -10,7 +10,7 @@ namespace jesh {
 
 class Sprite {
     public:
-        Sprite(std::string path, jesh::Dimensions, jesh::Point);
+        Sprite(std::string path, Dimensions, Point);
         sf::Sprite asSFMLSprite();
     private:
         sf::Sprite sfmlSprite;
