@@ -15,9 +15,13 @@ namespace jesh {
 class Window : RenderSurface {
     public:
         Window(std::string, Dimensions);
+
+        // via RenderSurface
         void clear();
         void render(Sprite);
         void update();
+
+        bool isOpen();
     private:
         sf::RenderWindow sfmlWindow;
         Dimensions dimensions;

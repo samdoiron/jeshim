@@ -21,7 +21,7 @@ namespace jesh {
         virtual void update() = 0;
 
     private:
-        void anchor();
+        virtual void anchor();
 };
 
 }
