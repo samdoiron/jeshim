@@ -7,19 +7,21 @@
 namespace jesh {
 
 Window::Window(std::string title, Dimensions dim) :
-    sfmlWindow(sf::VideoMode(dim.getWidth(), dim.getHeight()), title),
+    sfmlWindow(
+        sf::VideoMode(
+            static_cast<unsigned int>(dim.getWidth()), 
+            static_cast<unsigned int>(dim.getHeight())
+        ),
+        title
+    ),
     dimensions(dim)
     {
-    this->sfmlWindow.setVerticalSyncEnabled(true);
 }
 
 void Window::render(Sprite toRender) {
     this->sfmlWindow.draw(toRender.asSFMLSprite());
 }
 
-// TODO this should be somewhere else.
-// Temporary to prevent freezing.
-//---------------------------------------------------
 void Window::update() {
     this->pollEvents();
     this->sfmlWindow.display();
@@ -35,6 +37,9 @@ void Window::clear() {
 
 // --- private
 
+// TODO this should be somewhere else.
+// Temporary to prevent freezing.
+//---------------------------------------------------
 void Window::pollEvents() {
     sf::Event event;
     this->sfmlWindow.pollEvent(event);
