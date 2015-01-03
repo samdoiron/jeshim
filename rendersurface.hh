@@ -3,22 +3,25 @@
 
 #include <vector>
 
+#include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>
 #include <SFML/window.hpp>
-#include <SFML/Graphics.hpp>
 
+#include "dimensions.hh"
 #include "entity.hh"
+#include "point.hh"
+#include "sprite.hh"
 
 namespace jesh {
 
 class RenderSurface {
     public:
-        RenderSurface(int, int);
-        void addEntity();
-        void tick();
+        RenderSurface(Dimensions);
+        sf::Texture asSFMLTexture();
+        void render(Sprite);
+
     private:
-        sf::RenderWindow window;
-        //std::vector<Entity*> entities;
+        sf::RenderTexture texture;
 };
 
 }

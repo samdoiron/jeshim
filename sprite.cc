@@ -1,13 +1,27 @@
 
 #include <string>
 
+#include "dimensions.hh"
+#include "point.hh"
+
 #include "sprite.hh"
 
 namespace jesh {
 
-Sprite::Sprite(std::string spritePath) {
-    //this->sprite = player.loadFromFile(path, sf::IntRect(10, 10, 32, 64));
+Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
+    dimensions(dim),
+    position(pos) {
+
+    sf::Texture spriteTexture;
+    spriteTexture.loadFromFile(texturePath, dim.asSFMLIntRect(pos));
+
+    this->sfmlSprite = sf::Sprite();
 }
+
+sf::Sprite Sprite::asSFMLSprite() {
+    return this->sfmlSprite;
+}
+
 
 }
 

@@ -1,4 +1,3 @@
-
 #include "entity.hh"
 
 #include "dimensions.hh"
@@ -7,8 +6,8 @@
 namespace jesh {
 
 Entity::Entity(Dimensions dim, Point pos) :
-    position(pos),
-    dimensions(dim) { 
+    dimensions(dim),
+    position(pos) { 
 }
 
 

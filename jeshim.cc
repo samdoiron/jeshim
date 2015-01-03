@@ -6,6 +6,7 @@
 #include <thread>
 #include <vector>
 
+#include "window.hh"
 #include "rendersurface.hh"
 #include "entity.hh"
 #include "point.hh"
@@ -15,17 +16,15 @@
 #define WORLD_WIDTH 800
 
 int main(void) {
-    // Create the window
-    jesh::RenderSurface surface(WORLD_WIDTH, WORLD_HEIGHT);
 
-    // Create the player
-    jesh::Entity guy(jesh::Dimensions(32, 64), jesh::Point(10, 10));
-
-    // Add player to world
-    surface.addEntity(/*guy*/);
+    jesh::Window window("Jeshim", jesh::Dimensions(WORLD_WIDTH, WORLD_HEIGHT));
+    jesh::Sprite guy("guy.png", jesh::Dimensions(32, 64), jesh::Point(10, 1));
+    jesh::RenderSurface *surface = window.getSurface();
 
     for (;;) {
-        surface.tick();
+        surface->render(guy);
+        window.update();
     }
+
 }
 

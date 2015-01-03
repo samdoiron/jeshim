@@ -1,23 +1,27 @@
+#include "rendersurface.hh"
+
+#include "dimensions.hh"
+#include "point.hh"
+
+#include <SFML/Graphics.hpp>
 #include <SFML/window.hpp>
 
-#include "rendersurface.hh"
 
 namespace jesh {
 
-RenderSurface::RenderSurface(int width, int height) : 
-    window(sf::VideoMode(width, height), "Jeshim") 
-{
-}
-
-void RenderSurface::addEntity() {
-}
-
-void RenderSurface::tick() {
-    sf::Event event;
-    this->window.pollEvent(event);
-    if (event.type == sf::Event::Closed) {
-        window.close();
+RenderSurface::RenderSurface(Dimensions dim) {
+    if (!this->texture.create(dim.getWidth(), dim.getHeight())) {
+        throw std::runtime_error("Unable to create RenderSurface texture.");
     }
+}
+
+void RenderSurface::render(Sprite sprite) {
+    this->texture.draw(sprite.asSFMLSprite());
+    this->texture.display();
+}
+
+sf::Texture RenderSurface::asSFMLTexture() {
+    return this->texture.getTexture();
 }
 
 }
