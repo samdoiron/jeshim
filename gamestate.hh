@@ -1,5 +1,5 @@
-#ifndef HACK_GAMESTATE_H_
-#define HACK_GAMESTATE_H_
+#ifndef JESH_GAMESTATE_H_
+#define JESH_GAMESTATE_H_
 
 namespace jesh {
 
@@ -13,4 +13,4 @@ namespace jesh {
     
 }
 
-#endif // HACK_GAMESTATE_H_
+#endif // JESH_GAMESTATE_H_

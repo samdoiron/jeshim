@@ -22,7 +22,9 @@ void Game::run() {
         time_t now = std::clock();
         float frameDifference = (lastUpdate - now) / CLOCKS_PER_SEC;
 
+        window.clear();
         this->state->advance(frameDifference);
+        window.update();
 
         lastUpdate = now;
     }

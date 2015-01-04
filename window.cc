@@ -31,19 +31,17 @@ bool Window::isOpen() {
 }
 
 void Window::clear() {
-    this->sfmlWindow.clear(sf::Color(sf::Color(rand() % 64, rand() % 64, rand() % 64)));
+    this->sfmlWindow.clear(sf::Color(rand() % 64, rand() % 64, rand() % 64));
 }
 
 // --- private
 
-// TODO this should be somewhere else.
-// Temporary to prevent freezing.
-//---------------------------------------------------
 void Window::pollEvents() {
     sf::Event event;
-    this->sfmlWindow.pollEvent(event);
-    if (event.type == sf::Event::Closed) {
-        this->sfmlWindow.close();
+    while (this->sfmlWindow.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            this->sfmlWindow.close();
+        }
     }
 }
 

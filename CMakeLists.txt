@@ -7,17 +7,21 @@ set (EXECUTABLE_NAME "jeshim")
 add_executable(${EXECUTABLE_NAME} 
   dimensions.cc
   entity.cc
+  event.cc
+  eventlistener.cc
   game.cc
   gamestate.cc
   jeshim.cc
+  mousemoveevent.cc
   point.cc
   rendersurface.cc
   sprite.cc
+  teststate.cc
   view.cc
   window.cc
 )
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -g -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
