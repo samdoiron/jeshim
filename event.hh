@@ -3,9 +3,6 @@
 
 #include "eventtype.hh"
 
-// TODO: This probably should be a template that takes the EventType as
-// an parameter.
-
 namespace jesh {
 
 // Serves as a common ancestor so that EventListeners can 
@@ -13,8 +10,10 @@ namespace jesh {
 class Event {
     public:
         Event(EventType);
-        virtual EventType getType();
+        EventType getType();
+        virtual ~Event();
     private:
+        virtual void anchor();
         EventType type;
 };
 

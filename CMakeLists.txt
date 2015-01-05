@@ -8,11 +8,14 @@ add_executable(${EXECUTABLE_NAME}
   dimensions.cc
   entity.cc
   event.cc
+  eventemitter.cc
   eventlistener.cc
   game.cc
   gamestate.cc
   jeshim.cc
   mousemoveevent.cc
+  player.cc
+  playerview.cc
   point.cc
   rendersurface.cc
   sprite.cc

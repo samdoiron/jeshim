@@ -17,4 +17,7 @@ float MouseMoveEvent::getY() {
     return this->position.getY();
 }
 
+void MouseMoveEvent::anchor() {
+}
+
 }

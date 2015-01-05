@@ -11,5 +11,22 @@ Entity::Entity(Dimensions dim, Point pos) :
 }
 
 
+// Maybe don't assume that every Entity has position and size?
+
+Point Entity::getPosition() {
+    return this->position;
+}
+
+Dimensions Entity::getDimensions() {
+    return this->dimensions;
+}
+
+Entity::~Entity() {
+}
+
+void Entity::anchor() {
+}
+
+
 }
 

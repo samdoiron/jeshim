@@ -6,6 +6,9 @@ namespace jesh {
 void View::anchor() {
 }
 
+View::~View() {
+}
+
 }
 
 

@@ -5,9 +5,10 @@
 
 namespace jesh {
 
-/* abstract */ class EventListener {
+class EventListener {
     public:
         virtual void handleEvent(Event);
+        virtual ~EventListener();
     private:
         virtual void anchor();
 };

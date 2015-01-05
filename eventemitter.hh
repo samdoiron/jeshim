@@ -13,13 +13,19 @@
 
 namespace jesh {
 
-class EventEmitter {
+/* abstract */ class EventEmitter {
     public:
         EventEmitter();
-        void addListener(EventType, EventListener);
-        void broadcast(Event);
+        virtual void addListener(EventType, EventListener*);
+        virtual ~EventEmitter();
+
+    // This is needed by almost every child of EventEmitter, but we don't
+    // want just any random stranger to call it.
+    protected:
+        void broadcast(Event*);
+
     private:
-        std::vector<std::vector<EventListener>> listeners;
+        std::vector<std::vector<EventListener*>> listeners;
 };
 
 }

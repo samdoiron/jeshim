@@ -1,4 +1,5 @@
 #ifndef JESH_MOUSEMOVEEVENT_H_
+#define JESH_MOUSEMOVEEVENT_H_
 
 #include "event.hh"
 
@@ -6,13 +7,14 @@
 
 namespace jesh {
 
-class MouseMoveEvent : Event {
+class MouseMoveEvent : public Event {
     public:
         MouseMoveEvent(Point);
         float getX();
         float getY();
     private:
         Point position;
+        virtual void anchor();
 };
 
 }

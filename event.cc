@@ -12,6 +12,12 @@ EventType Event::getType() {
     return this->type;
 }
 
+void Event::anchor() {
+}
+
+Event::~Event() {
+}
+
 }
 
 
