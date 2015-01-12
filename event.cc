@@ -1,5 +1,6 @@
 #include "event.hh"
 
+#include "eventlistener.hh"
 #include "eventtype.hh"
 
 namespace jesh {
@@ -10,6 +11,10 @@ Event::Event(EventType _type) :
 
 EventType Event::getType() {
     return this->type;
+}
+
+void Event::sendTo(EventListener &listener) {
+    listener.handleEvent(*this);
 }
 
 void Event::anchor() {

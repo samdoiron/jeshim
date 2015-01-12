@@ -24,10 +24,14 @@ Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
     this->sfmlSprite.setPosition(pos.getX(), pos.getY());
 }
 
+void Sprite::setPosition(Point newPosition) {
+    this->position = newPosition;
+    this->sfmlSprite.setPosition(newPosition.getX(), newPosition.getY());
+}
+
 sf::Sprite Sprite::asSFMLSprite() {
     return this->sfmlSprite;
 }
-
 
 }
 

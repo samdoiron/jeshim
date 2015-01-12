@@ -10,10 +10,10 @@ namespace jesh {
 
 class PlayerView : public View {
     public:
-        PlayerView(Player*);
-        void renderTo(RenderSurface*);
+        PlayerView(Player&);
+        void renderTo(RenderSurface&);
     private:
-        Player *player;
+        Player &player;
         Sprite playerSprite;
 };
 

@@ -5,28 +5,37 @@
 
 #include <ctime>
 #include <stdexcept>
+#include <iostream>
 
 namespace jesh {
 
-Game::Game(Window* _window) :
+// UGLY: game must have a pointer to state because it needs to bootstrap
+// without one, because GameState needs a reference to state.
+
+// A potential fix to this would be to give GameState two methods, isCurrent()
+// and getNextState(), which game would poll.
+
+Game::Game(Window &_window) :
     window(_window),
-    state(NULL) {
+    state(nullptr) {
 }
 
 void Game::run() {
     clock_t lastUpdate = std::clock();
 
-    if (this->state == NULL) {
+    // State is pseudo-optional because state needs a reference to the game to
+    // be created.
+    if (state == nullptr) {
         throw std::runtime_error("Attempt to run game without setting state.");
     }
 
-    while (this->window->isOpen()) {
+    while (this->window.isOpen()) {
         clock_t now = std::clock();
-        float frameDifference = (lastUpdate - now) / CLOCKS_PER_SEC;
+        float frameDifference = static_cast<float>(now - lastUpdate) / CLOCKS_PER_SEC;
 
-        this->window->clear();
+        this->window.clear();
         this->state->advance(frameDifference);
-        this->window->update();
+        this->window.update();
 
         lastUpdate = now;
     }

@@ -5,7 +5,8 @@
 
 namespace jesh {
 
-GameState::GameState(EventEmitter *outsideWorld, RenderSurface *gameSurface) :
+GameState::GameState(Game &_game, EventEmitter &outsideWorld, RenderSurface &gameSurface) :
+    game(_game),
     emitter(outsideWorld),
     surface(gameSurface) {
 }

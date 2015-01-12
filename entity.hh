@@ -18,9 +18,12 @@ class RenderSurface;
         Point getPosition();
         virtual ~Entity();
         virtual void advance(float) = 0;
-    private:
+
+    protected:
         Dimensions dimensions;
         Point position;
+
+    private:
         virtual void anchor();
 };
 

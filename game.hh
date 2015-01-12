@@ -8,11 +8,11 @@ namespace jesh {
 
 class Game {
     public:
-        Game(Window*);
+        Game(Window&);
         void run();
         void setState(GameState*);
     private:
-        Window *window;
+        Window &window;
         GameState *state;
 };
 

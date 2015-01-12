@@ -5,11 +5,14 @@
 
 namespace jesh {
 
+class EventListener;
+
 // Serves as a common ancestor so that EventListeners can 
 // handle arbitrary (unknown) events.
 class Event {
     public:
         Event(EventType);
+        virtual void sendTo(EventListener&);
         EventType getType();
         virtual ~Event();
     private:

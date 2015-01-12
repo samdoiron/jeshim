@@ -2,13 +2,19 @@
 #define JESH_EVENTLISTENER_H_
 
 #include "event.hh"
+#include "mousemoveevent.hh"
 
 namespace jesh {
 
-class EventListener {
+// Pre-declare because mousemoveevent.hh includes eventlistener.hh.
+class MouseMoveEvent;
+
+/* abstract */ class EventListener {
     public:
-        virtual void handleEvent(Event);
+        virtual void handleEvent(Event&) = 0;
+        virtual void handleEvent(MouseMoveEvent&) = 0;
         virtual ~EventListener();
+
     private:
         virtual void anchor();
 };

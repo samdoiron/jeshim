@@ -20,7 +20,7 @@ class Window : public RenderSurface, public EventEmitter {
 
         // via RenderSurface
         void clear();
-        void render(Sprite);
+        void render(Sprite&);
         void update();
 
         bool isOpen();

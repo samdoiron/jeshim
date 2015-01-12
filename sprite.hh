@@ -11,6 +11,7 @@ namespace jesh {
 class Sprite {
     public:
         Sprite(std::string path, Dimensions, Point);
+        void setPosition(Point);
         sf::Sprite asSFMLSprite();
     private:
         sf::Sprite sfmlSprite;

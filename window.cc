@@ -24,7 +24,7 @@ Window::Window(std::string title, Dimensions dim) :
     {
 }
 
-void Window::render(Sprite toRender) {
+void Window::render(Sprite &toRender) {
     this->sfmlWindow.draw(toRender.asSFMLSprite());
 }
 
@@ -39,7 +39,7 @@ bool Window::isOpen() {
 }
 
 void Window::clear() {
-    this->sfmlWindow.clear(sf::Color(rand() % 64, rand() % 64, rand() % 64));
+    this->sfmlWindow.clear(sf::Color((rand() % 127) + 100, (rand() % 127) + 100, (rand() % 127) + 100));
 }
 
 // --- private
@@ -51,8 +51,8 @@ void Window::pollEvents() {
             this->sfmlWindow.close();
         } else {
             Event *translated = this->translateEvent(event);
-            if (translated != NULL) {
-                this->broadcast(translated);
+            if (translated != nullptr) {
+                this->broadcast(*translated);
             }
         }
     }
@@ -64,7 +64,7 @@ Event *Window::translateEvent(sf::Event toTranslate) {
             jesh::Point(toTranslate.mouseMove.x, toTranslate.mouseMove.y)
         );
     }
-    return NULL;
+    return nullptr;
 }
 
 

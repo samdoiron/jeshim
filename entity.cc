@@ -10,7 +10,6 @@ Entity::Entity(Dimensions dim, Point pos) :
     position(pos) { 
 }
 
-
 // Maybe don't assume that every Entity has position and size?
 
 Point Entity::getPosition() {

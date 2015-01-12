@@ -17,8 +17,8 @@
 int main(void) {
     jesh::Window window(GAME_TITLE, jesh::Dimensions(GAME_WIDTH, GAME_HEIGHT));
 
-    jesh::Game jeshim(&window);
-    jesh::TestState testState(&window, &window);
+    jesh::Game jeshim(window);
+    jesh::TestState testState(jeshim, window, window);
 
     jeshim.setState(&testState);
     jeshim.run();

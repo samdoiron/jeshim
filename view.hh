@@ -7,7 +7,7 @@ namespace jesh {
 
 /* abstract */ class View {
     public:
-        virtual void renderTo(RenderSurface*) = 0;
+        virtual void renderTo(RenderSurface&) = 0;
         virtual ~View();
     private:
         virtual void anchor();

@@ -6,17 +6,21 @@
 
 namespace jesh {
 
+// Forward declare Game class
+class Game;
+
 /* abstract */ class GameState {
     public:
-        GameState(EventEmitter*, RenderSurface*);
+        GameState(Game&, EventEmitter&, RenderSurface&);
         virtual ~GameState();
 
         // Advance the game a given number of seconds
         virtual void advance(float) = 0;
 
     protected:
-        EventEmitter *emitter;
-        RenderSurface *surface;
+        Game &game;
+        EventEmitter &emitter;
+        RenderSurface &surface;
 
     private:
         virtual void anchor();

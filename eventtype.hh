@@ -4,6 +4,7 @@
 // Event types are enumerated here so that they can be
 // referred to specifically, for things like "listen for kMouseMove events"
 typedef enum {
+    kUnknownEvent,
     kMouseMove,
     kNumEventTypes
 } EventType;

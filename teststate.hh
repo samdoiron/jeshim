@@ -9,8 +9,8 @@ namespace jesh {
 
 class TestState : public GameState {
     public:
-        TestState(EventEmitter*, RenderSurface*);
-        void addListener(EventType, EventListener*);
+        TestState(Game&, EventEmitter&, RenderSurface&);
+        void addListener(EventType, EventListener&);
 
         // via GameState
         void advance(float);
@@ -18,7 +18,11 @@ class TestState : public GameState {
     private:
         Player player;
         PlayerView playerView;
+        Sprite partyHard;
+        float runningTime;
+        int numTicks;
         void render();
+        void trackFramerate(float);
 };
 
 }

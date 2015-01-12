@@ -2,6 +2,8 @@
 
 #include "eventtype.hh"
 
+#include <iostream>
+
 namespace jesh {
 
 MouseMoveEvent::MouseMoveEvent(Point point) :
@@ -9,12 +11,12 @@ MouseMoveEvent::MouseMoveEvent(Point point) :
     position(point) {
 }
 
-float MouseMoveEvent::getX() {
-    return this->position.getX();
+Point MouseMoveEvent::getPosition() {
+    return position;
 }
 
-float MouseMoveEvent::getY() {
-    return this->position.getY();
+void MouseMoveEvent::sendTo(EventListener &listener) {
+    listener.handleEvent(*this);
 }
 
 void MouseMoveEvent::anchor() {

@@ -8,7 +8,7 @@ namespace jesh {
 /* abstract */ class RenderSurface {
     public:
         virtual void clear() = 0;
-        virtual void render(Sprite) = 0;
+        virtual void render(Sprite&) = 0;
         virtual void update() = 0;
         virtual ~RenderSurface() { }
 
