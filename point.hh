@@ -8,6 +8,7 @@ class Point {
         Point(float, float);
         float getX();
         float getY();
+        void moveRelative(float x, float y);
     private:
         float x, y;
 };

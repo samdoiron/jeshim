@@ -13,6 +13,8 @@ add_executable(${EXECUTABLE_NAME}
   game.cc
   gamestate.cc
   jeshim.cc
+  keypressevent.cc
+  keyreleaseevent.cc
   mousemoveevent.cc
   player.cc
   playerview.cc

@@ -2,7 +2,11 @@
 #define JESH_EVENTLISTENER_H_
 
 #include "event.hh"
+
+// Event types
 #include "mousemoveevent.hh"
+#include "keypressevent.hh"
+#include "keyreleaseevent.hh"
 
 namespace jesh {
 
@@ -13,6 +17,8 @@ class MouseMoveEvent;
     public:
         virtual void handleEvent(Event&) = 0;
         virtual void handleEvent(MouseMoveEvent&) = 0;
+        virtual void handleEvent(KeyPressEvent&) = 0;
+        virtual void handleEvent(KeyReleaseEvent&) = 0;
         virtual ~EventListener();
 
     private:

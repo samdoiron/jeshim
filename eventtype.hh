@@ -6,6 +6,8 @@
 typedef enum {
     kUnknownEvent,
     kMouseMove,
+    kKeyPress,
+    kKeyRelease,
     kNumEventTypes
 } EventType;
 

@@ -8,11 +8,16 @@ Point::Point(float _x, float _y) {
 }
 
 float Point::getX() {
-    return this->x;
+    return x;
 }
 
 float Point::getY() {
-    return this->y;
+    return y;
+}
+
+void Point::moveRelative(float dx, float dy) {
+    x += dx;
+    y += dy;
 }
 
 }

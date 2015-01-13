@@ -25,44 +25,48 @@ Window::Window(std::string title, Dimensions dim) :
 }
 
 void Window::render(Sprite &toRender) {
-    this->sfmlWindow.draw(toRender.asSFMLSprite());
+    sfmlWindow.draw(toRender.asSFMLSprite());
 }
 
 // TODO: Maybe seperate polling and displaying? Window::update is not very SRP.
 void Window::update() {
-    this->pollEvents();
-    this->sfmlWindow.display();
+    pollEvents();
+    sfmlWindow.display();
 }
 
 bool Window::isOpen() {
-    return this->sfmlWindow.isOpen();
+    return sfmlWindow.isOpen();
 }
 
 void Window::clear() {
-    this->sfmlWindow.clear(sf::Color((rand() % 127) + 100, (rand() % 127) + 100, (rand() % 127) + 100));
+    sfmlWindow.clear(sf::Color::Black);
 }
 
 // --- private
 
 void Window::pollEvents() {
     sf::Event event;
-    while (this->sfmlWindow.pollEvent(event)) {
+    while (sfmlWindow.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            this->sfmlWindow.close();
+            sfmlWindow.close();
         } else {
-            Event *translated = this->translateEvent(event);
+            Event *translated = translateEvent(event);
             if (translated != nullptr) {
-                this->broadcast(*translated);
+                broadcast(*translated);
             }
         }
     }
 }
 
+// TODO this should probably be somewhere else.
 Event *Window::translateEvent(sf::Event toTranslate) {
     if (toTranslate.type == sf::Event::MouseMoved) {
         return new MouseMoveEvent(
             jesh::Point(toTranslate.mouseMove.x, toTranslate.mouseMove.y)
         );
+    } else if (toTranslate.type == sf::Event::KeyPressed) {
+    } else {
+
     }
     return nullptr;
 }
