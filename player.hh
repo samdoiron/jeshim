@@ -5,6 +5,9 @@
 #include "eventemitter.hh"
 #include "event.hh"
 #include "mousemoveevent.hh"
+#include "keypressevent.hh"
+#include "keyreleaseevent.hh"
+#include "vector.hh"
 
 #include "entity.hh"
 
@@ -18,11 +21,14 @@ class Player : public Entity, public EventListener {
         void advance(float);
 
         // via EventListener
-        void handleEvent(MouseMoveEvent&);
+        void handleEvent(KeyPressEvent&);
+        void handleEvent(KeyReleaseEvent&);
         void handleEvent(Event&);
     private:
         EventEmitter &emitter;
-        float timeRunning;
+        Vector velocity;
+        bool isRunningX;
+        bool isRunningY;
 };
 
 }

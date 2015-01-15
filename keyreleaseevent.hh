@@ -3,14 +3,15 @@
 
 #include "event.hh"
 #include "keycode.hh"
+#include "eventlistener.hh"
 
 namespace jesh {
-
 
 class KeyReleaseEvent : public Event {
     public:
         KeyReleaseEvent(KeyCode);
         KeyCode getKeyCode();
+        void sendTo(EventListener&);
     private: 
         KeyCode keyCode;
 };

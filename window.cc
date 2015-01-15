@@ -9,6 +9,9 @@
 
 // Events
 #include "mousemoveevent.hh"
+#include "keypressevent.hh"
+#include "keyreleaseevent.hh"
+#include "keycode.hh"
 
 namespace jesh {
 
@@ -22,6 +25,7 @@ Window::Window(std::string title, Dimensions dim) :
     ),
     dimensions(dim)
     {
+    sfmlWindow.setVerticalSyncEnabled(true);
 }
 
 void Window::render(Sprite &toRender) {
@@ -65,8 +69,11 @@ Event *Window::translateEvent(sf::Event toTranslate) {
             jesh::Point(toTranslate.mouseMove.x, toTranslate.mouseMove.y)
         );
     } else if (toTranslate.type == sf::Event::KeyPressed) {
-    } else {
-
+        // Safe because jesh keyCodes are the same as SFML keyCodes.
+        return new KeyPressEvent(static_cast<KeyCode>(toTranslate.key.code));
+    } else if (toTranslate.type == sf::Event::KeyReleased) {
+        // Safe because jesh keyCodes are the same as SFML keyCodes.
+        return new KeyReleaseEvent(static_cast<KeyCode>(toTranslate.key.code));
     }
     return nullptr;
 }

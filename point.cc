@@ -20,6 +20,11 @@ void Point::moveRelative(float dx, float dy) {
     y += dy;
 }
 
+void Point::moveRelative(Vector delta) {
+    x += delta.getX();
+    y += delta.getY();
+}
+
 }
 
 

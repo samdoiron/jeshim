@@ -18,7 +18,6 @@ class TestState : public GameState {
     private:
         Player player;
         PlayerView playerView;
-        Sprite partyHard;
         float runningTime;
         int numTicks;
         void render();

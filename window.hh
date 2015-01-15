@@ -9,7 +9,6 @@
 #include "sprite.hh"
 
 #include <SFML/Window.hpp>
-#include <SFML/Keyboard.hpp>
 
 #include <string>
 

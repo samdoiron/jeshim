@@ -12,13 +12,15 @@ namespace jesh {
 
 // Pre-declare because mousemoveevent.hh includes eventlistener.hh.
 class MouseMoveEvent;
+class KeyPressEvent;
+class KeyReleaseEvent;
 
-/* abstract */ class EventListener {
+class EventListener {
     public:
-        virtual void handleEvent(Event&) = 0;
-        virtual void handleEvent(MouseMoveEvent&) = 0;
-        virtual void handleEvent(KeyPressEvent&) = 0;
-        virtual void handleEvent(KeyReleaseEvent&) = 0;
+        virtual void handleEvent(Event&) {}
+        virtual void handleEvent(MouseMoveEvent&) {}
+        virtual void handleEvent(KeyPressEvent&) {}
+        virtual void handleEvent(KeyReleaseEvent&) {}
         virtual ~EventListener();
 
     private:

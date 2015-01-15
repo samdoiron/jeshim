@@ -22,6 +22,7 @@ add_executable(${EXECUTABLE_NAME}
   rendersurface.cc
   sprite.cc
   teststate.cc
+  vector.cc
   view.cc
   window.cc
 )

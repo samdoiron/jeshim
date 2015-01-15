@@ -4,13 +4,17 @@
 
 #include "event.hh"
 #include "keycode.hh"
+#include "eventlistener.hh"
 
 namespace jesh {
+
+class EventListener;
 
 class KeyPressEvent : public Event {
     public:
         KeyPressEvent(KeyCode);
         KeyCode getKeyCode();
+        void sendTo(EventListener&);
     private: 
         KeyCode keyCode;
 };

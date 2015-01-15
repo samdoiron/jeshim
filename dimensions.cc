@@ -25,10 +25,10 @@ float Dimensions::getHeight() {
 // it doesn't know where it is, just it's magnitudes.
 sf::IntRect Dimensions::asSFMLIntRect(Point topLeft) {
     return sf::IntRect(
-        (int)topLeft.getX(),
-        (int)topLeft.getY(),
-        (int)(topLeft.getX() + this->width),
-        (int)(topLeft.getY() + this->height)
+        static_cast<int>(topLeft.getX()),
+        static_cast<int>(topLeft.getY()),
+        static_cast<int>(topLeft.getX() + this->width),
+        static_cast<int>(topLeft.getY() + this->height)
     );
 }
 
