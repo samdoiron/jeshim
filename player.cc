@@ -34,9 +34,7 @@ Player::Player(EventEmitter &_emitter, Point start) :
 }
 
 void Player::advance(double secondsPassed) {
-    if (secondsPassed > 0.001) {
-        position.moveRelative(velocity * secondsPassed);
-    }
+    position.moveRelative(velocity * secondsPassed);
 }
 
 // Event handling
@@ -58,9 +56,16 @@ void Player::handleEvent(KeyPressEvent &event) {
 
 void Player::handleEvent(KeyReleaseEvent &event) {
     KeyCode key = event.getKeyCode();
-    if (key == kMoveUp || key == kMoveDown) {
+    if (key == kMoveUp && velocity.getY() < 0) {
         velocity.setY(0);
-    } else if (key == kMoveLeft || key == kMoveRight) {
+    }
+    if (key == kMoveDown && velocity.getY() > 0) {
+        velocity.setY(0);
+    }
+    if (key == kMoveLeft && velocity.getX() < 0) {
+        velocity.setX(0);
+    }
+    if (key == kMoveRight && velocity.getX() > 0) {
         velocity.setX(0);
     }
 }
