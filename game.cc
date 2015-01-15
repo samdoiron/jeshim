@@ -3,9 +3,9 @@
 #include "dimensions.hh"
 #include "gamestate.hh"
 
-#include <ctime>
 #include <stdexcept>
 #include <iostream>
+#include <chrono>
 
 namespace jesh {
 
@@ -21,7 +21,9 @@ Game::Game(Window &_window) :
 }
 
 void Game::run() {
-    clock_t lastUpdate = std::clock();
+    namespace chrono = std::chrono;
+
+    chrono::steady_clock::time_point lastUpdate = chrono::steady_clock::now();
 
     // State is pseudo-optional because state needs a reference to the game to
     // be created.
@@ -30,8 +32,9 @@ void Game::run() {
     }
 
     while (this->window.isOpen()) {
-        clock_t now = std::clock();
-        double frameDifference = static_cast<double>(now - lastUpdate) / CLOCKS_PER_SEC;
+        // Oh man, working with times sure is fun.
+        chrono::steady_clock::time_point now = chrono::steady_clock::now();
+        double frameDifference = chrono::duration_cast<chrono::duration<double>>(now - lastUpdate).count();
 
         this->window.clear();
         this->state->advance(frameDifference);

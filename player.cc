@@ -21,14 +21,14 @@ const KeyCode kMoveUp    = kUp;
 const KeyCode kMoveDown  = kDown;
 const KeyCode kMoveLeft  = kLeft;
 const KeyCode kMoveRight = kRight;
+const KeyCode kRun       = kZ;
 
-const double kRunSpeed = 2000; // Pixels per second
+const double kRunSpeed  = 1000; // Pixels per second
 
 Player::Player(EventEmitter &_emitter, Point start) :
     Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT), start),
     emitter(_emitter),
-    isRunningX(false),
-    isRunningY(false) {
+    isRunning(false) {
     this->emitter.addListener(kKeyPress, *this);
     this->emitter.addListener(kKeyRelease, *this);
 }
@@ -55,17 +55,19 @@ void Player::handleEvent(KeyPressEvent &event) {
 }
 
 void Player::handleEvent(KeyReleaseEvent &event) {
-    KeyCode key = event.getKeyCode();
-    if (key == kMoveUp && velocity.getY() < 0) {
+    KeyCode releasedKey = event.getKeyCode();
+    bool movingLeft  = velocity.getX() < 0;
+    bool movingRight = velocity.getX() > 0;
+    bool movingUp    = velocity.getY() < 0;
+    bool movingDown  = velocity.getY() > 0;
+
+    if (releasedKey == kMoveUp && movingUp) {
         velocity.setY(0);
-    }
-    if (key == kMoveDown && velocity.getY() > 0) {
+    } else if (releasedKey == kMoveDown && movingDown) {
         velocity.setY(0);
-    }
-    if (key == kMoveLeft && velocity.getX() < 0) {
+    } else if (releasedKey == kMoveLeft && movingLeft) {
         velocity.setX(0);
-    }
-    if (key == kMoveRight && velocity.getX() > 0) {
+    } else if (releasedKey == kMoveRight && movingRight) {
         velocity.setX(0);
     }
 }

@@ -27,8 +27,7 @@ class Player : public Entity, public EventListener {
     private:
         EventEmitter &emitter;
         Vector velocity;
-        bool isRunningX;
-        bool isRunningY;
+        bool isRunning;
 };
 
 }
