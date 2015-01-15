@@ -7,13 +7,13 @@ namespace jesh {
 
 class Point {
     public:
-        Point(float, float);
-        float getX();
-        float getY();
-        void moveRelative(float x, float y);
+        Point(double, double);
+        double getX();
+        double getY();
+        void moveRelative(double x, double y);
         void moveRelative(Vector);
     private:
-        float x, y;
+        double x, y;
 };
 
 }

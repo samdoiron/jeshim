@@ -8,16 +8,16 @@
 
 namespace jesh {
 
-Dimensions::Dimensions(float _width, float _height) {
+Dimensions::Dimensions(double _width, double _height) {
     this->width = _width;
     this->height = _height;
 }
 
-float Dimensions::getWidth() {
+double Dimensions::getWidth() {
     return this->width;
 }
 
-float Dimensions::getHeight() {
+double Dimensions::getHeight() {
     return this->height;
 }
 

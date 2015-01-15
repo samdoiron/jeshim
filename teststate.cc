@@ -18,7 +18,7 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
     numTicks(0) {
 }
 
-void TestState::advance(float difference) {
+void TestState::advance(double difference) {
     this->trackFramerate(difference);
     this->player.advance(difference);
     this->render();
@@ -28,7 +28,7 @@ void TestState::render() {
     playerView.renderTo(this->surface);
 }
 
-void TestState::trackFramerate(float difference) {
+void TestState::trackFramerate(double difference) {
     this->numTicks += 1;
     this->runningTime += difference;
     if (this->runningTime > 1) {

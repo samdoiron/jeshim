@@ -22,7 +22,7 @@ const KeyCode kMoveDown  = kDown;
 const KeyCode kMoveLeft  = kLeft;
 const KeyCode kMoveRight = kRight;
 
-const float kRunSpeed = 2000; // Pixels per second
+const double kRunSpeed = 2000; // Pixels per second
 
 Player::Player(EventEmitter &_emitter, Point start) :
     Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT), start),
@@ -33,7 +33,7 @@ Player::Player(EventEmitter &_emitter, Point start) :
     this->emitter.addListener(kKeyRelease, *this);
 }
 
-void Player::advance(float secondsPassed) {
+void Player::advance(double secondsPassed) {
     if (secondsPassed > 0.001) {
         position.moveRelative(velocity * secondsPassed);
     }

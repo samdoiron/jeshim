@@ -13,15 +13,15 @@ class TestState : public GameState {
         void addListener(EventType, EventListener&);
 
         // via GameState
-        void advance(float);
+        void advance(double);
 
     private:
         Player player;
         PlayerView playerView;
-        float runningTime;
+        double runningTime;
         int numTicks;
         void render();
-        void trackFramerate(float);
+        void trackFramerate(double);
 };
 
 }

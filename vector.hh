@@ -6,20 +6,20 @@ namespace jesh {
 class Vector {
     public:
         Vector();
-        Vector(float, float);
-        float getX();
-        float getY();
-        void setX(float);
-        void setY(float);
+        Vector(double, double);
+        double getX();
+        double getY();
+        void setX(double);
+        void setY(double);
 
-        Vector operator*(float);
-        Vector operator*=(float);
+        Vector operator*(double);
+        Vector operator*=(double);
 
-        Vector operator-(float);
-        Vector operator-=(float);
+        Vector operator-(double);
+        Vector operator-=(double);
     private:
-        float deltaX;
-        float deltaY;
+        double deltaX;
+        double deltaY;
 };
 
 }

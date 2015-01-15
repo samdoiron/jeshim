@@ -31,7 +31,7 @@ void Game::run() {
 
     while (this->window.isOpen()) {
         clock_t now = std::clock();
-        float frameDifference = static_cast<float>(now - lastUpdate) / CLOCKS_PER_SEC;
+        double frameDifference = static_cast<double>(now - lastUpdate) / CLOCKS_PER_SEC;
 
         this->window.clear();
         this->state->advance(frameDifference);

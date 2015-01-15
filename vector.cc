@@ -7,42 +7,42 @@ Vector::Vector() :
     deltaY(0) {
 }
 
-Vector::Vector(float dx, float dy) :
+Vector::Vector(double dx, double dy) :
     deltaX(dx),
     deltaY(dy) {
 }
 
-float Vector::getX() {
+double Vector::getX() {
     return deltaX;
 }
 
-float Vector::getY() {
+double Vector::getY() {
     return deltaY;
 }
 
-void Vector::setX(float newX) {
+void Vector::setX(double newX) {
     deltaX = newX;
 }
 
-void Vector::setY(float newY) {
+void Vector::setY(double newY) {
     deltaY = newY;
 }
 
-Vector Vector::operator*(float multiplier) {
+Vector Vector::operator*(double multiplier) {
     return Vector(deltaX * multiplier, deltaY * multiplier);
 }
 
-Vector Vector::operator*=(float multiplier) {
+Vector Vector::operator*=(double multiplier) {
     deltaX *= multiplier;
     deltaY *= multiplier;
     return *this;
 }
 
-Vector Vector::operator-(float subtraction) {
+Vector Vector::operator-(double subtraction) {
     return Vector(deltaX - subtraction, deltaY - subtraction);
 }
 
-Vector Vector::operator-=(float subtraction) {
+Vector Vector::operator-=(double subtraction) {
     deltaX -= subtraction;
     deltaY -= subtraction;
     return *this;

@@ -17,7 +17,7 @@ class RenderSurface;
         Dimensions getDimensions();
         Point getPosition();
         virtual ~Entity();
-        virtual void advance(float) = 0;
+        virtual void advance(double) = 0;
 
     protected:
         Dimensions dimensions;

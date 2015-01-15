@@ -2,20 +2,20 @@
 
 namespace jesh {
 
-Point::Point(float _x, float _y) {
+Point::Point(double _x, double _y) {
     this->x = _x;
     this->y = _y;
 }
 
-float Point::getX() {
+double Point::getX() {
     return x;
 }
 
-float Point::getY() {
+double Point::getY() {
     return y;
 }
 
-void Point::moveRelative(float dx, float dy) {
+void Point::moveRelative(double dx, double dy) {
     x += dx;
     y += dy;
 }

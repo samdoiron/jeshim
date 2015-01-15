@@ -18,7 +18,7 @@ class Player : public Entity, public EventListener {
         Player(EventEmitter&, Point);
 
         // via Entity
-        void advance(float);
+        void advance(double);
 
         // via EventListener
         void handleEvent(KeyPressEvent&);

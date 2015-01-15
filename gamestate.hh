@@ -15,7 +15,7 @@ class Game;
         virtual ~GameState();
 
         // Advance the game a given number of seconds
-        virtual void advance(float) = 0;
+        virtual void advance(double) = 0;
 
     protected:
         Game &game;

@@ -9,12 +9,12 @@ namespace jesh {
 
 class Dimensions {
     public:
-        Dimensions(float, float);
+        Dimensions(double, double);
         sf::IntRect asSFMLIntRect(Point);
-        float getWidth();
-        float getHeight();
+        double getWidth();
+        double getHeight();
     private:
-        float width, height;
+        double width, height;
 };
 
 }
