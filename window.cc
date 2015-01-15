@@ -25,6 +25,7 @@ Window::Window(std::string title, Dimensions dim) :
     ),
     dimensions(dim)
     {
+    sfmlWindow.setVerticalSyncEnabled(true);
 }
 
 void Window::render(Sprite &toRender) {

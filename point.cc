@@ -2,9 +2,9 @@
 
 namespace jesh {
 
-Point::Point(double _x, double _y) {
-    this->x = _x;
-    this->y = _y;
+Point::Point(double _x, double _y) :
+    x(_x),
+    y(_y) {
 }
 
 double Point::getX() {
@@ -13,6 +13,14 @@ double Point::getX() {
 
 double Point::getY() {
     return y;
+}
+
+void Point::setX(double newX) {
+    x = newX;
+}
+
+void Point::setY(double newY) {
+    y = newY;
 }
 
 void Point::moveRelative(double dx, double dy) {

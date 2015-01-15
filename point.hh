@@ -10,6 +10,8 @@ class Point {
         Point(double, double);
         double getX();
         double getY();
+        void setX(double);
+        void setY(double);
         void moveRelative(double x, double y);
         void moveRelative(Vector);
     private:

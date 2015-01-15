@@ -27,7 +27,7 @@ add_executable(${EXECUTABLE_NAME}
   window.cc
 )
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -O4 -Ofast-math -g -gdwarf-2 -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Weverything -g -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")
 
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
