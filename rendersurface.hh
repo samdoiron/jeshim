@@ -2,6 +2,7 @@
 #define JESH_RENDERSURFACE_H_
 
 #include "sprite.hh"
+#include "point.hh"
 
 namespace jesh {
 
@@ -9,6 +10,7 @@ namespace jesh {
     public:
         virtual void clear() = 0;
         virtual void render(Sprite&) = 0;
+        virtual void setOrigin(Point) = 0;
         virtual void update() = 0;
         virtual ~RenderSurface() { }
 

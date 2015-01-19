@@ -3,7 +3,7 @@
 #include "eventemitter.hh"
 #include "eventlistener.hh"
 #include "eventtype.hh"
-
+#include "point.hh"
 #include "player.hh"
 
 #include <iostream>
@@ -15,27 +15,33 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
     player(_emitter, Point(100, 100)),
     playerView(player), 
     runningTime(0),
-    numTicks(0) {
+    numTicks(0),
+    currentLevel("test.jesh"), 
+    levelView(currentLevel) {
+    surface.setOrigin(Point(50, 50));
 }
 
 void TestState::advance(double difference) {
-    this->trackFramerate(difference);
-    this->player.advance(difference);
-    this->render();
+    trackFramerate(difference);
+    player.advance(difference);
+    surface.setOrigin(player.getPosition());
+    render();
 }
 
 void TestState::render() {
-    playerView.renderTo(this->surface);
+    levelView.renderTo(surface);
+    playerView.renderTo(surface);
 }
 
 void TestState::trackFramerate(double difference) {
-    this->numTicks += 1;
-    this->runningTime += difference;
-    if (this->runningTime > 1) {
-        std::cout << "Running at " << this->numTicks / this->runningTime << "fps" << std::endl;
-        this->numTicks = 0;
-        this->runningTime = 0;
-        }
+    numTicks += 1;
+    runningTime += difference;
+    if (runningTime > 1) {
+        std::cout << "Running at " << numTicks / runningTime << "fps" << std::endl;
+        numTicks = 0;
+        runningTime = 0;
     }
+}
+
 }
 

@@ -15,6 +15,8 @@ add_executable(${EXECUTABLE_NAME}
   jeshim.cc
   keypressevent.cc
   keyreleaseevent.cc
+  level.cc
+  levelview.cc
   mousemoveevent.cc
   player.cc
   playerview.cc

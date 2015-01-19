@@ -13,11 +13,14 @@ class Sprite {
         Sprite(std::string path, Dimensions, Point);
         void setPosition(Point);
         sf::Sprite asSFMLSprite();
+        void setScale(double);
+        ~Sprite();
     private:
         sf::Sprite sfmlSprite;
         sf::Texture spriteTexture;
         Dimensions dimensions;
         Point position;
+        void updateSFMLSprite();
 };
 
 }

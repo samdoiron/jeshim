@@ -20,12 +20,6 @@
 
 namespace jesh {
 
-const KeyCode kMoveUp    = kUp;
-const KeyCode kMoveDown  = kDown;
-const KeyCode kMoveLeft  = kLeft;
-const KeyCode kMoveRight = kRight;
-const KeyCode kRun       = kZ;
-
 const double kRunSpeed  = 500; // Pixels per second
 
 Player::Player(EventEmitter &_emitter, Point start) :
@@ -53,7 +47,7 @@ void Player::advance(double secondsPassed) {
 // Event handling
 
 void Player::handleEvent(KeyPressEvent &event) {
-    KeyCode key = event.getKeyCode();
+    /* KeyCode key = event.getKeyCode(); */
 
     // XXX temporary
     /* if (key == kMoveUp) { */
@@ -68,11 +62,11 @@ void Player::handleEvent(KeyPressEvent &event) {
 }
 
 void Player::handleEvent(KeyReleaseEvent &event) {
-    KeyCode releasedKey = event.getKeyCode();
-    bool movingLeft  = velocity.getX() < 0;
-    bool movingRight = velocity.getX() > 0;
-    bool movingUp    = velocity.getY() < 0;
-    bool movingDown  = velocity.getY() > 0;
+    /* KeyCode releasedKey = event.getKeyCode(); */
+    /* bool movingLeft  = velocity.getX() < 0; */
+    /* bool movingRight = velocity.getX() > 0; */
+    /* bool movingUp    = velocity.getY() < 0; */
+    /* bool movingDown  = velocity.getY() > 0; */
 
     /* if (releasedKey == kMoveUp && movingUp) { */
     /*     velocity.setY(0); */

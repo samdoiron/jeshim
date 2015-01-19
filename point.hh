@@ -1,6 +1,7 @@
 #ifndef JESH_POINT_H_
 #define JESH_POINT_H_
 
+#include <SFML/window.hpp>
 #include "vector.hh"
 
 namespace jesh {
@@ -14,6 +15,7 @@ class Point {
         void setY(double);
         void moveRelative(double x, double y);
         void moveRelative(Vector);
+        sf::Vector2f asSFMLVector();
     private:
         double x, y;
 };

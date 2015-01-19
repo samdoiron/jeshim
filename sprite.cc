@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <sstream>
+#include <iostream>
 
 namespace jesh {
 
@@ -14,23 +15,40 @@ Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
     dimensions(dim),
     position(pos) {
 
-    if (!this->spriteTexture.loadFromFile(texturePath, dim.asSFMLIntRect(Point(0, 0)))) {
+    if (!spriteTexture.loadFromFile(texturePath, dim.asSFMLIntRect(Point(0, 0)))) {
         std::ostringstream error;
         error << "Unable to load texture at \"" << texturePath << "\".";
         throw std::runtime_error(error.str());
     }
 
-    this->sfmlSprite.setTexture(spriteTexture);
-    this->sfmlSprite.setPosition(pos.getX(), pos.getY());
+    sfmlSprite.setTexture(spriteTexture);
+    updateSFMLSprite();
 }
 
 void Sprite::setPosition(Point newPosition) {
-    this->position = newPosition;
-    this->sfmlSprite.setPosition(newPosition.getX(), newPosition.getY());
+    position = newPosition;
+    updateSFMLSprite();
+}
+
+void Sprite::setScale(double scale) {
+    sfmlSprite.setScale(sf::Vector2f(scale, scale));
 }
 
 sf::Sprite Sprite::asSFMLSprite() {
-    return this->sfmlSprite;
+    return sfmlSprite;
+}
+
+Sprite::~Sprite() {
+    std::cout << "WARNING: DESTROYING SPRITE" << std::endl;
+}
+
+// --- private
+
+void Sprite::updateSFMLSprite() {
+    sfmlSprite.setPosition(
+        static_cast<float>(position.getX()), 
+        static_cast<float>(position.getY())
+    );
 }
 
 }

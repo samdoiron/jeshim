@@ -1,4 +1,3 @@
-
 #ifndef JESH_WINDOW_H_
 #define JESH_WINDOW_H_
 
@@ -7,6 +6,7 @@
 #include "rendersurface.hh"
 #include "event.hh"
 #include "sprite.hh"
+#include "point.hh"
 
 #include <SFML/Window.hpp>
 
@@ -21,6 +21,7 @@ class Window : public RenderSurface, public EventEmitter {
         // via RenderSurface
         void clear();
         void render(Sprite&);
+        void setOrigin(Point);
         void update();
 
         bool isOpen();

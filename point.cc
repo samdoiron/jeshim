@@ -1,4 +1,5 @@
 #include "point.hh"
+#include <SFML/graphics.hpp>
 
 namespace jesh {
 
@@ -31,6 +32,10 @@ void Point::moveRelative(double dx, double dy) {
 void Point::moveRelative(Vector delta) {
     x += delta.getX();
     y += delta.getY();
+}
+
+sf::Vector2f Point::asSFMLVector() {
+    return sf::Vector2f(x, y);
 }
 
 }

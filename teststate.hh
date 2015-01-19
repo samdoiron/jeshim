@@ -4,6 +4,8 @@
 #include "player.hh"
 #include "playerview.hh"
 #include "rendersurface.hh"
+#include "level.hh"
+#include "levelview.hh"
 
 namespace jesh {
 
@@ -19,6 +21,8 @@ class TestState : public GameState {
         Player player;
         PlayerView playerView;
         double runningTime;
+        Level currentLevel;
+        LevelView levelView;
         int numTicks;
         void render();
         void trackFramerate(double);
