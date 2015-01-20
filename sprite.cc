@@ -38,10 +38,6 @@ sf::Sprite Sprite::asSFMLSprite() {
     return sfmlSprite;
 }
 
-Sprite::~Sprite() {
-    std::cout << "WARNING: DESTROYING SPRITE" << std::endl;
-}
-
 // --- private
 
 void Sprite::updateSFMLSprite() {

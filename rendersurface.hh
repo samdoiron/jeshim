@@ -11,6 +11,7 @@ namespace jesh {
         virtual void clear() = 0;
         virtual void render(Sprite&) = 0;
         virtual void setOrigin(Point) = 0;
+        virtual Point getOrigin() = 0;
         virtual void update() = 0;
         virtual ~RenderSurface() { }
 

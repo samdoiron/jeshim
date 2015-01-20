@@ -15,6 +15,9 @@ class Point {
         void setY(double);
         void moveRelative(double x, double y);
         void moveRelative(Vector);
+        double distanceTo(Point);
+        Vector operator-(Point);
+        Point operator+(Vector);
         sf::Vector2f asSFMLVector();
     private:
         double x, y;

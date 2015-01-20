@@ -14,7 +14,6 @@ class Sprite {
         void setPosition(Point);
         sf::Sprite asSFMLSprite();
         void setScale(double);
-        ~Sprite();
     private:
         sf::Sprite sfmlSprite;
         sf::Texture spriteTexture;

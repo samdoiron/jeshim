@@ -23,7 +23,8 @@ Window::Window(std::string title, Dimensions dim) :
         ),
         title
     ),
-    dimensions(dim)
+    dimensions(dim),
+    origin(0, 0)
     {
     sfmlWindow.setVerticalSyncEnabled(true);
 }
@@ -46,7 +47,8 @@ void Window::clear() {
     sfmlWindow.clear(sf::Color::Black);
 }
 
-void Window::setOrigin(Point origin) {
+void Window::setOrigin(Point newOrigin) {
+    origin = newOrigin;
     sf::View windowView = sfmlWindow.getView();
     windowView.setCenter(
         // Add 0.5 before cast to round.
@@ -54,6 +56,10 @@ void Window::setOrigin(Point origin) {
         static_cast<int>(origin.getY() + 0.5)
     );
     sfmlWindow.setView(windowView);
+}
+
+Point Window::getOrigin() {
+    return origin;
 }
 
 // --- private

@@ -22,61 +22,57 @@ namespace jesh {
 
 const double kRunSpeed  = 500; // Pixels per second
 
+const KeyCode kMoveLeft  = kLeft;
+const KeyCode kMoveUp    = kUp;
+const KeyCode kMoveRight = kRight;
+const KeyCode kMoveDown  = kDown;
+
 Player::Player(EventEmitter &_emitter, Point start) :
     Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT), start),
     emitter(_emitter),
-    velocity(kRunSpeed, kRunSpeed),
+    velocity(0, 0),
     isRunning(false) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
 }
 
 void Player::advance(double secondsPassed) {
-    Point newPosition = position;
-    newPosition.moveRelative(velocity * secondsPassed);
-
-    if (newPosition.getX() < 0 || GAME_WIDTH < newPosition.getX() + PLAYER_WIDTH) {
-        velocity.setX(-velocity.getX());
-    }
-    if (newPosition.getY() < 0 || GAME_HEIGHT < newPosition.getY() + PLAYER_HEIGHT) {
-        velocity.setY(-velocity.getY());
-    }
     position.moveRelative(velocity * secondsPassed);
 }
 
 // Event handling
 
 void Player::handleEvent(KeyPressEvent &event) {
-    /* KeyCode key = event.getKeyCode(); */
+    KeyCode key = event.getKeyCode();
 
     // XXX temporary
-    /* if (key == kMoveUp) { */
-    /*     velocity.setY(-kRunSpeed); */
-    /* } else if (key == kMoveDown) { */
-    /*     velocity.setY(kRunSpeed); */
-    /* } else if (key == kMoveLeft) { */
-    /*     velocity.setX(-kRunSpeed); */
-    /* } else if (key == kMoveRight) { */
-    /*     velocity.setX(kRunSpeed); */
-    /* } */
+    if (key == kMoveUp) {
+        velocity.setY(-kRunSpeed);
+    } else if (key == kMoveDown) {
+        velocity.setY(kRunSpeed);
+    } else if (key == kMoveLeft) {
+        velocity.setX(-kRunSpeed);
+    } else if (key == kMoveRight) {
+        velocity.setX(kRunSpeed);
+    }
 }
 
 void Player::handleEvent(KeyReleaseEvent &event) {
-    /* KeyCode releasedKey = event.getKeyCode(); */
-    /* bool movingLeft  = velocity.getX() < 0; */
-    /* bool movingRight = velocity.getX() > 0; */
-    /* bool movingUp    = velocity.getY() < 0; */
-    /* bool movingDown  = velocity.getY() > 0; */
+    KeyCode releasedKey = event.getKeyCode();
+    bool movingLeft  = velocity.getX() < 0;
+    bool movingRight = velocity.getX() > 0;
+    bool movingUp    = velocity.getY() < 0;
+    bool movingDown  = velocity.getY() > 0;
 
-    /* if (releasedKey == kMoveUp && movingUp) { */
-    /*     velocity.setY(0); */
-    /* } else if (releasedKey == kMoveDown && movingDown) { */
-    /*     velocity.setY(0); */
-    /* } else if (releasedKey == kMoveLeft && movingLeft) { */
-    /*     velocity.setX(0); */
-    /* } else if (releasedKey == kMoveRight && movingRight) { */
-    /*     velocity.setX(0); */
-    /* } */
+    if (releasedKey == kMoveUp && movingUp) {
+        velocity.setY(0);
+    } else if (releasedKey == kMoveDown && movingDown) {
+        velocity.setY(0);
+    } else if (releasedKey == kMoveLeft && movingLeft) {
+        velocity.setX(0);
+    } else if (releasedKey == kMoveRight && movingRight) {
+        velocity.setX(0);
+    }
 }
 
 void Player::handleEvent(Event&) {

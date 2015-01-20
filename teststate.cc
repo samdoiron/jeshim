@@ -10,6 +10,8 @@
 
 namespace jesh {
 
+double kCameraRadius = 100;
+
 TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surface) :
     GameState(_game, _emitter, _surface),
     player(_emitter, Point(100, 100)),
@@ -23,8 +25,21 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
 
 void TestState::advance(double difference) {
     trackFramerate(difference);
+    
+    Point oldPlayerPosition = player.getPosition();
     player.advance(difference);
-    surface.setOrigin(player.getPosition());
+    Point playerPosition = player.getPosition();
+    
+    Vector playerDelta = playerPosition - oldPlayerPosition;
+
+    // TODO:CLEAN I don't think camera logic should go here...
+
+    Point cameraPosition = surface.getOrigin();
+
+    if (playerPosition.distanceTo(cameraPosition) > kCameraRadius) {
+        surface.setOrigin(cameraPosition + playerDelta);
+    }
+
     render();
 }
 

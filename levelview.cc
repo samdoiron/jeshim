@@ -9,23 +9,18 @@
 
 namespace jesh {
 
-const int kTileSize = 16;
-const int kTileScale = 4;
+const int kTileSize = 128;
 
 LevelView::LevelView(Level &_level) :
     level(_level) {
     spriteCache.reserve(kNumTileTypes);
 
     Point defaultPosition = Point(0, 0);
-    Dimensions tileDimensions = Dimensions(kTileSize * kTileScale, kTileSize * kTileScale);
+    Dimensions tileDimensions = Dimensions(kTileSize, kTileSize);
 
     spriteCache[kDirt] = new Sprite("dirt.png", tileDimensions, defaultPosition);
     spriteCache[kWall] = new Sprite("wall.png", tileDimensions, defaultPosition);
     spriteCache[kVoid] = new Sprite("void.png", tileDimensions, defaultPosition);
-
-    for (Sprite *sprite : spriteCache) {
-        sprite->setScale(kTileScale);
-    }
 }
 
 void LevelView::renderTo(RenderSurface& surface) {

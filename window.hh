@@ -22,12 +22,14 @@ class Window : public RenderSurface, public EventEmitter {
         void clear();
         void render(Sprite&);
         void setOrigin(Point);
+        Point getOrigin();
         void update();
 
         bool isOpen();
     private:
         sf::RenderWindow sfmlWindow;
         Dimensions dimensions;
+        Point origin;
         void pollEvents();
         Event *translateEvent(sf::Event);
 };
