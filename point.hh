@@ -6,6 +6,9 @@
 
 namespace jesh {
 
+// Deal with circular dependency of Vector and Point.
+class Vector;
+
 class Point {
     public:
         Point(double, double);

@@ -1,4 +1,5 @@
 #include "vector.hh"
+#include "point.hh"
 
 namespace jesh {
 
@@ -10,6 +11,14 @@ Vector::Vector() :
 Vector::Vector(double dx, double dy) :
     deltaX(dx),
     deltaY(dy) {
+}
+
+Vector::Vector(Point start, Point stop) :
+    Vector(
+        stop.getX() - start.getX(),
+        stop.getY() - start.getY()
+    )
+    {
 }
 
 double Vector::getX() {

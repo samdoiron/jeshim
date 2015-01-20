@@ -1,12 +1,17 @@
 #ifndef JESH_VECTOR_H_
 #define JESH_VECTOR_H_
 
+#include "point.hh"
+
 namespace jesh {
+
+class Point;
 
 class Vector {
     public:
         Vector();
         Vector(double, double);
+        Vector(Point, Point);
         double getX();
         double getY();
         void setX(double);

@@ -28,15 +28,15 @@ void TestState::advance(double difference) {
     
     Point oldPlayerPosition = player.getPosition();
     player.advance(difference);
-    Point playerPosition = player.getPosition();
+    Point newPlayerPosition = player.getPosition();
     
-    Vector playerDelta = playerPosition - oldPlayerPosition;
+    Vector playerDelta(oldPlayerPosition, newPlayerPosition);
 
     // TODO:CLEAN I don't think camera logic should go here...
 
     Point cameraPosition = surface.getOrigin();
 
-    if (playerPosition.distanceTo(cameraPosition) > kCameraRadius) {
+    if (newPlayerPosition.distanceTo(cameraPosition) > kCameraRadius) {
         surface.setOrigin(cameraPosition + playerDelta);
     }
 
