@@ -6,6 +6,7 @@
 #include "rendersurface.hh"
 #include "level.hh"
 #include "levelview.hh"
+#include "basiccollisionsystem.hh"
 
 namespace jesh {
 
@@ -23,6 +24,7 @@ class TestState : public GameState {
         double runningTime;
         Level currentLevel;
         LevelView levelView;
+        BasicCollisionSystem collisions;
         int numTicks;
         void render();
         void trackFramerate(double);

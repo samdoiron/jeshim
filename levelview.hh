@@ -16,6 +16,8 @@ class LevelView : public View {
 
         // via View
         void renderTo(RenderSurface&);
+        void renderRow(RenderSurface&, std::vector<Tile>);
+        void renderTile(RenderSurface&, Tile);
 
         ~LevelView();
     private:

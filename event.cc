@@ -15,10 +15,6 @@ EventType Event::getType() {
     return this->type;
 }
 
-void Event::sendTo(EventListener&) {
-    throw std::runtime_error("Event must override sendTo()");
-}
-
 void Event::anchor() {
 }
 
@@ -26,5 +22,3 @@ Event::~Event() {
 }
 
 }
-
-

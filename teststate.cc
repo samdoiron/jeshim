@@ -7,6 +7,7 @@
 #include "player.hh"
 
 #include <iostream>
+#include <memory>
 
 namespace jesh {
 
@@ -14,22 +15,23 @@ double kCameraRadius = 100;
 
 TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surface) :
     GameState(_game, _emitter, _surface),
-    player(_emitter, Point(100, 100)),
-    playerView(player), 
+    player(_emitter),
+    playerView(player),
     runningTime(0),
+    currentLevel(_emitter, "test.jesh"),
     numTicks(0),
-    currentLevel("test.jesh"), 
     levelView(currentLevel) {
-    surface.setOrigin(Point(50, 50));
+  surface.setOrigin(player.getPosition());
+  collisions.addCollidable(std::shared_ptr<Collidable>(&player));
 }
 
-void TestState::advance(double difference) {
-    trackFramerate(difference);
-    
+void TestState::advance(double secondsPassed) {
+    trackFramerate(secondsPassed);
+
     Point oldPlayerPosition = player.getPosition();
-    player.advance(difference);
+    player.advance(secondsPassed);
     Point newPlayerPosition = player.getPosition();
-    
+
     Vector playerDelta(oldPlayerPosition, newPlayerPosition);
 
     // TODO:CLEAN I don't think camera logic should go here...
@@ -39,6 +41,8 @@ void TestState::advance(double difference) {
     if (newPlayerPosition.distanceTo(cameraPosition) > kCameraRadius) {
         surface.setOrigin(cameraPosition + playerDelta);
     }
+
+    currentLevel.advance(secondsPassed);
 
     render();
 }
@@ -59,4 +63,3 @@ void TestState::trackFramerate(double difference) {
 }
 
 }
-

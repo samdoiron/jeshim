@@ -27,11 +27,11 @@ const KeyCode kMoveUp    = kUp;
 const KeyCode kMoveRight = kRight;
 const KeyCode kMoveDown  = kDown;
 
-Player::Player(EventEmitter &_emitter, Point start) :
-    Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT), start),
-    emitter(_emitter),
-    velocity(0, 0),
-    isRunning(false) {
+Player::Player(EventEmitter &_emitter) :
+  Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT)),
+  emitter(_emitter),
+  velocity(0, 0),
+  isRunning(false) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
 }
@@ -77,6 +77,10 @@ void Player::handleEvent(KeyReleaseEvent &event) {
 
 void Player::handleEvent(Event&) {
     throw std::runtime_error("Player cannot handle event!");
+}
+
+void Player::sendCollision(Collidable &other) {
+  other.handleCollision(*this);
 }
 
 }

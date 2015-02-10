@@ -1,7 +1,11 @@
 #ifndef JESH_LEVEL_H_
 #define JESH_LEVEL_H_
 
-#include "tiletype.hh"
+#include "tile.hh"
+
+#include "eventemitter.hh"
+#include "basiccollisionsystem.hh"
+#include "player.hh"
 
 #include <string>
 #include <fstream>
@@ -11,17 +15,24 @@ namespace jesh {
 
 class LevelView;
 
+// TODO:CLEAN Is Level a middleman for LevelState?
 class Level {
     friend class LevelView;
 
     public:
-        Level(std::string);
+        Level(EventEmitter&, std::string);
+        void advance(double);
 
     private:
-        std::vector<std::vector<Tile>> getGrid();
         void loadFromFile(std::string);
-        Tile getTile(char);
-        std::vector<std::vector<Tile>> grid;
+        void setupWallCollisions();
+        void checkCollisions();
+        void advanceEntities(double);
+        Tile getTileFromChar(char);
+        Player player;
+        EventEmitter &events;
+        BasicCollisionSystem collisions;
+        std::vector<std::vector<Tile>> tiles;
 };
 
 }

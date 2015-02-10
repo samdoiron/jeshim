@@ -7,12 +7,12 @@ namespace jesh {
 
 class EventListener;
 
-// Serves as a common ancestor so that EventListeners can 
+// Serves as a common ancestor so that EventListeners can
 // handle arbitrary (unknown) events.
-class Event {
+/* abstract */ class Event {
     public:
         Event(EventType);
-        virtual void sendTo(EventListener&);
+        virtual void sendTo(EventListener&) = 0;
         EventType getType();
         virtual ~Event();
     private:

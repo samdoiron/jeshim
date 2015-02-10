@@ -10,6 +10,7 @@ namespace jesh {
 class Dimensions {
     public:
         Dimensions(double, double);
+        Dimensions(Point, Point);
         sf::IntRect asSFMLIntRect(Point);
         double getWidth();
         double getHeight();

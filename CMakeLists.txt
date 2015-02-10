@@ -4,12 +4,16 @@ project (Jeshim)
 
 set (EXECUTABLE_NAME "jeshim")
 
-add_executable(${EXECUTABLE_NAME} 
+add_executable(${EXECUTABLE_NAME}
+  basiccollisionsystem.cc
+  collidable.cc
+  collisionsystem.cc
   dimensions.cc
   entity.cc
   event.cc
   eventemitter.cc
   eventlistener.cc
+  fixedtile.cc
   game.cc
   gamestate.cc
   jeshim.cc
@@ -24,6 +28,7 @@ add_executable(${EXECUTABLE_NAME}
   rendersurface.cc
   sprite.cc
   teststate.cc
+  tile.cc
   vector.cc
   view.cc
   window.cc
@@ -42,7 +47,7 @@ endif()
 set (HACK_VERSION_MAJOR 0)
 set (HACK_VERSION_MINOR 1)
 
-# Include Boost 
+# Include Boost
 set (Boost_STATIC_LIBRARIES TRUE)
 find_package(Boost 1.5.7 REQUIRED)
 
@@ -50,4 +55,3 @@ include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
 
 target_link_libraries(${EXECUTABLE_NAME} ${Boost_LIBRARIES})
-

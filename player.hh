@@ -15,7 +15,7 @@ namespace jesh {
 
 class Player : public Entity, public EventListener {
     public:
-        Player(EventEmitter&, Point);
+        Player(EventEmitter&);
 
         // via Entity
         void advance(double);
@@ -24,6 +24,8 @@ class Player : public Entity, public EventListener {
         void handleEvent(KeyPressEvent&);
         void handleEvent(KeyReleaseEvent&);
         void handleEvent(Event&);
+        void sendCollision(Collidable&);
+
     private:
         EventEmitter &emitter;
         Vector velocity;

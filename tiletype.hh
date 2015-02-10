@@ -1,16 +1,14 @@
-#ifndef TILE_TYPES_H_
-#define TILE_TYPES_H_
+#ifndef JESH_TILETYPE_H_
+#define JESH_TILETYPE_H_
 
 namespace jesh {
 
-enum Tile {
-    kVoid,
-    kDirt,
-    kWall,
-    kNumTileTypes
+enum TileType {
+  kVoid,
+  kWall,
+  kDirt
 };
 
 }
 
-#endif // TILE_TYPES_H_
-
+#endif

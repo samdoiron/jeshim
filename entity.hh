@@ -3,6 +3,7 @@
 #define JESH_ENTITY_H_
 
 #include "point.hh"
+#include "collidable.hh"
 #include "dimensions.hh"
 #include "rendersurface.hh"
 
@@ -10,18 +11,15 @@ namespace jesh {
 
 class RenderSurface;
 
-/* abstract */ class Entity {
+// An entity is a body that makes decisions and changes as
+// time progresses.
+// Maybe rename this into `Advanceable` or `Temporal`
+
+class Entity : public Collidable {
     public:
-        Entity(Dimensions, Point);
-        Entity(Point, Dimensions);
-        Dimensions getDimensions();
-        Point getPosition();
+        Entity(Dimensions);
         virtual ~Entity();
         virtual void advance(double) = 0;
-
-    protected:
-        Dimensions dimensions;
-        Point position;
 
     private:
         virtual void anchor();
@@ -30,4 +28,3 @@ class RenderSurface;
 }
 
 #endif // JESH_ENTITY_H_
-

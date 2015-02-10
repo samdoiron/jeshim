@@ -7,34 +7,36 @@
 #include "point.hh"
 #include "sprite.hh"
 
+#include <iostream>
+
 namespace jesh {
 
-const int kTileSize = 128;
+// TODO:SPEED This could reasonably use a SFML vertex array, which would
+// seriously speed up paints.
 
 LevelView::LevelView(Level &_level) :
     level(_level) {
-    spriteCache.reserve(kNumTileTypes);
+    spriteCache.reserve(Tile::kNumTypes);
 
     Point defaultPosition = Point(0, 0);
-    Dimensions tileDimensions = Dimensions(kTileSize, kTileSize);
+    Dimensions tileDimensions = Dimensions(Tile::Size, Tile::Size);
 
-    spriteCache[kDirt] = new Sprite("dirt.png", tileDimensions, defaultPosition);
-    spriteCache[kWall] = new Sprite("wall.png", tileDimensions, defaultPosition);
-    spriteCache[kVoid] = new Sprite("void.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kVoid] = new Sprite("void.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kDirt] = new Sprite("dirt.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kWall] = new Sprite("wall.png", tileDimensions, defaultPosition);
 }
 
 void LevelView::renderTo(RenderSurface& surface) {
-    std::vector<std::vector<Tile>> grid = level.getGrid();
-
+    std::vector<std::vector<Tile>> grid = level.tiles;
     // Give all tiles appropriate positions.
     // TODO:SPEED this could easily be done in advance, and cached.
     for (size_t rowNum = 0; rowNum < grid.size(); rowNum++) {
         std::vector<Tile> row = grid[rowNum];
         for (size_t colNum = 0; colNum < grid[0].size(); colNum++) {
             Tile tile = row[colNum];
-            Sprite *tileSprite = spriteCache[tile];
+            Sprite *tileSprite = spriteCache[tile.getType()];
             tileSprite->setPosition(
-                Point(colNum * kTileSize, rowNum * kTileSize)
+              Point(colNum * Tile::Size, rowNum * Tile::Size)
             );
             surface.render(*tileSprite);
         }
@@ -47,6 +49,5 @@ LevelView::~LevelView() {
         sprite = nullptr;
     }
 }
-    
-}
 
+}
