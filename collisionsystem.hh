@@ -10,7 +10,7 @@ namespace jesh {
 public:
   virtual void addCollidable(std::shared_ptr<Collidable>) = 0;
   virtual void checkCollisions() = 0;
-  virtual void anchor();
+  virtual ~CollisionSystem();
 };
 
 }

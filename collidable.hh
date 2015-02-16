@@ -19,6 +19,9 @@ public:
   bool isCollidingWith(Collidable&);
   bool isFixed();
 
+  Collidable(const Collidable&) = default;
+  virtual ~Collidable();
+
 protected:
   void setFixed();
   void setNotFixed();

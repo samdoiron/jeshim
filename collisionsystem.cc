@@ -3,7 +3,7 @@
 
 namespace jesh {
 
-void CollisionSystem::anchor() {
+CollisionSystem::~CollisionSystem() {
 }
 
 }

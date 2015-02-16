@@ -3,6 +3,8 @@
 #include <memory>
 #include "collidable.hh"
 
+#include <iostream>
+
 namespace jesh {
 
 typedef std::shared_ptr<Collidable> CollidablePtr;
@@ -14,8 +16,8 @@ void BasicCollisionSystem::addCollidable(CollidablePtr toAdd) {
 // DUMB DUMB DUMB XXX XXX TODO:SPEED
 // O(n^2) collisions.
 void BasicCollisionSystem::checkCollisions() {
-  for (int i = 0; i < collidables.size(); i++) {
-    for (int j = i; j < collidables.size(); j++) {
+  for (size_t i = 0; i < collidables.size(); i++) {
+    for (size_t j = i; j < collidables.size(); j++) {
       CollidablePtr firstCol  = collidables[i];
       CollidablePtr secondCol = collidables[j];
       if (firstCol->isCollidingWith(*secondCol)) {
@@ -31,6 +33,7 @@ void BasicCollisionSystem::resolveCollision(
   Collidable &firstCol,
   Collidable &secondCol
 ) {
+  std::cout << "Collision oh yeah!" << std::endl;
   if (firstCol.isFixed() && secondCol.isFixed()) {
     // What happens when an unstoppable force meets an immovable object?
     // Nothing.
@@ -58,6 +61,7 @@ void BasicCollisionSystem::collideFixedAndDynamic(
   // double fixedYMiddle = fixed.getPosition().getY() + (fixed.getDimensions().getHeight() / 2);
   // XXX Incomplete. Always assumes left collision.
 
+  std::cout << "Collision~!" << std::endl;
   dynamic.setPosition(Point(
     fixed.getPosition().getX() + fixed.getDimensions().getWidth(),
     dynamic.getPosition().getY()
@@ -71,5 +75,6 @@ void BasicCollisionSystem::collideDynamics(
   // TODO
   throw std::runtime_error("UNIMPLEMENTED: dynamic collision");
 }
+
 
 }

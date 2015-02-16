@@ -15,9 +15,6 @@
 #define PLAYER_HEIGHT 64
 #define PLAYER_WIDTH 32
 
-#define GAME_WIDTH 800
-#define GAME_HEIGHT 600
-
 namespace jesh {
 
 const double kRunSpeed  = 500; // Pixels per second
@@ -30,8 +27,7 @@ const KeyCode kMoveDown  = kDown;
 Player::Player(EventEmitter &_emitter) :
   Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT)),
   emitter(_emitter),
-  velocity(0, 0),
-  isRunning(false) {
+  velocity(0, 0) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
 }
@@ -81,6 +77,10 @@ void Player::handleEvent(Event&) {
 
 void Player::sendCollision(Collidable &other) {
   other.handleCollision(*this);
+}
+
+Player::~Player() {
+    std::cout << "Freeing player" << std::endl;
 }
 
 }

@@ -19,6 +19,8 @@ namespace jesh {
 // Refactoring:
 // [ ] CollisionSystem for collisions / building geometry
 
+typedef std::vector<Tile*> Row;
+
 Level::Level(EventEmitter &_events, std::string filePath) :
   player(_events),
   events(_events) {
@@ -34,9 +36,9 @@ void Level::advance(double secondsPassed) {
 // private
 
 void Level::setupWallCollisions() {
-  for (std::vector<Tile> row : tiles) {
-    for (Tile eachTile : row) {
-      eachTile.addToCollisionSystem(collisions);
+  for (Row row : tiles) {
+    for (Tile *eachTile : row) {
+      eachTile->addToCollisionSystem(collisions);
     }
   }
 }
@@ -57,7 +59,7 @@ void Level::loadFromFile(std::string filePath) {
   levelFile >> numRows >> numCols;
 
   for (int iRow = 0; iRow < numRows; iRow++) {
-    std::vector<Tile> row;
+    std::vector<Tile*> row;
     for (int iCol = 0; iCol < numCols; iCol++) {
       char tileChar;
       levelFile >> tileChar;
@@ -70,16 +72,23 @@ void Level::loadFromFile(std::string filePath) {
 }
 
 // TODO:REFACTOR Possible switch o' death here.
-// Maybe make tile an abstract class?
-Tile Level::getTileFromChar(char tileSymbol) {
+Tile *Level::getTileFromChar(char tileSymbol) {
   switch (tileSymbol)   {
   case '.':
-    return Tile(Tile::kDirt);
+    return new Tile(Tile::kDirt);
   case '#':
-    return FixedTile(Tile::kWall);
+    return new FixedTile(Tile::kWall);
   default:
-    return Tile(Tile::kVoid);
+    return new Tile(Tile::kVoid);
   }
+}
+
+Level::~Level() {
+    for (Row row : tiles) {
+        for (Tile *tile : row) {
+            delete tile;
+        }
+    }
 }
 
 }

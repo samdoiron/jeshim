@@ -16,6 +16,7 @@ namespace jesh {
 class Player : public Entity, public EventListener {
     public:
         Player(EventEmitter&);
+        ~Player();
 
         // via Entity
         void advance(double);
@@ -29,7 +30,6 @@ class Player : public Entity, public EventListener {
     private:
         EventEmitter &emitter;
         Vector velocity;
-        bool isRunning;
 };
 
 }

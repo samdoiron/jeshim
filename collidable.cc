@@ -1,6 +1,8 @@
 #include "collidable.hh"
 #include <stdexcept>
 
+#include <iostream>
+
 namespace jesh {
 
 Collidable::Collidable(Dimensions dim) :
@@ -71,6 +73,11 @@ Point Collidable::bottomLeft() {
 
 Point Collidable::bottomRight() {
     return position + Vector(dimensions.getWidth(), dimensions.getHeight());
+}
+
+Collidable::~Collidable() {
+    // This space intentionally left blank.
+    std::cout << "Freeing collidable" << std::endl;
 }
 
 }

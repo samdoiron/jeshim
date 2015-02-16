@@ -25,12 +25,7 @@ class TestState : public GameState {
         Level currentLevel;
         LevelView levelView;
         BasicCollisionSystem collisions;
-        int numTicks;
         void render();
-        void trackFramerate(double);
 };
 
 }
-
-
-

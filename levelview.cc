@@ -15,7 +15,8 @@ namespace jesh {
 // seriously speed up paints.
 
 LevelView::LevelView(Level &_level) :
-    level(_level) {
+    level(_level),
+    playerView(level.player) {
     spriteCache.reserve(Tile::kNumTypes);
 
     Point defaultPosition = Point(0, 0);
@@ -26,21 +27,31 @@ LevelView::LevelView(Level &_level) :
     spriteCache[Tile::kWall] = new Sprite("wall.png", tileDimensions, defaultPosition);
 }
 
-void LevelView::renderTo(RenderSurface& surface) {
-    std::vector<std::vector<Tile>> grid = level.tiles;
+void LevelView::renderTo(RenderSurface &surface) {
+    renderTiles(surface);
+    renderPlayer(surface);
+}
+
+void LevelView::renderTiles(RenderSurface &surface) {
+    std::vector<std::vector<Tile*>> grid = level.tiles;
+
     // Give all tiles appropriate positions.
     // TODO:SPEED this could easily be done in advance, and cached.
     for (size_t rowNum = 0; rowNum < grid.size(); rowNum++) {
-        std::vector<Tile> row = grid[rowNum];
+        std::vector<Tile*> row = grid[rowNum];
         for (size_t colNum = 0; colNum < grid[0].size(); colNum++) {
-            Tile tile = row[colNum];
-            Sprite *tileSprite = spriteCache[tile.getType()];
+            Tile *tile = row[colNum];
+            Sprite *tileSprite = spriteCache[tile->getType()];
             tileSprite->setPosition(
               Point(colNum * Tile::Size, rowNum * Tile::Size)
             );
             surface.render(*tileSprite);
         }
     }
+}
+
+void LevelView::renderPlayer(RenderSurface &surface) {
+    playerView.renderTo(surface);
 }
 
 LevelView::~LevelView() {

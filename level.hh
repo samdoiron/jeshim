@@ -17,22 +17,23 @@ class LevelView;
 
 // TODO:CLEAN Is Level a middleman for LevelState?
 class Level {
-    friend class LevelView;
+    friend LevelView;
 
     public:
         Level(EventEmitter&, std::string);
         void advance(double);
+        ~Level();
 
     private:
         void loadFromFile(std::string);
         void setupWallCollisions();
         void checkCollisions();
         void advanceEntities(double);
-        Tile getTileFromChar(char);
+        Tile *getTileFromChar(char);
         Player player;
         EventEmitter &events;
         BasicCollisionSystem collisions;
-        std::vector<std::vector<Tile>> tiles;
+        std::vector<std::vector<Tile*>> tiles;
 };
 
 }

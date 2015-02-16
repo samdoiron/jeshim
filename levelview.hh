@@ -5,6 +5,7 @@
 #include "view.hh"
 #include "rendersurface.hh"
 #include "sprite.hh"
+#include "playerview.hh"
 
 #include <memory>
 
@@ -18,10 +19,13 @@ class LevelView : public View {
         void renderTo(RenderSurface&);
         void renderRow(RenderSurface&, std::vector<Tile>);
         void renderTile(RenderSurface&, Tile);
+        void renderTiles(RenderSurface&);
+        void renderPlayer(RenderSurface&);
 
         ~LevelView();
     private:
         Level &level;
+        PlayerView playerView;
         // TODO:CLEAN Using pointers here. Wish I didn't.
         std::vector<Sprite*> spriteCache;
 };
@@ -29,6 +33,3 @@ class LevelView : public View {
 }
 
 #endif // LEVEL_VIEW_H_
-
-
-
