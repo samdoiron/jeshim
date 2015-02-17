@@ -31,10 +31,10 @@ protected:
   bool fixed;
 
 private:
-  Point topLeft();
-  Point topRight();
-  Point bottomLeft();
-  Point bottomRight();
+  double top();
+  double bottom();
+  double left();
+  double right();
 };
 
 }

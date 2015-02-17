@@ -15,7 +15,7 @@ void BasicCollisionSystem::addCollidable(Collidable *toAdd) {
 // O(n^2) collisions.
 void BasicCollisionSystem::checkCollisions() {
   for (size_t i = 0; i < collidables.size(); i++) {
-    for (size_t j = i; j < collidables.size(); j++) {
+    for (size_t j = i + 1; j < collidables.size(); j++) {
       Collidable *firstCol  = collidables[i];
       Collidable *secondCol = collidables[j];
       if (firstCol->isCollidingWith(*secondCol)) {
@@ -31,7 +31,6 @@ void BasicCollisionSystem::resolveCollision(
   Collidable &firstCol,
   Collidable &secondCol
 ) {
-  std::cout << "Collision oh yeah!" << std::endl;
   if (firstCol.isFixed() && secondCol.isFixed()) {
     // What happens when an unstoppable force meets an immovable object?
     // Nothing.
@@ -55,14 +54,9 @@ void BasicCollisionSystem::collideFixedAndDynamic(
   // the fixed collidable.
 
   // TODO:CLEAN DEMETER
-  // double fixedXMiddle = fixed.getPosition().getX() + (fixed.getDimensions().getWidth() / 2);
-  // double fixedYMiddle = fixed.getPosition().getY() + (fixed.getDimensions().getHeight() / 2);
-  // XXX Incomplete. Always assumes left collision.
 
-  std::cout << "Collision~!" << std::endl;
   dynamic.setPosition(Point(
-    fixed.getPosition().getX() + fixed.getDimensions().getWidth(),
-    dynamic.getPosition().getY()
+      500, 500
   ));
 }
 

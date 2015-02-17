@@ -44,35 +44,28 @@ void Collidable::setNotFixed() {
 }
 
 bool Collidable::isCollidingWith(Collidable &other) {
-  // Basic rectangle collisions
     return (
-        // My top left before of their top right
-        topLeft().getX() < other.topRight().getX()   &&
-
-        // My top right after of their top left
-        topRight().getX() > other.topLeft().getX()   &&
-
-        // My top left above their bottom left
-        topLeft().getY() > other.bottomLeft().getY() &&
-
-        // My bottom left below their top left
-        bottomLeft().getY() < other.topLeft().getY()
+        left() <= other.right()       &&
+        other.left() <= other.right() &&
+        top() <= other.bottom()       &&
+        other.top() <= top()
     );
 }
-Point Collidable::topLeft() {
-    return position;
+
+double Collidable::top() {
+    return position.getY();
 }
 
-Point Collidable::topRight() {
-    return position + Vector(dimensions.getWidth(), 0);
+double Collidable::bottom() {
+    return position.getY() + dimensions.getHeight();
 }
 
-Point Collidable::bottomLeft() {
-    return position + Vector(0, dimensions.getHeight());
+double Collidable::left() {
+    return position.getX();
 }
 
-Point Collidable::bottomRight() {
-    return position + Vector(dimensions.getWidth(), dimensions.getHeight());
+double Collidable::right() {
+    return position.getX() + dimensions.getWidth();
 }
 
 Collidable::~Collidable() {

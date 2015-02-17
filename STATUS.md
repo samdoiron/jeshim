@@ -1,7 +1,7 @@
 Status
 ======
 
-Collisions are sort of in place. I rewrite the collision detection to be lazier, eg. faster. Something weird, though, is that collisions only seem to happen on the top set of walls.
+Collisions are sort of in place. I rewrote the collision detection to be lazier, eg. faster. Something weird, though, is that collisions only seem to happen on the top set of walls.
 
 ### For next session
 + Find out why collisions only occur when they do
