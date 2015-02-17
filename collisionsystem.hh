@@ -6,6 +6,11 @@
 
 namespace jesh {
 
+
+/*
+ * CollisionSystem does not free any of it's tracked items!
+ */
+
 /* abstract */ class CollisionSystem {
 public:
   virtual void addCollidable(Collidable*) = 0;
