@@ -65,7 +65,6 @@ void BasicCollisionSystem::collideDynamics(
   Collidable &secondCol
 ) {
   // TODO
-  throw std::runtime_error("UNIMPLEMENTED: dynamic collision");
 }
 
 

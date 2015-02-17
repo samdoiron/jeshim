@@ -5,33 +5,36 @@ project (Jeshim)
 set (EXECUTABLE_NAME "jeshim")
 
 add_executable(${EXECUTABLE_NAME}
-  basiccollisionsystem.cc
-  collidable.cc
-  collisionsystem.cc
-  dimensions.cc
-  entity.cc
-  event.cc
-  eventemitter.cc
-  eventlistener.cc
-  fixedtile.cc
-  game.cc
-  gamestate.cc
-  jeshim.cc
-  keypressevent.cc
-  keyreleaseevent.cc
-  level.cc
-  levelview.cc
-  mousemoveevent.cc
-  player.cc
-  playerview.cc
-  point.cc
-  rendersurface.cc
-  sprite.cc
-  teststate.cc
-  tile.cc
-  vector.cc
-  view.cc
-  window.cc
+    basiccollisionsystem.cc
+    collidable.cc
+    collisionstate.cc
+    collisionsystem.cc
+    dimensions.cc
+    entity.cc
+    event.cc
+    eventemitter.cc
+    eventlistener.cc
+    fixedtile.cc
+    game.cc
+    gamestate.cc
+    jeshim.cc
+    keypressevent.cc
+    keyreleaseevent.cc
+    level.cc
+    levelview.cc
+    mousemoveevent.cc
+    player.cc
+    playerview.cc
+    point.cc
+    rendersurface.cc
+    sprite.cc
+    testsquare.cc
+    testsquareview.cc
+    teststate.cc
+    tile.cc
+    vector.cc
+    view.cc
+    window.cc
 )
 
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Weverything -g -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")

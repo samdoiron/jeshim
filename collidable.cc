@@ -45,10 +45,10 @@ void Collidable::setNotFixed() {
 
 bool Collidable::isCollidingWith(Collidable &other) {
     return (
-        left() <= other.right()       &&
-        other.left() <= other.right() &&
-        top() <= other.bottom()       &&
-        other.top() <= top()
+        left() <= other.right() &&
+        other.left() <= right() &&
+        top() <= other.bottom() &&
+        other.top() <= bottom()
     );
 }
 
