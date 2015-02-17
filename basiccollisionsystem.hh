@@ -10,14 +10,14 @@ namespace jesh {
 // AKA StupidCollisionSystem
 class BasicCollisionSystem : public CollisionSystem {
 public:
-    virtual void addCollidable(std::shared_ptr<Collidable>);
+    virtual void addCollidable(Collidable*);
     virtual void checkCollisions();
     virtual void collideFixedAndDynamic(Collidable&, Collidable&);
     virtual void collideDynamics(Collidable&, Collidable&);
 
 private:
   virtual void resolveCollision(Collidable&, Collidable&);
-  std::vector<std::shared_ptr<Collidable>> collidables;
+  std::vector<Collidable*> collidables;
 };
 
 }

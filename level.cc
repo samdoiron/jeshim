@@ -16,16 +16,13 @@ namespace jesh {
 // Checking for collisions within said geometry
 // Storing entity and player position
 
-// Refactoring:
-// [ ] CollisionSystem for collisions / building geometry
-
 typedef std::vector<Tile*> Row;
 
-Level::Level(EventEmitter &_events, std::string filePath) :
-  player(_events),
+Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
+  player(_player),
   events(_events) {
   loadFromFile(filePath);
-  setupWallCollisions();
+  setupCollisions();
 }
 
 void Level::advance(double secondsPassed) {
@@ -35,12 +32,13 @@ void Level::advance(double secondsPassed) {
 
 // private
 
-void Level::setupWallCollisions() {
+void Level::setupCollisions() {
   for (Row row : tiles) {
     for (Tile *eachTile : row) {
       eachTile->addToCollisionSystem(collisions);
     }
   }
+  collisions.addCollidable(&player);
 }
 
 void Level::advanceEntities(double secondsPassed) {

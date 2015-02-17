@@ -9,7 +9,7 @@ FixedTile::FixedTile(Tile::Type type) :
 }
 
 void FixedTile::addToCollisionSystem(CollisionSystem &system) {
-  system.addCollidable(std::shared_ptr<Collidable>(this));
+  system.addCollidable(this);
 }
 
 }

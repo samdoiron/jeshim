@@ -7,9 +7,7 @@
 
 namespace jesh {
 
-typedef std::shared_ptr<Collidable> CollidablePtr;
-
-void BasicCollisionSystem::addCollidable(CollidablePtr toAdd) {
+void BasicCollisionSystem::addCollidable(Collidable *toAdd) {
   collidables.push_back(toAdd);
 }
 
@@ -18,8 +16,8 @@ void BasicCollisionSystem::addCollidable(CollidablePtr toAdd) {
 void BasicCollisionSystem::checkCollisions() {
   for (size_t i = 0; i < collidables.size(); i++) {
     for (size_t j = i; j < collidables.size(); j++) {
-      CollidablePtr firstCol  = collidables[i];
-      CollidablePtr secondCol = collidables[j];
+      Collidable *firstCol  = collidables[i];
+      Collidable *secondCol = collidables[j];
       if (firstCol->isCollidingWith(*secondCol)) {
         resolveCollision(*firstCol, *secondCol);
       }

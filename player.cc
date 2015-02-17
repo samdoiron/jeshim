@@ -80,7 +80,6 @@ void Player::sendCollision(Collidable &other) {
 }
 
 Player::~Player() {
-    std::cout << "Freeing player" << std::endl;
 }
 
 }

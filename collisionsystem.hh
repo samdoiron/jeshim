@@ -8,7 +8,7 @@ namespace jesh {
 
 /* abstract */ class CollisionSystem {
 public:
-  virtual void addCollidable(std::shared_ptr<Collidable>) = 0;
+  virtual void addCollidable(Collidable*) = 0;
   virtual void checkCollisions() = 0;
   virtual ~CollisionSystem();
 };

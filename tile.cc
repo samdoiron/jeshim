@@ -6,7 +6,7 @@
 namespace jesh {
 
 Tile::Tile(Tile::Type _type) :
-  Collidable(Dimensions(Tile::Size, Tile::Size)),
+  Collidable(Dimensions(Tile::kSize, Tile::kSize)),
   type(_type) {
 }
 

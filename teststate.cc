@@ -18,15 +18,14 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
     player(_emitter),
     playerView(player),
     runningTime(0),
-    currentLevel(_emitter, "test.jesh"),
+    currentLevel(player, _emitter, "test.jesh"),
     levelView(currentLevel) {
   surface.setOrigin(player.getPosition());
-  collisions.addCollidable(std::shared_ptr<Collidable>(&player));
 }
 
 void TestState::advance(double secondsPassed) {
     Point oldPlayerPosition = player.getPosition();
-    player.advance(secondsPassed);
+    currentLevel.advance(secondsPassed);
     Point newPlayerPosition = player.getPosition();
 
     Vector playerDelta(oldPlayerPosition, newPlayerPosition);
@@ -39,7 +38,6 @@ void TestState::advance(double secondsPassed) {
         surface.setOrigin(cameraPosition + playerDelta);
     }
 
-    currentLevel.advance(secondsPassed);
 
     render();
 }

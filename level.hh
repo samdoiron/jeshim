@@ -20,17 +20,17 @@ class Level {
     friend LevelView;
 
     public:
-        Level(EventEmitter&, std::string);
+        Level(Player&, EventEmitter&, std::string);
         void advance(double);
         ~Level();
 
     private:
         void loadFromFile(std::string);
-        void setupWallCollisions();
+        void setupCollisions();
         void checkCollisions();
         void advanceEntities(double);
         Tile *getTileFromChar(char);
-        Player player;
+        Player &player;
         EventEmitter &events;
         BasicCollisionSystem collisions;
         std::vector<std::vector<Tile*>> tiles;

@@ -77,7 +77,6 @@ Point Collidable::bottomRight() {
 
 Collidable::~Collidable() {
     // This space intentionally left blank.
-    std::cout << "Freeing collidable" << std::endl;
 }
 
 }

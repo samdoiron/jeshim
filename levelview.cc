@@ -20,7 +20,7 @@ LevelView::LevelView(Level &_level) :
     spriteCache.reserve(Tile::kNumTypes);
 
     Point defaultPosition = Point(0, 0);
-    Dimensions tileDimensions = Dimensions(Tile::Size, Tile::Size);
+    Dimensions tileDimensions = Dimensions(Tile::kSize, Tile::kSize);
 
     spriteCache[Tile::kVoid] = new Sprite("void.png", tileDimensions, defaultPosition);
     spriteCache[Tile::kDirt] = new Sprite("dirt.png", tileDimensions, defaultPosition);
@@ -43,7 +43,7 @@ void LevelView::renderTiles(RenderSurface &surface) {
             Tile *tile = row[colNum];
             Sprite *tileSprite = spriteCache[tile->getType()];
             tileSprite->setPosition(
-              Point(colNum * Tile::Size, rowNum * Tile::Size)
+              Point(colNum * Tile::kSize, rowNum * Tile::kSize)
             );
             surface.render(*tileSprite);
         }

@@ -8,7 +8,7 @@ namespace jesh {
 
 class Tile : public Collidable {
 public:
-  static const int Size = 64;
+  static const int kSize = 64;
 
   enum Type {
     kVoid,
