@@ -33,6 +33,54 @@ void Collidable::setPosition(Point newPosition) {
   position = newPosition;
 }
 
+double Collidable::getTop() {
+    return position.getY();
+}
+
+double Collidable::getBottom() {
+    return position.getY() + dimensions.getHeight();
+}
+
+double Collidable::getLeft() {
+    return position.getX();
+}
+
+double Collidable::getRight() {
+    return position.getX() + dimensions.getWidth();
+}
+
+double Collidable::getWidth() {
+    return dimensions.getWidth();
+}
+
+double Collidable::getXMiddle() {
+    return position.getX() + dimensions.getWidth() / 2;
+}
+
+double Collidable::getYMiddle() {
+    return position.getY() + dimensions.getHeight() / 2;
+}
+
+double Collidable::getHeight() {
+    return dimensions.getHeight();
+}
+
+void Collidable::setLeft(double newLeft) {
+    position.setX(newLeft);
+}
+
+void Collidable::setRight(double newRight) {
+    position.setX(position.getX() + (newRight - getRight()));
+}
+
+void Collidable::setTop(double newTop) {
+    position.setY(newTop);
+}
+
+void Collidable::setBottom(double newBottom) {
+    position.setY(position.getY() + (newBottom - getBottom()));
+}
+
 // private
 
 void Collidable::setFixed() {
@@ -45,27 +93,11 @@ void Collidable::setNotFixed() {
 
 bool Collidable::isCollidingWith(Collidable &other) {
     return (
-        left() <= other.right() &&
-        other.left() <= right() &&
-        top() <= other.bottom() &&
-        other.top() <= bottom()
+        getLeft()       <= other.getRight()  &&
+        other.getLeft() <= getRight()        &&
+        getTop()        <= other.getBottom() &&
+        other.getTop()  <= getBottom()
     );
-}
-
-double Collidable::top() {
-    return position.getY();
-}
-
-double Collidable::bottom() {
-    return position.getY() + dimensions.getHeight();
-}
-
-double Collidable::left() {
-    return position.getX();
-}
-
-double Collidable::right() {
-    return position.getX() + dimensions.getWidth();
 }
 
 Collidable::~Collidable() {

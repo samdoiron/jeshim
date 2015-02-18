@@ -16,7 +16,7 @@ TestSquare::TestSquare(EventEmitter &_emitter, bool _followMouse) :
     if (isFollowingMouse) {
         emitter.addListener(kMouseMove, *this);
     } else {
-        // setFixed();
+       setFixed();
     }
 }
 

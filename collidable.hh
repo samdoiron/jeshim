@@ -22,6 +22,25 @@ public:
   Collidable(const Collidable&) = default;
   virtual ~Collidable();
 
+  double getTop();
+  double getBottom();
+  double getLeft();
+  double getRight();
+
+  double getWidth();
+  double getHeight();
+
+  double getXMiddle();
+  double getYMiddle();
+
+  void setXPosition(double);
+  void setYPosition(double);
+  void setLeft(double);
+  void setRight(double);
+  void setTop(double);
+  void setBottom(double);
+
+
 protected:
   void setFixed();
   void setNotFixed();
@@ -31,10 +50,6 @@ protected:
   bool fixed;
 
 private:
-  double top();
-  double bottom();
-  double left();
-  double right();
 };
 
 }

@@ -4,6 +4,7 @@
 #include "collidable.hh"
 
 #include <iostream>
+#include <cmath>
 
 namespace jesh {
 
@@ -52,12 +53,22 @@ void BasicCollisionSystem::collideFixedAndDynamic(
 ) {
   // In this case the dynamic collidable needs to be moved to the border of
   // the fixed collidable.
+  double xDepth = std::abs(dynamic.getLeft() - fixed.getLeft());
+  double yDepth = std::abs(dynamic.getTop() - fixed.getTop());
+  if (xDepth < yDepth) {
+      if (dynamic.getYMiddle() > fixed.getYMiddle()) {
+          dynamic.setTop(fixed.getBottom());
+      } else {
+          dynamic.setBottom(fixed.getTop());
+      }
+  } else {
+      if (dynamic.getXMiddle() > fixed.getXMiddle()) {
+          dynamic.setLeft(fixed.getRight());
+      } else {
+          dynamic.setRight(fixed.getLeft());
+      }
+  }
 
-  // TODO:CLEAN DEMETER
-
-  dynamic.setPosition(Point(
-      500, 500
-  ));
 }
 
 void BasicCollisionSystem::collideDynamics(
