@@ -1,5 +1,5 @@
 #include "game.hh"
-#include "collisionstate.hh"
+#include "teststate.hh"
 #include "dimensions.hh"
 
 #include <SFML/OpenGL.hpp>
@@ -18,7 +18,7 @@ int main(void) {
     jesh::Window window(GAME_TITLE, jesh::Dimensions(GAME_WIDTH, GAME_HEIGHT));
 
     jesh::Game jeshim(window);
-    jesh::CollisionState testState(jeshim, window, window);
+    jesh::TestState testState(jeshim, window, window);
 
     jeshim.setState(&testState);
     jeshim.run();
