@@ -24,22 +24,13 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
 }
 
 void TestState::advance(double secondsPassed) {
-    Point oldPlayerPosition = player.getPosition();
     currentLevel.advance(secondsPassed);
-    Point newPlayerPosition = player.getPosition();
-
-    Vector playerDelta(oldPlayerPosition, newPlayerPosition);
-
-    // TODO:CLEAN I don't think camera logic should go here...
-
-    Point cameraPosition = surface.getOrigin();
-
-    if (newPlayerPosition.distanceTo(cameraPosition) > kCameraRadius) {
-        surface.setOrigin(cameraPosition + playerDelta);
-    }
-
-
+    updateCamera();
     render();
+}
+
+void TestState::updateCamera() {
+    surface.setOrigin(player.getPosition());
 }
 
 void TestState::render() {

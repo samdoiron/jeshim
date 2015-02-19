@@ -25,6 +25,7 @@ class TestState : public GameState {
         Level currentLevel;
         LevelView levelView;
         BasicCollisionSystem collisions;
+        void updateCamera();
         void render();
 };
 

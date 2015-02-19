@@ -18,7 +18,7 @@ namespace jesh {
 Window::Window(std::string title, Dimensions dim) :
     sfmlWindow(
         sf::VideoMode(
-            static_cast<unsigned int>(dim.getWidth()), 
+            static_cast<unsigned int>(dim.getWidth()),
             static_cast<unsigned int>(dim.getHeight())
         ),
         title
@@ -52,7 +52,7 @@ void Window::setOrigin(Point newOrigin) {
     sf::View windowView = sfmlWindow.getView();
     windowView.setCenter(
         // Add 0.5 before cast to round.
-        static_cast<int>(origin.getX() + 0.5), 
+        static_cast<int>(origin.getX() + 0.5),
         static_cast<int>(origin.getY() + 0.5)
     );
     sfmlWindow.setView(windowView);

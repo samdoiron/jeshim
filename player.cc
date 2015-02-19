@@ -17,7 +17,7 @@
 
 namespace jesh {
 
-const double kRunSpeed  = 500; // Pixels per second
+const double kRunSpeed  = 400; // Pixels per second
 
 const KeyCode kMoveLeft  = kLeft;
 const KeyCode kMoveUp    = kUp;
@@ -41,7 +41,6 @@ void Player::advance(double secondsPassed) {
 void Player::handleEvent(KeyPressEvent &event) {
     KeyCode key = event.getKeyCode();
 
-    // XXX temporary
     if (key == kMoveUp) {
         velocity.setY(-kRunSpeed);
     } else if (key == kMoveDown) {
@@ -60,6 +59,8 @@ void Player::handleEvent(KeyReleaseEvent &event) {
     bool movingUp    = velocity.getY() < 0;
     bool movingDown  = velocity.getY() > 0;
 
+    // Problem here, where keyUp will halt any velocity, regardless if you're
+    // running or not.
     if (releasedKey == kMoveUp && movingUp) {
         velocity.setY(0);
     } else if (releasedKey == kMoveDown && movingDown) {
