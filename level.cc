@@ -49,6 +49,7 @@ void Level::checkCollisions() {
   collisions.checkCollisions();
 }
 
+// CLEAN:BIG
 void Level::loadFromFile(std::string filePath) {
   std::ifstream levelFile;
   levelFile.open(filePath);
@@ -61,7 +62,9 @@ void Level::loadFromFile(std::string filePath) {
     for (int iCol = 0; iCol < numCols; iCol++) {
       char tileChar;
       levelFile >> tileChar;
-      row.push_back(getTileFromChar(tileChar));
+      Tile *tile = getTileFromChar(tileChar);
+      tile->setPosition(Point(iCol * Tile::kSize, iRow * Tile::kSize));
+      row.push_back(tile);
     }
     tiles.push_back(row);
   }

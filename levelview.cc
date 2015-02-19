@@ -37,14 +37,10 @@ void LevelView::renderTiles(RenderSurface &surface) {
 
     // Give all tiles appropriate positions.
     // TODO:SPEED this could easily be done in advance, and cached.
-    for (size_t rowNum = 0; rowNum < grid.size(); rowNum++) {
-        std::vector<Tile*> row = grid[rowNum];
-        for (size_t colNum = 0; colNum < grid[0].size(); colNum++) {
-            Tile *tile = row[colNum];
+    for (std::vector<Tile*> row : grid) {
+        for (Tile *tile : row) {
             Sprite *tileSprite = spriteCache[tile->getType()];
-            tileSprite->setPosition(
-              Point(colNum * Tile::kSize, rowNum * Tile::kSize)
-            );
+            tileSprite->setPosition(tile->getPosition());
             surface.render(*tileSprite);
         }
     }
