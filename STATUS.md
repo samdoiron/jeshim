@@ -4,18 +4,12 @@ Status
 
 Last Session
 ------------
-Collisions are sort of in place. I rewrote the collision detection to be lazier, eg. faster. Something weird, though, is that collisions only seem to happen on the top set of walls.
+Fixed jittering issue which turned out to be from the way I was handling camera movement. Now the camera is always centered on the player, which may not be ideal.
 
 This Session
 ------------
 
-+ Jittering Issue
-    + Might be caused by running too slow and running out the buffer.
-    + Reviewing a recording shows that it just stops, it doesn't go backwards. Might be a problem with double -> int rounding on display.
-    + Only occurs when you outrun the camera. Must be something to do with the how that is handled.
-
-
-+ Graphics
++ Fix collisions.
 
 Next Session
 ------------

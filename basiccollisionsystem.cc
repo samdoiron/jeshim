@@ -53,22 +53,30 @@ void BasicCollisionSystem::collideFixedAndDynamic(
 ) {
   // In this case the dynamic collidable needs to be moved to the border of
   // the fixed collidable.
-  double xDepth = std::abs(dynamic.getLeft() - fixed.getLeft());
-  double yDepth = std::abs(dynamic.getTop() - fixed.getTop());
-  if (xDepth < yDepth) {
-      if (dynamic.getYMiddle() > fixed.getYMiddle()) {
-          dynamic.setTop(fixed.getBottom());
-      } else {
-          dynamic.setBottom(fixed.getTop());
-      }
+  bool toRight = dynamic.getXMiddle() > fixed.getXMiddle();
+  bool below = dynamic.getYMiddle() > fixed.getYMiddle();
+
+  double deltaX = 0;
+  double deltaY = 0;
+
+  if (toRight) {
+      deltaX = fixed.getRight() - dynamic.getLeft();
   } else {
-      if (dynamic.getXMiddle() > fixed.getXMiddle()) {
-          dynamic.setLeft(fixed.getRight());
-      } else {
-          dynamic.setRight(fixed.getLeft());
-      }
+      deltaX = fixed.getLeft() - dynamic.getRight();
+  }
+  
+  if (below) {
+      deltaY = fixed.getBottom() - dynamic.getTop();
+  } else {
+      deltaY = fixed.getTop() - dynamic.getBottom();
   }
 
+  // Assume the smaller adjustment
+  if (std::abs(deltaX) < std::abs(deltaY)) {
+      dynamic.setPosition(dynamic.getPosition() + Vector(deltaX, 0));
+  } else {
+      dynamic.setPosition(dynamic.getPosition() + Vector(0, deltaY));
+  }
 }
 
 void BasicCollisionSystem::collideDynamics(
