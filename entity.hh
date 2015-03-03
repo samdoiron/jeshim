@@ -2,10 +2,11 @@
 #ifndef JESH_ENTITY_H_
 #define JESH_ENTITY_H_
 
-#include "point.hh"
 #include "collidable.hh"
+#include "point.hh"
 #include "dimensions.hh"
 #include "rendersurface.hh"
+#include "view.hh"
 
 namespace jesh {
 
@@ -17,12 +18,14 @@ class RenderSurface;
 
 class Entity : public Collidable {
     public:
-        Entity(Dimensions);
+        Entity(View&, Dimensions);
         virtual ~Entity();
-        virtual void advance(double) = 0;
+        virtual void advance(double);
+        virtual void renderTo(RenderSurface&);
 
     private:
         virtual void anchor();
+        View &view;
 };
 
 }

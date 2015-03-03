@@ -8,12 +8,16 @@
 #include "keypressevent.hh"
 #include "keyreleaseevent.hh"
 #include "vector.hh"
+#include "enemy.hh"
+#include "slime.hh"
+#include "playerview.hh"
 
 #include "entity.hh"
 
 namespace jesh {
 
 class Player : public Entity, public EventListener {
+    friend class PlayerView;
     public:
         Player(EventEmitter&);
         ~Player();
@@ -25,11 +29,15 @@ class Player : public Entity, public EventListener {
         void handleEvent(KeyPressEvent&);
         void handleEvent(KeyReleaseEvent&);
         void handleEvent(Event&);
+
+        void handleCollision(Enemy&);
+
         void sendCollision(Collidable&);
 
     private:
         EventEmitter &emitter;
         Vector velocity;
+        PlayerView view;
 };
 
 }

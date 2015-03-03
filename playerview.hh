@@ -3,10 +3,11 @@
 
 #include "view.hh"
 
-#include "player.hh"
 #include "sprite.hh"
 
 namespace jesh {
+
+class Player;
 
 class PlayerView : public View {
     public:

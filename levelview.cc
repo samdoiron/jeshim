@@ -15,8 +15,7 @@ namespace jesh {
 // seriously speed up paints.
 
 LevelView::LevelView(Level &_level) :
-    level(_level),
-    playerView(level.player) {
+    level(_level) {
     spriteCache.reserve(Tile::kNumTypes);
 
     Point defaultPosition = Point(0, 0);
@@ -29,6 +28,7 @@ LevelView::LevelView(Level &_level) :
 
 void LevelView::renderTo(RenderSurface &surface) {
     renderTiles(surface);
+    renderEnemies(surface);
     renderPlayer(surface);
 }
 
@@ -46,8 +46,15 @@ void LevelView::renderTiles(RenderSurface &surface) {
     }
 }
 
+// TODO Add EnemyType enum to enemies to be able to display them distinctly.
+void LevelView::renderEnemies(RenderSurface &surface) {
+    for (Enemy *enemy : level.enemies) {
+        enemy->renderTo(surface);
+    } 
+}
+
 void LevelView::renderPlayer(RenderSurface &surface) {
-    playerView.renderTo(surface);
+    level.player.renderTo(surface);
 }
 
 LevelView::~LevelView() {

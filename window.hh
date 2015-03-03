@@ -21,6 +21,7 @@ class Window : public RenderSurface, public EventEmitter {
         // via RenderSurface
         void clear();
         void render(Sprite&);
+        void drawLine(Point, Point) override;
         void setOrigin(Point);
         Point getOrigin();
         void update();

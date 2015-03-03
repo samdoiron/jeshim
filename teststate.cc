@@ -11,8 +11,6 @@
 
 namespace jesh {
 
-const double kCameraRadius = 100;
-
 TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surface) :
     GameState(_game, _emitter, _surface),
     player(_emitter),

@@ -80,8 +80,8 @@ void BasicCollisionSystem::collideFixedAndDynamic(
 }
 
 void BasicCollisionSystem::collideDynamics(
-  Collidable &firstCol,
-  Collidable &secondCol
+  Collidable&,
+  Collidable&
 ) {
   // TODO
 }

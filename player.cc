@@ -5,6 +5,8 @@
 #include "eventemitter.hh"
 #include "point.hh"
 #include "keycode.hh"
+#include "enemy.hh"
+#include "slime.hh"
 
 #include <iostream>
 #include <typeinfo>
@@ -13,7 +15,7 @@
 #include <cmath>
 
 #define PLAYER_HEIGHT 64
-#define PLAYER_WIDTH 32
+#define PLAYER_WIDTH 64
 
 namespace jesh {
 
@@ -25,11 +27,13 @@ const KeyCode kMoveRight = kRight;
 const KeyCode kMoveDown  = kDown;
 
 Player::Player(EventEmitter &_emitter) :
-  Entity(Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT)),
+  view(*this),
+  Entity(view, Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT)),
   emitter(_emitter),
   velocity(0, 0) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
+    setPosition(Point(100, 10));
 }
 
 void Player::advance(double secondsPassed) {
@@ -70,6 +74,12 @@ void Player::handleEvent(KeyReleaseEvent &event) {
     } else if (releasedKey == kMoveRight && movingRight) {
         velocity.setX(0);
     }
+}
+
+// --- Collisions
+
+void Player::handleCollision(Enemy &enemy) {
+    std::cout << "Hit enemy!" << std::endl;
 }
 
 void Player::handleEvent(Event&) {

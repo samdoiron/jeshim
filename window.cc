@@ -4,6 +4,7 @@
 #include <string>
 
 #include <sfml/Window.hpp>
+#include <sfml/Graphics.hpp>
 
 #include "point.hh"
 
@@ -31,6 +32,14 @@ Window::Window(std::string title, Dimensions dim) :
 
 void Window::render(Sprite &toRender) {
     sfmlWindow.draw(toRender.asSFMLSprite());
+}
+
+void Window::drawLine(Point theStart, Point theEnd) {
+    sf::Vertex line[2] = {
+        sf::Vertex(theStart.asSFMLVector()),
+        sf::Vertex(theEnd.asSFMLVector())
+    };
+    sfmlWindow.draw(line, 2, sf::Lines);
 }
 
 // TODO: Maybe seperate polling and displaying? Window::update is not very SRP.

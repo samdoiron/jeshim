@@ -9,6 +9,8 @@
 
 namespace jesh {
 
+const double kMaxFrameDifference = 0.1;
+
 // UGLY: game must have a pointer to state because it needs to bootstrap
 // without one, because GameState needs a reference to state.
 
@@ -37,8 +39,11 @@ void Game::run() {
         double frameDifference = chrono::duration_cast<chrono::duration<double>>(now - lastUpdate).count();
 
         this->window.clear();
-        this->state->advance(frameDifference);
-        this->window.update();
+        while (frameDifference > 0) {
+            this->state->advance(std::min(frameDifference, kMaxFrameDifference));
+            this->window.update();
+            frameDifference -= kMaxFrameDifference;
+        }
 
         lastUpdate = now;
     }

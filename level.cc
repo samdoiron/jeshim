@@ -2,6 +2,7 @@
 
 #include "tile.hh"
 #include "fixedtile.hh"
+#include "slime.hh"
 #include "basiccollisionsystem.hh"
 
 #include <fstream>
@@ -19,9 +20,11 @@ namespace jesh {
 typedef std::vector<Tile*> Row;
 
 Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
-  player(_player),
-  events(_events) {
+    player(_player),
+    collisions(100, Dimensions(1000, 1000)),
+    events(_events) {
   loadFromFile(filePath);
+  addEnemies();
   setupCollisions();
 }
 
@@ -31,6 +34,19 @@ void Level::advance(double secondsPassed) {
 }
 
 // private
+
+void Level::addEnemies() {
+    for (int i = 0; i < 1000; i++) {
+        Enemy *slime = new Slime();
+        slime->setPosition(Point(1000, 500));
+        addEnemy(slime);
+    }
+}
+
+void Level::addEnemy(Enemy* enemy) {
+    collisions.addCollidable(enemy);
+    enemies.push_back(enemy);
+}
 
 void Level::setupCollisions() {
   for (Row row : tiles) {
@@ -43,6 +59,9 @@ void Level::setupCollisions() {
 
 void Level::advanceEntities(double secondsPassed) {
   player.advance(secondsPassed);
+  for (Enemy *enemy : enemies) {
+      enemy->advance(secondsPassed);
+  }
 }
 
 void Level::checkCollisions() {
@@ -89,6 +108,9 @@ Level::~Level() {
         for (Tile *tile : row) {
             delete tile;
         }
+    }
+    for (Enemy *enemy : enemies) {
+        delete enemy;
     }
 }
 

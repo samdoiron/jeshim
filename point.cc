@@ -56,6 +56,11 @@ Point Point::operator+(Vector delta) {
     );
 }
 
+Point Point::operator+=(Vector delta) {
+    moveRelative(delta);
+    return *this;
+}
+
 sf::Vector2f Point::asSFMLVector() {
     return sf::Vector2f(x, y);
 }

@@ -10,11 +10,6 @@ Collidable::Collidable(Dimensions dim) :
   position(0, 0) {
 }
 
-void Collidable::handleCollision(Collidable&) {
-    // Don't do anything. Means the child hasn't overridden the default
-    // collision handler (normal).
-}
-
 bool Collidable::isFixed() {
   return fixed;
 }

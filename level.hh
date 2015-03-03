@@ -4,8 +4,9 @@
 #include "tile.hh"
 
 #include "eventemitter.hh"
-#include "basiccollisionsystem.hh"
+#include "gridcollisionsystem.hh"
 #include "player.hh"
+#include "enemy.hh"
 
 #include <string>
 #include <fstream>
@@ -29,11 +30,14 @@ class Level {
         void setupCollisions();
         void checkCollisions();
         void advanceEntities(double);
+        void addEnemies();
+        void addEnemy(Enemy*);
         Tile *getTileFromChar(char);
         Player &player;
         EventEmitter &events;
-        BasicCollisionSystem collisions;
+        GridCollisionSystem collisions;
         std::vector<std::vector<Tile*>> tiles;
+        std::vector<Enemy*> enemies;
 };
 
 }

@@ -5,12 +5,25 @@
 #include "point.hh"
 #include "dimensions.hh"
 
+// Enable visitor pattern
+
 namespace jesh {
 
+class Enemy;
+class Entity;
+class Player;
+class Slime;
+class Tile;
+
 class Collidable {
+
 public:
   Collidable(Dimensions);
-  virtual void handleCollision(Collidable&);
+  virtual void handleCollision(Collidable&) {}
+  virtual void handleCollision(Player&) {}
+  virtual void handleCollision(Enemy&) {}
+  virtual void handleCollision(Slime&) {}
+
   virtual void sendCollision(Collidable&) = 0;
 
   Point getPosition();

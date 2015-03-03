@@ -21,11 +21,11 @@ class LevelView : public View {
         void renderTile(RenderSurface&, Tile);
         void renderTiles(RenderSurface&);
         void renderPlayer(RenderSurface&);
+        void renderEnemies(RenderSurface&);
 
         ~LevelView();
     private:
         Level &level;
-        PlayerView playerView;
         // TODO:CLEAN Using pointers here. Wish I didn't.
         std::vector<Sprite*> spriteCache;
 };

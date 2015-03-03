@@ -21,6 +21,7 @@ class Point {
         double distanceTo(Point);
         Vector operator-(Point);
         Point operator+(Vector);
+        Point operator+=(Vector);
         sf::Vector2f asSFMLVector();
     private:
         double x, y;
