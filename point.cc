@@ -62,7 +62,10 @@ Point Point::operator+=(Vector delta) {
 }
 
 sf::Vector2f Point::asSFMLVector() {
-    return sf::Vector2f(x, y);
+    return sf::Vector2f(
+        static_cast<float>(x),
+        static_cast<float>(y)
+    );
 }
 
 }

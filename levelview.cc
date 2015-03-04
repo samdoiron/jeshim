@@ -40,7 +40,7 @@ void LevelView::renderTiles(RenderSurface &surface) {
     for (std::vector<Tile*> row : grid) {
         for (Tile *tile : row) {
             Sprite *tileSprite = spriteCache[tile->getType()];
-            tileSprite->setPosition(tile->getPosition());
+            tileSprite->setPosition(tile->getTopLeft());
             surface.render(*tileSprite);
         }
     }

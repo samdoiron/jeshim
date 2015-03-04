@@ -1,11 +1,7 @@
 #ifndef JESH_COLLIDABLE_H_
 #define JESH_COLLIDABLE_H_
 
-#include "dimensions.hh"
-#include "point.hh"
-#include "dimensions.hh"
-
-// Enable visitor pattern
+#include "rectangle.hh"
 
 namespace jesh {
 
@@ -15,54 +11,31 @@ class Player;
 class Slime;
 class Tile;
 
-class Collidable {
+class Collidable : public Rectangle {
+    public:
+      Collidable(Rectangle);
+      virtual void handleCollision(Collidable&) {}
+      virtual void handleCollision(Player&) {}
+      virtual void handleCollision(Enemy&) {}
+      virtual void handleCollision(Slime&) {}
 
-public:
-  Collidable(Dimensions);
-  virtual void handleCollision(Collidable&) {}
-  virtual void handleCollision(Player&) {}
-  virtual void handleCollision(Enemy&) {}
-  virtual void handleCollision(Slime&) {}
+      virtual void sendCollision(Collidable&) = 0;
 
-  virtual void sendCollision(Collidable&) = 0;
+      virtual void setPosition(Point);
 
-  Point getPosition();
-  Dimensions getDimensions();
-  void setPosition(Point);
-  bool isCollidingWith(Collidable&);
-  bool isFixed();
+      bool isCollidingWith(Collidable&);
+      bool isFixed();
 
-  Collidable(const Collidable&) = default;
-  virtual ~Collidable();
+      Collidable(const Collidable&) = default;
+      virtual ~Collidable();
 
-  double getTop();
-  double getBottom();
-  double getLeft();
-  double getRight();
+    protected:
+      void setFixed();
+      void setNotFixed();
 
-  double getWidth();
-  double getHeight();
+      bool fixed;
 
-  double getXMiddle();
-  double getYMiddle();
-
-  void setXPosition(double);
-  void setYPosition(double);
-  void setLeft(double);
-  void setRight(double);
-  void setTop(double);
-  void setBottom(double);
-
-
-protected:
-  void setFixed();
-  void setNotFixed();
-
-  Dimensions dimensions;
-  Point position;
-  bool fixed;
-
-private:
+    private:
 };
 
 }

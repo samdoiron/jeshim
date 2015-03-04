@@ -31,7 +31,10 @@ void Sprite::setPosition(Point newPosition) {
 }
 
 void Sprite::setScale(double scale) {
-    sfmlSprite.setScale(sf::Vector2f(scale, scale));
+    sfmlSprite.setScale(sf::Vector2f(
+        static_cast<float>(scale),
+        static_cast<float>(scale)
+    ));
 }
 
 sf::Sprite Sprite::asSFMLSprite() {

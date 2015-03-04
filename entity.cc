@@ -4,8 +4,8 @@
 namespace jesh {
 
 Entity::Entity(View &_view, Dimensions dim) :
-    view(_view),
-    Collidable(dim) {
+    Collidable(dim),
+    view(_view) {
 }
 
 void Entity::anchor() {

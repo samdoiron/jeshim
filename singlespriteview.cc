@@ -7,11 +7,11 @@ namespace jesh {
 
 SingleSpriteView::SingleSpriteView(Collidable &toTrack, std::string path) :
     tracked(toTrack),
-    sprite(path, toTrack.getDimensions(), toTrack.getPosition()) {
+    sprite(path, toTrack.getDimensions(), toTrack.getTopLeft()) {
 }
 
 void SingleSpriteView::renderTo(RenderSurface &surface) {
-    sprite.setPosition(tracked.getPosition());
+    sprite.setPosition(tracked.getTopLeft());
     surface.render(sprite);
 }
     

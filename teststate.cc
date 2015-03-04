@@ -18,7 +18,7 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
     runningTime(0),
     currentLevel(player, _emitter, "test.jesh"),
     levelView(currentLevel) {
-  surface.setOrigin(player.getPosition());
+    updateCamera();
 }
 
 void TestState::advance(double secondsPassed) {
@@ -28,7 +28,7 @@ void TestState::advance(double secondsPassed) {
 }
 
 void TestState::updateCamera() {
-    surface.setOrigin(player.getPosition());
+    surface.setOrigin(player.getMiddle());
 }
 
 void TestState::render() {

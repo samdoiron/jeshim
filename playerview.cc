@@ -8,11 +8,11 @@ namespace jesh {
 
 PlayerView::PlayerView(Player &_player) :
     player(_player),
-    playerSprite("guy.png", player.getDimensions(), player.getPosition()) {
+        playerSprite("guy.png", player.getDimensions(), player.getTopLeft()) {
 }
 
 void PlayerView::renderTo(RenderSurface &surface) {
-    this->playerSprite.setPosition(this->player.getPosition());
+    this->playerSprite.setPosition(this->player.getTopLeft());
 
     surface.render(this->playerSprite);
     // TODO add render surface to player view

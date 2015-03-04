@@ -16,7 +16,7 @@ class CollisionSquare : public CollisionSystem, public Collidable {
 
         // Implement required from Collidable
         // TODO Refactor collidable into rectangle to prevent this.
-        void sendCollision(Collidable&) override {};
+        void sendCollision(Collidable&) override {}
         void checkCollisions();
         void addCollidable(Collidable*);
 

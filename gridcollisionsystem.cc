@@ -9,7 +9,7 @@ GridCollisionSystem::GridCollisionSystem(int theNumInRow, Dimensions theBounds) 
     );
     for (int i = 0; i < theNumInRow * theNumInRow; i++) {
         CollisionSquare square(*this, squareDimensions);
-        square.setPosition(Point(
+        square.setTopLeft(Point(
                 (i / theNumInRow) * squareDimensions.getWidth(), 
                 (i % theNumInRow) * squareDimensions.getHeight()
         ));
@@ -45,8 +45,8 @@ void GridCollisionSystem::updateGrid() {
 // === CollisionSquare
 
 CollisionSquare::CollisionSquare(GridCollisionSystem &_parent, Dimensions _bounds) :
-    parent(_parent),
-    Collidable(_bounds) {
+    Collidable(_bounds),
+    parent(_parent) {
 }
 
 /**
@@ -66,6 +66,7 @@ void CollisionSquare::addCollidable(Collidable *theCollidable) {
 }
 
 void CollisionSquare::checkCollisions() {
+    // Brute force through collidables that are in the square.
     for (size_t i = 0; i < collidables.size(); i++) {
         Collidable *colOne = collidables[i];
         for (size_t j = i + 1; j < collidables.size(); j++) {

@@ -27,8 +27,8 @@ const KeyCode kMoveRight = kRight;
 const KeyCode kMoveDown  = kDown;
 
 Player::Player(EventEmitter &_emitter) :
-  view(*this),
   Entity(view, Dimensions(PLAYER_WIDTH, PLAYER_HEIGHT)),
+  view(*this),
   emitter(_emitter),
   velocity(0, 0) {
     emitter.addListener(kKeyPress, *this);
@@ -37,7 +37,7 @@ Player::Player(EventEmitter &_emitter) :
 }
 
 void Player::advance(double secondsPassed) {
-    position.moveRelative(velocity * secondsPassed);
+    topLeft += (velocity * secondsPassed);
 }
 
 // Event handling

@@ -12,10 +12,17 @@ namespace jesh {
  */
 
 /* abstract */ class CollisionSystem {
-public:
-  virtual void addCollidable(Collidable*) = 0;
-  virtual void checkCollisions() = 0;
-  virtual ~CollisionSystem();
+    public:
+      virtual void addCollidable(Collidable*) = 0;
+      virtual void checkCollisions() = 0;
+      virtual ~CollisionSystem();
+
+    protected:
+      void resolveCollision(Collidable&, Collidable&);
+
+    private:
+      void collideFixedAndDynamic(Collidable&, Collidable&);
+      void collideDynamics(Collidable&, Collidable&);
 };
 
 }

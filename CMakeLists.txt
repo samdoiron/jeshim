@@ -27,6 +27,7 @@ add_executable(${EXECUTABLE_NAME}
   player.cc
   playerview.cc
   point.cc
+  rectangle.cc
   rendersurface.cc
   singlespriteview.cc
   slime.cc
