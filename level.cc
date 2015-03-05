@@ -4,6 +4,8 @@
 #include "fixedtile.hh"
 #include "slime.hh"
 #include "basiccollisionsystem.hh"
+#include "debugutils.hh"
+#include "dimensions.hh"
 
 #include <fstream>
 #include <sstream>
@@ -21,7 +23,7 @@ typedef std::vector<Tile*> Row;
 
 Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
     player(_player),
-    collisions(100, Dimensions(1000, 1000)),
+    collisions(10, Dimensions(1000, 1000)),
     events(_events) {
   loadFromFile(filePath);
   addEnemies();
@@ -31,6 +33,10 @@ Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
 void Level::advance(double secondsPassed) {
   advanceEntities(secondsPassed);
   checkCollisions();
+}
+
+Dimensions Level::getDimensions() {
+    return Dimensions(tiles[0].size() * Tile::kSize, tiles.size() * Tile::kSize);
 }
 
 // private

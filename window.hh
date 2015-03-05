@@ -11,6 +11,7 @@
 #include <SFML/Window.hpp>
 
 #include <string>
+#include <vector>
 
 namespace jesh {
 
@@ -21,7 +22,8 @@ class Window : public RenderSurface, public EventEmitter {
         // via RenderSurface
         void clear();
         void render(Sprite&);
-        void drawLine(Point, Point) override;
+        void drawVertices(std::vector<Point>);
+        void drawLine(Point, Point);
         void setOrigin(Point);
         Point getOrigin();
         void update();

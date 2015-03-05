@@ -10,10 +10,12 @@ namespace jesh {
 
 class Sprite {
     public:
+        Sprite(sf::Texture texture); // Useful for SpriteSurface
         Sprite(std::string path, Dimensions, Point);
         void setPosition(Point);
         sf::Sprite asSFMLSprite();
         void setScale(double);
+        void setTexture(sf::Texture);
     private:
         sf::Sprite sfmlSprite;
         sf::Texture spriteTexture;

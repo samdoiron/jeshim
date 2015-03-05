@@ -1,10 +1,11 @@
 #include "teststate.hh"
 
+#include "debugutils.hh"
 #include "eventemitter.hh"
 #include "eventlistener.hh"
 #include "eventtype.hh"
-#include "point.hh"
 #include "player.hh"
+#include "point.hh"
 
 #include <iostream>
 #include <memory>
@@ -18,6 +19,7 @@ TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surfac
     runningTime(0),
     currentLevel(player, _emitter, "test.jesh"),
     levelView(currentLevel) {
+    Debug::getInstance().setSurface(&surface);
     updateCamera();
 }
 
@@ -32,7 +34,9 @@ void TestState::updateCamera() {
 }
 
 void TestState::render() {
+    Debug &debug = Debug::getInstance();
     levelView.renderTo(surface);
+    debug.render();
 }
 
 }

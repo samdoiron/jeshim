@@ -1,26 +1,57 @@
 #ifndef JESH_DEBUGUTILS_H_
 #define JESH_DEBUGUTILS_H_
 
+#include "rectangle.hh"
+#include "dimensions.hh"
+#include "point.hh"
+#include "spritesurface.hh"
+#include "view.hh"
+
 namespace jesh {
-namespace debug {
-namespace {
-RenderSurface *surface = nullptr;
 
-debug::setSurface(RenderSurface *theSurface) {
-    surface = theSurface;
-}
+class DebugLine : public View {
+    public:
+        DebugLine(Point, Point);
+        void renderTo(RenderSurface&);
+    private:
+        Point start;
+        Point end;
+};
 
-debug::drawRect(Rectangle theRect) {
-}
+class DebugOutlineRect : public View {
+    public:
+        DebugOutlineRect(Rectangle);
+        void renderTo(RenderSurface&);
+    private:
+        Rectangle rect;
+};
 
-debug::drawLine(Point theStart, Point theEnd) {
-    if (surface != nullptr) {
-        surface->drawLine(theStart, theEnd);
-    }
-}
+class DebugSolidRect : public View {
+    public:
+        DebugSolidRect(Rectangle);
+        void renderTo(RenderSurface&);
+    private:
+        Rectangle rect;
+};
 
-}
-}
+class Debug {
+    public:
+        static Debug &getInstance();
+        Sprite *getSprite();
+        void setSurface(RenderSurface*);
+        void drawSolidRect(Rectangle);
+        void drawOutlineRect(Rectangle);
+        void drawLine(Point, Point);
+        void render();
+
+    private:
+        void renderRectangles();
+        void renderRectangle(Rectangle);
+        std::vector<View*> toRender;
+        Debug();
+        RenderSurface *surface;
+};
+
 }
 
 #endif // JESH_DEBUGUTILS_H_

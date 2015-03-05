@@ -4,23 +4,20 @@
 #include "collisionsystem.hh"
 #include "dimensions.hh"
 #include "collidable.hh"
+#include "rectangle.hh"
 
 
 namespace jesh {
 
 class GridCollisionSystem;
 
-class CollisionSquare : public CollisionSystem, public Collidable {
+class CollisionSquare : public CollisionSystem, public Rectangle {
     public:
         CollisionSquare(GridCollisionSystem&, Dimensions);
 
-        // Implement required from Collidable
-        // TODO Refactor collidable into rectangle to prevent this.
-        void sendCollision(Collidable&) override {}
         void checkCollisions();
         void addCollidable(Collidable*);
-
-        void update();
+        void clear();
     private:
         GridCollisionSystem &parent;
         std::vector<Collidable*> collidables;
@@ -33,9 +30,13 @@ class GridCollisionSystem : public CollisionSystem {
         virtual void addCollidable(Collidable*);
         virtual void checkCollisions();
     private:
-        void updateGrid();
+        void clearGrid();
+        void checkGridCollisions();
+        void reinsertAll();
+        void insertIntoSquares(Collidable*);
         Dimensions bounds;
         std::vector<CollisionSquare> squares;
+        std::vector<Collidable*> allCollidables;
 };
 
 }

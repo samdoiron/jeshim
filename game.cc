@@ -1,9 +1,9 @@
 #include "game.hh"
 
+#include "exceptions.hh"
 #include "dimensions.hh"
 #include "gamestate.hh"
 
-#include <stdexcept>
 #include <iostream>
 #include <chrono>
 
@@ -30,7 +30,7 @@ void Game::run() {
     // State is pseudo-optional because state needs a reference to the game to
     // be created.
     if (state == nullptr) {
-        throw std::runtime_error("Attempt to run game without setting state.");
+        throw_error("Attempt to run game without setting state.");
     }
 
     while (this->window.isOpen()) {

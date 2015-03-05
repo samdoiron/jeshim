@@ -1,6 +1,7 @@
 #include "window.hh"
 
 #include <iostream>
+#include <vector>
 #include <string>
 
 #include <sfml/Window.hpp>
@@ -34,12 +35,26 @@ void Window::render(Sprite &toRender) {
     sfmlWindow.draw(toRender.asSFMLSprite());
 }
 
+void Window::drawVertices(std::vector<Point> theVerticies) {
+    /* sf::Vertex *sfVerticies = (sf::Vertex*)malloc(sizeof(sf::Vertex) * theVerticies.size()); */
+    /* for (size_t i = 0; i < theVerticies.size(); i++) { */
+    /*     sfVerticies[i] = theVerticies[i].asSFMLVector(); */
+    /* } */
+    /* sfmlWindow.draw(sfVerticies, theVerticies.size(), sf::Quads); */
+    /* free(sfVerticies); */
+    sf::ConvexShape polygon(theVerticies.size());
+    for (size_t i = 0; i < theVerticies.size(); i++) {
+        polygon.setPoint(i, theVerticies[i].asSFMLVector());
+    }
+    sfmlWindow.draw(polygon);
+}
+
 void Window::drawLine(Point theStart, Point theEnd) {
-    sf::Vertex line[2] = {
-        sf::Vertex(theStart.asSFMLVector()),
-        sf::Vertex(theEnd.asSFMLVector())
+    sf::Vertex vertices[] = {
+        theStart.asSFMLVector(),
+        theEnd.asSFMLVector()
     };
-    sfmlWindow.draw(line, 2, sf::Lines);
+    sfmlWindow.draw(vertices, 2, sf::Lines);
 }
 
 // TODO: Maybe seperate polling and displaying? Window::update is not very SRP.

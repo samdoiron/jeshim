@@ -1,4 +1,6 @@
 #include "gridcollisionsystem.hh"
+#include "debugutils.hh"
+#include <iostream>
 
 namespace jesh {
 GridCollisionSystem::GridCollisionSystem(int theNumInRow, Dimensions theBounds) :
@@ -10,42 +12,56 @@ GridCollisionSystem::GridCollisionSystem(int theNumInRow, Dimensions theBounds) 
     for (int i = 0; i < theNumInRow * theNumInRow; i++) {
         CollisionSquare square(*this, squareDimensions);
         square.setTopLeft(Point(
-                (i / theNumInRow) * squareDimensions.getWidth(), 
-                (i % theNumInRow) * squareDimensions.getHeight()
+            (i / theNumInRow) * squareDimensions.getWidth(), 
+            (i % theNumInRow) * squareDimensions.getHeight()
         ));
         squares.push_back(square);
     }
 }
 
 void GridCollisionSystem::addCollidable(Collidable *theCollidable) {
-    for (CollisionSquare square : squares) {
-        if (square.isCollidingWith(*theCollidable)) {
+    allCollidables.push_back(theCollidable);
+    insertIntoSquares(theCollidable);
+}
+
+void GridCollisionSystem::checkCollisions() {
+    clearGrid();
+    reinsertAll();
+    checkGridCollisions();
+}
+
+// private
+
+void GridCollisionSystem::reinsertAll() {
+    for (Collidable *eachCollidable : allCollidables) {
+        insertIntoSquares(eachCollidable);
+    }
+}
+
+void GridCollisionSystem::checkGridCollisions() {
+    for (CollisionSquare &eachSquare : squares) {
+        eachSquare.checkCollisions();
+    }
+}
+
+void GridCollisionSystem::insertIntoSquares(Collidable *theCollidable) {
+    for (CollisionSquare &square : squares) {
+        if (square.isIntersecting(*theCollidable)) {
             square.addCollidable(theCollidable);
         }
     }
 }
 
-void GridCollisionSystem::checkCollisions() {
-    updateGrid();
-    for (CollisionSquare square : squares) {
-        square.checkCollisions();
+void GridCollisionSystem::clearGrid() {
+    for (CollisionSquare &square : squares) {
+        square.clear();
     }
 }
-
-
-// private
-
-void GridCollisionSystem::updateGrid() {
-    for (CollisionSquare square : squares) {
-        square.update();
-    }
-}
-
 
 // === CollisionSquare
 
 CollisionSquare::CollisionSquare(GridCollisionSystem &_parent, Dimensions _bounds) :
-    Collidable(_bounds),
+    Rectangle(_bounds),
     parent(_parent) {
 }
 
@@ -53,12 +69,8 @@ CollisionSquare::CollisionSquare(GridCollisionSystem &_parent, Dimensions _bound
  * Remove all collidables from square storage, and reinsert them into
  * the collision system.
  */
-void CollisionSquare::update() {
-    for (size_t i = 0; i < collidables.size(); i++) {
-        Collidable *collidable = collidables[i];
-        collidables.erase(collidables.begin() + i);
-        parent.addCollidable(collidable);
-    }
+void CollisionSquare::clear() {
+    collidables.clear();
 }
 
 void CollisionSquare::addCollidable(Collidable *theCollidable) {
@@ -66,19 +78,18 @@ void CollisionSquare::addCollidable(Collidable *theCollidable) {
 }
 
 void CollisionSquare::checkCollisions() {
+    Debug::getInstance().drawOutlineRect(*this);
     // Brute force through collidables that are in the square.
     for (size_t i = 0; i < collidables.size(); i++) {
         Collidable *colOne = collidables[i];
         for (size_t j = i + 1; j < collidables.size(); j++) {
             Collidable *colTwo = collidables[j];
             if (colOne->isCollidingWith(*colTwo)) {
-                colOne->sendCollision(*colTwo);
-                colTwo->sendCollision(*colOne);
+                resolveCollision(*colOne, *colTwo);
             }
         }
     }
 }
-
 
 }
 

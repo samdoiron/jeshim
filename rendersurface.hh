@@ -13,6 +13,7 @@ namespace jesh {
         virtual void setOrigin(Point) = 0;
         virtual Point getOrigin() = 0;
         virtual void update() = 0;
+        virtual void drawVertices(std::vector<Point>) = 0;
         virtual void drawLine(Point, Point) = 0;
         virtual ~RenderSurface() { }
 

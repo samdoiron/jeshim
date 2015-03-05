@@ -8,6 +8,7 @@ add_executable(${EXECUTABLE_NAME}
   basiccollisionsystem.cc
   collidable.cc
   collisionsystem.cc
+  debugutils.cc
   dimensions.cc
   enemy.cc
   entity.cc
@@ -32,6 +33,7 @@ add_executable(${EXECUTABLE_NAME}
   singlespriteview.cc
   slime.cc
   sprite.cc
+  spritesurface.cc
   teststate.cc
   tile.cc
   vector.cc

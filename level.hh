@@ -7,6 +7,7 @@
 #include "gridcollisionsystem.hh"
 #include "player.hh"
 #include "enemy.hh"
+#include "dimensions.hh"
 
 #include <string>
 #include <fstream>
@@ -23,6 +24,7 @@ class Level {
     public:
         Level(Player&, EventEmitter&, std::string);
         void advance(double);
+        Dimensions getDimensions();
         ~Level();
 
     private:

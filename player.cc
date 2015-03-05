@@ -2,6 +2,7 @@
 
 #include "dimensions.hh"
 #include "event.hh"
+#include "exceptions.hh"
 #include "eventemitter.hh"
 #include "point.hh"
 #include "keycode.hh"
@@ -11,11 +12,10 @@
 #include <iostream>
 #include <typeinfo>
 #include <tgmath.h>
-#include <stdexcept>
 #include <cmath>
 
 #define PLAYER_HEIGHT 64
-#define PLAYER_WIDTH 64
+#define PLAYER_WIDTH 32
 
 namespace jesh {
 
@@ -33,7 +33,7 @@ Player::Player(EventEmitter &_emitter) :
   velocity(0, 0) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
-    setPosition(Point(100, 10));
+    setPosition(Point(100, 100));
 }
 
 void Player::advance(double secondsPassed) {
@@ -83,7 +83,7 @@ void Player::handleCollision(Enemy &enemy) {
 }
 
 void Player::handleEvent(Event&) {
-    throw std::runtime_error("Player cannot handle event!");
+    throw_error("Player cannot handle event!");
 }
 
 void Player::sendCollision(Collidable &other) {

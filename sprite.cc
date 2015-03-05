@@ -1,15 +1,25 @@
 
 #include "sprite.hh"
 
+#include "exceptions.hh"
 #include "dimensions.hh"
 #include "point.hh"
 
-#include <stdexcept>
 #include <string>
 #include <sstream>
 #include <iostream>
 
 namespace jesh {
+
+Sprite::Sprite(sf::Texture theTexture) :
+    dimensions(
+        theTexture.getSize().x,
+        theTexture.getSize().y
+    ),
+    position(0, 0) {
+    sfmlSprite.setTexture(theTexture);
+    updateSFMLSprite();
+}
 
 Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
     dimensions(dim),
@@ -18,11 +28,16 @@ Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
     if (!spriteTexture.loadFromFile(texturePath, dim.asSFMLIntRect(Point(0, 0)))) {
         std::ostringstream error;
         error << "Unable to load texture at \"" << texturePath << "\".";
-        throw std::runtime_error(error.str());
+        throw_error(error.str());
     }
 
     sfmlSprite.setTexture(spriteTexture);
     updateSFMLSprite();
+}
+
+// Useful for SpriteSurface.
+void Sprite::setTexture(sf::Texture theTexture) {
+    sfmlSprite.setTexture(theTexture);
 }
 
 void Sprite::setPosition(Point newPosition) {
