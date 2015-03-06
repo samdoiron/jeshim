@@ -95,7 +95,7 @@ void CollisionSquare::addCollidable(Collidable *theCollidable) {
 }
 
 void CollisionSquare::checkCollisions() {
-    Debug::getInstance().drawOutlineRect(*this);
+    debug.drawOutlineRect(*this);
     // Brute force through collidables that are in the square.
     for (size_t i = 0; i < collidables.size(); i++) {
         Collidable *colOne = collidables[i];

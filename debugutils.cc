@@ -81,4 +81,9 @@ void DebugOutlineRect::renderTo(RenderSurface &theSurface) {
     theSurface.drawLine(rect.getTopRight(), rect.getBottomRight());
 }
 
+// Export a single debug reference to prevent those who include this
+// file from having to do .getInstance() a lot.
+
+Debug &debug = Debug::getInstance();
+
 }
