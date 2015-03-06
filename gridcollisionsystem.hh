@@ -6,7 +6,6 @@
 #include "collidable.hh"
 #include "rectangle.hh"
 
-
 namespace jesh {
 
 class GridCollisionSystem;
@@ -26,10 +25,13 @@ class CollisionSquare : public CollisionSystem, public Rectangle {
 
 class GridCollisionSystem : public CollisionSystem {
     public:
-        GridCollisionSystem(int, Dimensions);
+        GridCollisionSystem();
+        GridCollisionSystem(Dimensions);
         virtual void addCollidable(Collidable*);
         virtual void checkCollisions();
+        void setDimensions(Dimensions);
     private:
+        void setupSquares();
         void clearGrid();
         void checkGridCollisions();
         void reinsertAll();

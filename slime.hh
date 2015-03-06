@@ -19,7 +19,8 @@ class Slime : public Enemy {
         void setRandomVelocity();
         SingleSpriteView view;
         double moveSpeed;
-        double runLength;
+        double timeRunning;
+        double timeToRun;
         Vector velocity;
 };
 

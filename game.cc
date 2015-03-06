@@ -9,7 +9,7 @@
 
 namespace jesh {
 
-const double kMaxFrameDifference = 0.1;
+const double kMaxFrameDifference = 1.0 / 20;
 
 // UGLY: game must have a pointer to state because it needs to bootstrap
 // without one, because GameState needs a reference to state.
@@ -37,6 +37,7 @@ void Game::run() {
         // Oh man, working with times sure is fun.
         chrono::steady_clock::time_point now = chrono::steady_clock::now();
         double frameDifference = chrono::duration_cast<chrono::duration<double>>(now - lastUpdate).count();
+        // trackFPS(frameDifference);
 
         this->window.clear();
         while (frameDifference > 0) {
@@ -49,8 +50,9 @@ void Game::run() {
     }
 }
 
-// TODO Event management should probably be managed somewhere else, Game could
-// easily become a god class
+void Game::trackFPS(double theFrameDifference) {
+    std::cout << static_cast<int>(1 / theFrameDifference) << std::endl;;
+}
 
 void Game::setState(GameState *_state) {
     this->state = _state;

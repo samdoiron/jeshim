@@ -3,20 +3,16 @@
 #include <iostream>
 
 namespace jesh {
-GridCollisionSystem::GridCollisionSystem(int theNumInRow, Dimensions theBounds) :
+
+const int kNumDivisions = 10;
+
+GridCollisionSystem::GridCollisionSystem(Dimensions theBounds) :
     bounds(theBounds) {
-    Dimensions squareDimensions(
-            theBounds.getWidth() / theNumInRow,
-            theBounds.getHeight() / theNumInRow
-    );
-    for (int i = 0; i < theNumInRow * theNumInRow; i++) {
-        CollisionSquare square(*this, squareDimensions);
-        square.setTopLeft(Point(
-            (i / theNumInRow) * squareDimensions.getWidth(), 
-            (i % theNumInRow) * squareDimensions.getHeight()
-        ));
-        squares.push_back(square);
-    }
+    setupSquares();
+}
+
+GridCollisionSystem::GridCollisionSystem() :
+    bounds(0, 0) {
 }
 
 void GridCollisionSystem::addCollidable(Collidable *theCollidable) {
@@ -30,7 +26,28 @@ void GridCollisionSystem::checkCollisions() {
     checkGridCollisions();
 }
 
+void GridCollisionSystem::setDimensions(Dimensions theDimensions) {
+    bounds = theDimensions;
+    setupSquares();
+}
+
 // private
+
+void GridCollisionSystem::setupSquares() {
+    squares.clear();
+    Dimensions squareDimensions(
+            bounds.getWidth() / kNumDivisions,
+            bounds.getHeight() / kNumDivisions
+    );
+    for (int i = 0; i < kNumDivisions * kNumDivisions; i++) {
+        CollisionSquare square(*this, squareDimensions);
+        square.setTopLeft(Point(
+            (i / kNumDivisions) * squareDimensions.getWidth(), 
+            (i % kNumDivisions) * squareDimensions.getHeight()
+        ));
+        squares.push_back(square);
+    }
+}
 
 void GridCollisionSystem::reinsertAll() {
     for (Collidable *eachCollidable : allCollidables) {

@@ -12,6 +12,7 @@ class Game {
         void run();
         void setState(GameState*);
     private:
+        void trackFPS(double);
         Window &window;
         GameState *state;
 };

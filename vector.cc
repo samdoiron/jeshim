@@ -1,11 +1,21 @@
 #include "vector.hh"
 #include "point.hh"
 
+#include <cmath>
+
 namespace jesh {
 
 Vector::Vector() :
     deltaX(0),
     deltaY(0) {
+}
+
+/* static */ Vector Vector::random(double magnitude) {
+    double angle = (rand() % 360) * ((2 * M_PI) / 360);
+    return Vector(
+        std::cos(angle) * magnitude,
+        std::sin(angle) * magnitude
+    );
 }
 
 Vector::Vector(double dx, double dy) :

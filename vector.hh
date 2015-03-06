@@ -10,6 +10,7 @@ class Point;
 class Vector {
     public:
         Vector();
+        static Vector random(double);
         Vector(double, double);
         Vector(Point, Point);
         double getX();

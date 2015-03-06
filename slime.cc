@@ -9,21 +9,23 @@
 
 namespace jesh {
 
-const double kMaxRunLength = 1;
+const double kMaxRunTime = 1.5;
 
 Slime::Slime() :
-    Enemy(view, Dimensions(64, 64)),
+    Enemy(view, Dimensions(32, 64)),
     view(*this, "slime.png"),
     moveSpeed(500),
-    runLength(0),
+    timeRunning(1),
+    timeToRun(0),
     velocity(0, 0) {
 }
 
 void Slime::advance(double secondsPassed) {
-    runLength += secondsPassed;
-    if (runLength >= kMaxRunLength) {
+    timeRunning += secondsPassed;
+    if (timeRunning >= timeToRun) {
         setRandomVelocity();
-        runLength = 0;
+        timeRunning = 0;
+        timeToRun = ((double)rand() / RAND_MAX) * kMaxRunTime;
     }
     topLeft += velocity * secondsPassed;
 }
@@ -36,14 +38,10 @@ void Slime::sendCollision(Collidable &other) {
     Enemy::sendCollision(other);
 }
 
-
 // private
 
 void Slime::setRandomVelocity() {
-    velocity = Vector(
-        moveSpeed * ((rand() % 3) - 1),
-        moveSpeed * ((rand() % 3) - 1)
-    );
+    velocity = Vector::random(moveSpeed);
 }
 
 }

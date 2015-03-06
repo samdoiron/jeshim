@@ -20,10 +20,10 @@ namespace jesh {
 // Storing entity and player position
 
 typedef std::vector<Tile*> Row;
+const int kNumSlimes = 1000;
 
 Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
     player(_player),
-    collisions(10, Dimensions(1000, 1000)),
     events(_events) {
   loadFromFile(filePath);
   addEnemies();
@@ -42,9 +42,9 @@ Dimensions Level::getDimensions() {
 // private
 
 void Level::addEnemies() {
-    for (int i = 0; i < 1000; i++) {
+    for (int i = 0; i < kNumSlimes; i++) {
         Enemy *slime = new Slime();
-        slime->setPosition(Point(1000, 500));
+        slime->setPosition(Point(rand() % static_cast<int>(getDimensions().getWidth()), rand() % static_cast<int>(getDimensions().getHeight())));
         addEnemy(slime);
     }
 }
@@ -55,12 +55,13 @@ void Level::addEnemy(Enemy* enemy) {
 }
 
 void Level::setupCollisions() {
-  for (Row row : tiles) {
-    for (Tile *eachTile : row) {
-      eachTile->addToCollisionSystem(collisions);
+    collisions.setDimensions(getDimensions());
+    for (Row eachRow : tiles) {
+        for (Tile *eachTile : eachRow) {
+            eachTile->addToCollisionSystem(collisions);
+        }
     }
-  }
-  collisions.addCollidable(&player);
+    collisions.addCollidable(&player);
 }
 
 void Level::advanceEntities(double secondsPassed) {

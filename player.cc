@@ -33,7 +33,7 @@ Player::Player(EventEmitter &_emitter) :
   velocity(0, 0) {
     emitter.addListener(kKeyPress, *this);
     emitter.addListener(kKeyRelease, *this);
-    setPosition(Point(100, 100));
+    setPosition(Point(500, 500));
 }
 
 void Player::advance(double secondsPassed) {
@@ -79,7 +79,6 @@ void Player::handleEvent(KeyReleaseEvent &event) {
 // --- Collisions
 
 void Player::handleCollision(Enemy &enemy) {
-    std::cout << "Hit enemy!" << std::endl;
 }
 
 void Player::handleEvent(Event&) {

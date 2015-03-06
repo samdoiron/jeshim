@@ -22,7 +22,7 @@ namespace jesh {
     // This is needed by almost every child of EventEmitter, but we don't
     // want just any random stranger to call it.
     protected:
-        void broadcast(Event&);
+        void broadcast(Event*);
 
     private:
         std::vector<std::vector<EventListener*>> listeners;

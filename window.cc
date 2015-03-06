@@ -96,8 +96,9 @@ void Window::pollEvents() {
         } else {
             Event *translated = translateEvent(event);
             if (translated != nullptr) {
-                broadcast(*translated);
+                broadcast(translated);
             }
+            delete translated;
         }
     }
 }
