@@ -15,11 +15,11 @@ namespace jesh {
 TestState::TestState(Game &_game, EventEmitter &_emitter, RenderSurface &_surface) :
     GameState(_game, _emitter, _surface),
     player(_emitter),
-    playerView(player),
     runningTime(0),
     currentLevel(player, _emitter, "test.jesh"),
+    debugSurface(Dimensions(800, 600)),
     levelView(currentLevel) {
-    Debug::getInstance().setSurface(&surface);
+    Debug::getInstance().setSurface(&debugSurface);
     updateCamera();
 }
 
@@ -29,14 +29,15 @@ void TestState::advance(double secondsPassed) {
     render();
 }
 
+// === private
+
 void TestState::updateCamera() {
     surface.setOrigin(player.getMiddle());
 }
 
 void TestState::render() {
-    Debug &debug = Debug::getInstance();
     levelView.renderTo(surface);
-    debug.render();
+    surface.render(debugSurface.asSprite());
 }
 
 }

@@ -8,6 +8,7 @@
 #include <sfml/Graphics.hpp>
 
 #include "point.hh"
+#include "exceptions.hh"
 
 // Events
 #include "mousemoveevent.hh"
@@ -18,6 +19,7 @@
 namespace jesh {
 
 Window::Window(std::string title, Dimensions dim) :
+    RenderSurface(sfmlWindow),
     sfmlWindow(
         sf::VideoMode(
             static_cast<unsigned int>(dim.getWidth()),
@@ -25,39 +27,10 @@ Window::Window(std::string title, Dimensions dim) :
         ),
         title
     ),
-    dimensions(dim),
-    origin(0, 0)
-    {
+    dimensions(dim) {
     sfmlWindow.setVerticalSyncEnabled(true);
 }
 
-void Window::render(Sprite &toRender) {
-    sfmlWindow.draw(toRender.asSFMLSprite());
-}
-
-void Window::drawVertices(std::vector<Point> theVerticies) {
-    /* sf::Vertex *sfVerticies = (sf::Vertex*)malloc(sizeof(sf::Vertex) * theVerticies.size()); */
-    /* for (size_t i = 0; i < theVerticies.size(); i++) { */
-    /*     sfVerticies[i] = theVerticies[i].asSFMLVector(); */
-    /* } */
-    /* sfmlWindow.draw(sfVerticies, theVerticies.size(), sf::Quads); */
-    /* free(sfVerticies); */
-    sf::ConvexShape polygon(theVerticies.size());
-    for (size_t i = 0; i < theVerticies.size(); i++) {
-        polygon.setPoint(i, theVerticies[i].asSFMLVector());
-    }
-    sfmlWindow.draw(polygon);
-}
-
-void Window::drawLine(Point theStart, Point theEnd) {
-    sf::Vertex vertices[] = {
-        theStart.asSFMLVector(),
-        theEnd.asSFMLVector()
-    };
-    sfmlWindow.draw(vertices, 2, sf::Lines);
-}
-
-// TODO: Maybe seperate polling and displaying? Window::update is not very SRP.
 void Window::update() {
     pollEvents();
     sfmlWindow.display();
@@ -65,25 +38,6 @@ void Window::update() {
 
 bool Window::isOpen() {
     return sfmlWindow.isOpen();
-}
-
-void Window::clear() {
-    sfmlWindow.clear(sf::Color::Black);
-}
-
-void Window::setOrigin(Point newOrigin) {
-    origin = newOrigin;
-    sf::View windowView = sfmlWindow.getView();
-    windowView.setCenter(
-        // Add 0.5 before cast to round.
-        static_cast<int>(origin.getX() + 0.5),
-        static_cast<int>(origin.getY() + 0.5)
-    );
-    sfmlWindow.setView(windowView);
-}
-
-Point Window::getOrigin() {
-    return origin;
 }
 
 // --- private
@@ -119,5 +73,8 @@ Event *Window::translateEvent(sf::Event toTranslate) {
     return nullptr;
 }
 
+
+Window::~Window() {
+}
 
 }

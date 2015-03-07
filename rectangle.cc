@@ -99,6 +99,10 @@ void Rectangle::setTop(double newTop) {
 void Rectangle::setBottom(double newBottom) {
     topLeft.setY(topLeft.getY() + (newBottom - getBottom()));
 }
+
+void Rectangle::moveRelative(Vector theVector) {
+    topLeft += theVector;
+}
     
 }
 

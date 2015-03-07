@@ -50,10 +50,6 @@ void Game::run() {
     }
 }
 
-void Game::trackFPS(double theFrameDifference) {
-    std::cout << static_cast<int>(1 / theFrameDifference) << std::endl;;
-}
-
 void Game::setState(GameState *_state) {
     this->state = _state;
 }

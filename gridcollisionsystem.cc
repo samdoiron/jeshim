@@ -1,10 +1,10 @@
 #include "gridcollisionsystem.hh"
-#include "debugutils.hh"
 #include <iostream>
+#include "debugutils.hh"
 
 namespace jesh {
 
-const int kNumDivisions = 10;
+const int kNumDivisions = 8;
 
 GridCollisionSystem::GridCollisionSystem(Dimensions theBounds) :
     bounds(theBounds) {
@@ -16,13 +16,17 @@ GridCollisionSystem::GridCollisionSystem() :
 }
 
 void GridCollisionSystem::addCollidable(Collidable *theCollidable) {
-    allCollidables.push_back(theCollidable);
+    if (theCollidable->isFixed()) {
+        fixedCollidables.push_back(theCollidable);
+    } else {
+        dynamicCollidables.push_back(theCollidable);
+    }
     insertIntoSquares(theCollidable);
 }
 
 void GridCollisionSystem::checkCollisions() {
     clearGrid();
-    reinsertAll();
+    reinsertDynamic();
     checkGridCollisions();
 }
 
@@ -49,8 +53,8 @@ void GridCollisionSystem::setupSquares() {
     }
 }
 
-void GridCollisionSystem::reinsertAll() {
-    for (Collidable *eachCollidable : allCollidables) {
+void GridCollisionSystem::reinsertDynamic() {
+    for (Collidable *eachCollidable : dynamicCollidables) {
         insertIntoSquares(eachCollidable);
     }
 }
@@ -71,7 +75,7 @@ void GridCollisionSystem::insertIntoSquares(Collidable *theCollidable) {
 
 void GridCollisionSystem::clearGrid() {
     for (CollisionSquare &square : squares) {
-        square.clear();
+        square.clearDynamic();
     }
 }
 
@@ -83,26 +87,42 @@ CollisionSquare::CollisionSquare(GridCollisionSystem &_parent, Dimensions _bound
 }
 
 /**
- * Remove all collidables from square storage, and reinsert them into
- * the collision system.
+ * Remove all dynamic collidables from square storage.
  */
-void CollisionSquare::clear() {
-    collidables.clear();
+void CollisionSquare::clearDynamic() {
+    dynamicCollidables.clear();
 }
 
 void CollisionSquare::addCollidable(Collidable *theCollidable) {
-    collidables.push_back(theCollidable);
+    if (theCollidable->isFixed()) {
+        fixedCollidables.push_back(theCollidable);
+    } else {
+        dynamicCollidables.push_back(theCollidable);
+    }
 }
 
 void CollisionSquare::checkCollisions() {
-    debug.drawOutlineRect(*this);
-    // Brute force through collidables that are in the square.
-    for (size_t i = 0; i < collidables.size(); i++) {
-        Collidable *colOne = collidables[i];
-        for (size_t j = i + 1; j < collidables.size(); j++) {
-            Collidable *colTwo = collidables[j];
-            if (colOne->isCollidingWith(*colTwo)) {
-                resolveCollision(*colOne, *colTwo);
+    checkFixedCollisions();
+    checkDynamicCollisions();
+}
+
+void CollisionSquare::checkFixedCollisions() {
+    for (Collidable *eachDynamic : dynamicCollidables) {
+        for (Collidable *eachFixed : fixedCollidables) {
+            if (eachFixed->isCollidingWith(*eachDynamic)) {
+                resolveCollision(*eachFixed, *eachDynamic);
+            }
+        }
+    }
+}
+
+void CollisionSquare::checkDynamicCollisions() {
+    for (size_t i = 0; i < dynamicCollidables.size(); i++) {
+        Collidable *dynamicOne = dynamicCollidables[i];
+        for (size_t j = i + 1; j < dynamicCollidables.size(); j++) {
+            Collidable *dynamicTwo = dynamicCollidables[j];
+            if (dynamicOne->isCollidingWith(*dynamicTwo)) {
+                resolveCollision(*dynamicOne, *dynamicTwo);
             }
         }
     }

@@ -3,6 +3,7 @@
 #include "singlespriteview.hh"
 #include "entity.hh"
 #include "tile.hh"
+#include "debugutils.hh"
 
 #include <random>
 #include <iostream>
@@ -12,9 +13,9 @@ namespace jesh {
 const double kMaxRunTime = 1.5;
 
 Slime::Slime() :
-    Enemy(view, Dimensions(32, 64)),
-    view(*this, "slime.png"),
-    moveSpeed(500),
+    Enemy(view, Dimensions(64, 25)),
+    view(*this, "img/slime.png"),
+    moveSpeed(100),
     timeRunning(1),
     timeToRun(0),
     velocity(0, 0) {
@@ -28,6 +29,7 @@ void Slime::advance(double secondsPassed) {
         timeToRun = ((double)rand() / RAND_MAX) * kMaxRunTime;
     }
     topLeft += velocity * secondsPassed;
+    Debug::getInstance().drawVector(getMiddle(), velocity);
 }
 
 void Slime::handleCollision(Slime&) {

@@ -31,9 +31,9 @@ add_executable(${EXECUTABLE_NAME}
   rectangle.cc
   rendersurface.cc
   singlespriteview.cc
+  spritesurface.cc
   slime.cc
   sprite.cc
-  spritesurface.cc
   teststate.cc
   tile.cc
   vector.cc

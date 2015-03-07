@@ -2,33 +2,25 @@
 #define JESH_SPRITESURFACE_H_
 
 #include "rendersurface.hh"
-#include "point.hh"
 #include "sprite.hh"
 #include "dimensions.hh"
-
-#include <sfml/Graphics.hpp>
 
 namespace jesh {
 
 class SpriteSurface : public RenderSurface {
     public:
         SpriteSurface(Dimensions);
-        Point getOrigin();
-        Sprite *getSprite();
-        void clear();
-        void render(Sprite&);
-        void setOrigin(Point);
-        void update();
-        void drawLine(Point, Point);
+        ~SpriteSurface();
+        Sprite &asSprite();
 
     private:
-        sf::RenderTexture sfmlTexture;
         Sprite *sprite;
-        ~SpriteSurface();
+        sf::RenderTexture sfmlTexture;
 };
 
 }
 
 #endif // JESH_SPRITESURFACE_H_
+
 
 

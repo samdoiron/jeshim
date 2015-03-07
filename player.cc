@@ -8,6 +8,7 @@
 #include "keycode.hh"
 #include "enemy.hh"
 #include "slime.hh"
+#include "debugutils.hh"
 
 #include <iostream>
 #include <typeinfo>
@@ -15,11 +16,13 @@
 #include <cmath>
 
 #define PLAYER_HEIGHT 64
-#define PLAYER_WIDTH 32
+#define PLAYER_WIDTH 64
 
 namespace jesh {
 
-const double kRunSpeed  = 400; // Pixels per second
+const double kRunSpeed  = 300; // Pixels per second
+const double kKnockbackTime = 0.5;
+const double kKnockbackDistance = 500;
 
 const KeyCode kMoveLeft  = kLeft;
 const KeyCode kMoveUp    = kUp;
@@ -37,7 +40,16 @@ Player::Player(EventEmitter &_emitter) :
 }
 
 void Player::advance(double secondsPassed) {
-    topLeft += (velocity * secondsPassed);
+    moveRelative(velocity * secondsPassed);
+    if (isKnockedBack) {
+        moveRelative(currentKnockback * secondsPassed);
+        currentKnockback *= 0.9;
+        if (timeSinceKnockback >= kKnockbackTime) {
+            currentKnockback = Vector(0, 0);
+            isKnockedBack = false;
+        }
+        timeSinceKnockback += secondsPassed;
+    }
 }
 
 // Event handling
@@ -79,6 +91,8 @@ void Player::handleEvent(KeyReleaseEvent &event) {
 // --- Collisions
 
 void Player::handleCollision(Enemy &enemy) {
+    knockbackFrom(enemy);
+    // std::exit(0);
 }
 
 void Player::handleEvent(Event&) {
@@ -87,6 +101,17 @@ void Player::handleEvent(Event&) {
 
 void Player::sendCollision(Collidable &other) {
   other.handleCollision(*this);
+}
+
+// private
+void Player::knockbackFrom(Collidable &theOther) {
+    if (!isKnockedBack) {
+        Vector newKnockback = getMiddle() - theOther.getMiddle();
+        newKnockback.setMagnitude(kKnockbackDistance);
+        currentKnockback = newKnockback;
+        timeSinceKnockback = 0;
+        isKnockedBack = true;
+    }
 }
 
 Player::~Player() {

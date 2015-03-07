@@ -16,10 +16,13 @@ class CollisionSquare : public CollisionSystem, public Rectangle {
 
         void checkCollisions();
         void addCollidable(Collidable*);
-        void clear();
+        void clearDynamic();
     private:
+        void checkFixedCollisions();
+        void checkDynamicCollisions();
         GridCollisionSystem &parent;
-        std::vector<Collidable*> collidables;
+        std::vector<Collidable*> fixedCollidables;
+        std::vector<Collidable*> dynamicCollidables;
 };
 
 
@@ -30,15 +33,17 @@ class GridCollisionSystem : public CollisionSystem {
         virtual void addCollidable(Collidable*);
         virtual void checkCollisions();
         void setDimensions(Dimensions);
+
     private:
         void setupSquares();
         void clearGrid();
         void checkGridCollisions();
-        void reinsertAll();
+        void reinsertDynamic();
         void insertIntoSquares(Collidable*);
         Dimensions bounds;
         std::vector<CollisionSquare> squares;
-        std::vector<Collidable*> allCollidables;
+        std::vector<Collidable*> dynamicCollidables;
+        std::vector<Collidable*> fixedCollidables;
 };
 
 }

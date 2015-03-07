@@ -40,6 +40,8 @@ class Rectangle {
         void setTop(double);
         void setBottom(double);
 
+        void moveRelative(Vector);
+
     protected:
         Point topLeft;
         Dimensions dimensions;

@@ -6,19 +6,28 @@
 
 namespace jesh {
 
+/**
+ * You probably shouldn't create one of these directly. Use either Window
+ * or SpriteSurface instead.
+ */
+
 /* abstract */ class RenderSurface {
     public:
-        virtual void clear() = 0;
-        virtual void render(Sprite&) = 0;
-        virtual void setOrigin(Point) = 0;
-        virtual Point getOrigin() = 0;
-        virtual void update() = 0;
-        virtual void drawVertices(std::vector<Point>) = 0;
-        virtual void drawLine(Point, Point) = 0;
+        RenderSurface(sf::RenderTarget&);
+        virtual void clear();
+        virtual void render(Sprite&);
+        virtual void setOrigin(Point);
+        virtual Point getOrigin();
+        virtual void update();
+        virtual void drawVertices(std::vector<Point>);
+        virtual void drawLine(Point, Point);
+        virtual void drawText(Point, std::string);
         virtual ~RenderSurface() { }
 
     private:
-        virtual void anchor();
+        sf::RenderTarget &sfmlTarget;
+        sf::Font arial;
+        Point origin;
 };
 
 }

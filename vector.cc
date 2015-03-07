@@ -6,8 +6,8 @@
 namespace jesh {
 
 Vector::Vector() :
-    deltaX(0),
-    deltaY(0) {
+    deltaX(1),
+    deltaY(1) {
 }
 
 /* static */ Vector Vector::random(double magnitude) {
@@ -47,6 +47,15 @@ void Vector::setY(double newY) {
     deltaY = newY;
 }
 
+void Vector::setMagnitude(double theMagnitude) {
+    double scale = theMagnitude / getMagnitude();
+    *this *= scale;
+}
+
+double Vector::getMagnitude() {
+    return std::sqrt((deltaX * deltaX) + (deltaY * deltaY));
+}
+
 Vector Vector::operator*(double multiplier) {
     return Vector(deltaX * multiplier, deltaY * multiplier);
 }
@@ -64,6 +73,16 @@ Vector Vector::operator-(double subtraction) {
 Vector Vector::operator-=(double subtraction) {
     deltaX -= subtraction;
     deltaY -= subtraction;
+    return *this;
+}
+
+Vector Vector::operator+(Vector theOther) {
+    return Vector(deltaX + theOther.getX(), deltaY + theOther.getY());
+}
+
+Vector Vector::operator+=(Vector theOther) {
+    deltaX += theOther.getX();
+    deltaY += theOther.getY();
     return *this;
 }
 

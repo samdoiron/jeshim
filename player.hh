@@ -35,6 +35,10 @@ class Player : public Entity, public EventListener {
         void sendCollision(Collidable&);
 
     private:
+        void knockbackFrom(Collidable&);
+        double timeSinceKnockback;
+        bool isKnockedBack;
+        Vector currentKnockback;
         EventEmitter &emitter;
         Vector velocity;
         PlayerView view;

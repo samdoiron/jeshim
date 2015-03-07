@@ -20,10 +20,11 @@ namespace jesh {
 // Storing entity and player position
 
 typedef std::vector<Tile*> Row;
-const int kNumSlimes = 1000;
+const int kNumSlimes = 13;
 
 Level::Level(Player &_player, EventEmitter &_events, std::string filePath) :
     player(_player),
+    // TODO Move this to config (when it is created).
     events(_events) {
   loadFromFile(filePath);
   addEnemies();

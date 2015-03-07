@@ -8,7 +8,8 @@
 namespace jesh {
 
 Collidable::Collidable(Rectangle theBody) :
-    Rectangle(theBody) {
+    Rectangle(theBody),
+    fixed(false) {
 }
 
 void Collidable::setPosition(Point thePosition) {

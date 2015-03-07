@@ -25,7 +25,7 @@ Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
     dimensions(dim),
     position(pos) {
 
-    if (!spriteTexture.loadFromFile(texturePath, dim.asSFMLIntRect(Point(0, 0)))) {
+    if (!spriteTexture.loadFromFile(texturePath, Dimensions(0, 0).asSFMLIntRect(Point(0, 0)))) {
         std::ostringstream error;
         error << "Unable to load texture at \"" << texturePath << "\".";
         throw_error(error.str());
@@ -33,6 +33,7 @@ Sprite::Sprite(std::string texturePath, Dimensions dim, Point pos) :
 
     sfmlSprite.setTexture(spriteTexture);
     updateSFMLSprite();
+    setScale(2);
 }
 
 // Useful for SpriteSurface.

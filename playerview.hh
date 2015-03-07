@@ -14,8 +14,13 @@ class PlayerView : public View {
         PlayerView(Player&);
         void renderTo(RenderSurface&);
     private:
+        int frameNumber;
         Player &player;
-        Sprite playerSprite;
+        Sprite rightSprite;
+        Sprite leftSprite;
+        Sprite downSprite;
+        Sprite upSprite;
+        Sprite *currentSprite;
 };
 
 }

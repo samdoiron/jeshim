@@ -1,46 +1,34 @@
-#include "spritesurface.hh"
-
-#include "point.hh"
-#include "dimensions.hh"
-
 #include <sfml/Graphics.hpp>
+#include "spritesurface.hh"
+#include "sprite.hh"
+#include "dimensions.hh"
+#include "exceptions.hh"
 
 namespace jesh {
 
 SpriteSurface::SpriteSurface(Dimensions theDimensions) :
+    RenderSurface(sfmlTexture),
+    sfmlTexture(),
     sprite(nullptr) {
-    sfmlTexture.create(theDimensions.getWidth(), theDimensions.getHeight());
+
+    int width = static_cast<int>(theDimensions.getWidth());
+    int height = static_cast<int>(theDimensions.getHeight());
+    if (!sfmlTexture.create(width, height)) {
+        throw_error("Could not create render texture.");
+    }
+
     sprite = new Sprite(sfmlTexture.getTexture());
 }
 
-Sprite *SpriteSurface::getSprite() {
+Sprite &SpriteSurface::asSprite() {
     sprite->setTexture(sfmlTexture.getTexture());
-    return sprite;
-}
-
-void SpriteSurface::setOrigin(Point newOrigin) {
-}
-
-Point SpriteSurface::getOrigin() {
-    return Point(0, 0);
-}
-
-void SpriteSurface::clear() {
-    sfmlTexture.clear(sf::Color::Black);
-}
-
-void SpriteSurface::render(Sprite &theSprite) {
-    sfmlTexture.draw(theSprite.asSFMLSprite());
-}
-
-void SpriteSurface::update() {
-}
-
-void SpriteSurface::drawLine(Point, Point) {
+    sfmlTexture.display();
+    return *sprite;
 }
 
 SpriteSurface::~SpriteSurface() {
     delete sprite;
 }
-
+    
 }
+

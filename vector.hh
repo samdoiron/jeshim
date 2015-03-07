@@ -23,6 +23,12 @@ class Vector {
 
         Vector operator-(double);
         Vector operator-=(double);
+
+        Vector operator+(Vector);
+        Vector operator+=(Vector);
+
+        void setMagnitude(double);
+        double getMagnitude();
     private:
         double deltaX;
         double deltaY;

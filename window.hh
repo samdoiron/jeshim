@@ -20,19 +20,13 @@ class Window : public RenderSurface, public EventEmitter {
         Window(std::string, Dimensions);
 
         // via RenderSurface
-        void clear();
-        void render(Sprite&);
-        void drawVertices(std::vector<Point>);
-        void drawLine(Point, Point);
-        void setOrigin(Point);
-        Point getOrigin();
         void update();
 
         bool isOpen();
+        ~Window();
     private:
         sf::RenderWindow sfmlWindow;
         Dimensions dimensions;
-        Point origin;
         void pollEvents();
         Event *translateEvent(sf::Event);
 };

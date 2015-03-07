@@ -7,6 +7,7 @@
 #include "level.hh"
 #include "levelview.hh"
 #include "basiccollisionsystem.hh"
+#include "spritesurface.hh"
 
 namespace jesh {
 
@@ -19,14 +20,14 @@ class TestState : public GameState {
         void advance(double);
 
     private:
+        void updateCamera();
+        void render();
+        SpriteSurface debugSurface;
         Player player;
-        PlayerView playerView;
         double runningTime;
         Level currentLevel;
         LevelView levelView;
         BasicCollisionSystem collisions;
-        void updateCamera();
-        void render();
 };
 
 }

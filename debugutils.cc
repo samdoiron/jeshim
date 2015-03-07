@@ -42,6 +42,10 @@ void Debug::drawLine(Point theStart, Point theEnd) {
     toRender.push_back(new DebugLine(theStart, theEnd));
 }
 
+void Debug::drawVector(Point theStart, Vector theVec) {
+    toRender.push_back(new DebugVector(theStart, theVec));
+}
+
 // === DebugLine
 
 DebugLine::DebugLine(Point theStart, Point theEnd) :
@@ -81,9 +85,16 @@ void DebugOutlineRect::renderTo(RenderSurface &theSurface) {
     theSurface.drawLine(rect.getTopRight(), rect.getBottomRight());
 }
 
-// Export a single debug reference to prevent those who include this
-// file from having to do .getInstance() a lot.
+// === DebugVector
 
-Debug &debug = Debug::getInstance();
+DebugVector::DebugVector(Point theStart, Vector theVec) :
+    start(theStart),
+    vec(theVec) {
+}
+
+void DebugVector::renderTo(RenderSurface &theSurface) {
+    theSurface.drawLine(start, start + vec);
+}
+
 
 }

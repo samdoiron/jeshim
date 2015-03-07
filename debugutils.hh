@@ -4,7 +4,6 @@
 #include "rectangle.hh"
 #include "dimensions.hh"
 #include "point.hh"
-#include "spritesurface.hh"
 #include "view.hh"
 
 namespace jesh {
@@ -34,6 +33,16 @@ class DebugSolidRect : public View {
         Rectangle rect;
 };
 
+class DebugVector : public View {
+    public:
+        DebugVector(Point, Vector);
+        void renderTo(RenderSurface&);
+
+    private:
+        Point start;
+        Vector vec;
+};
+
 class Debug {
     public:
         static Debug &getInstance();
@@ -42,6 +51,7 @@ class Debug {
         void drawSolidRect(Rectangle);
         void drawOutlineRect(Rectangle);
         void drawLine(Point, Point);
+        void drawVector(Point, Vector);
         void render();
 
     private:

@@ -21,9 +21,9 @@ LevelView::LevelView(Level &_level) :
     Point defaultPosition = Point(0, 0);
     Dimensions tileDimensions = Dimensions(Tile::kSize, Tile::kSize);
 
-    spriteCache[Tile::kVoid] = new Sprite("void.png", tileDimensions, defaultPosition);
-    spriteCache[Tile::kDirt] = new Sprite("dirt.png", tileDimensions, defaultPosition);
-    spriteCache[Tile::kWall] = new Sprite("wall.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kVoid] = new Sprite("img/void.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kDirt] = new Sprite("img/floor.png", tileDimensions, defaultPosition);
+    spriteCache[Tile::kWall] = new Sprite("img/wall.bmp", tileDimensions, defaultPosition);
 }
 
 void LevelView::renderTo(RenderSurface &surface) {
