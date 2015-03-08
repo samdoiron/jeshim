@@ -1,17 +1,17 @@
 #ifndef JESH_GAMESTATE_H_
 #define JESH_GAMESTATE_H_
 
-#include "eventemitter.hh"
-#include "rendersurface.hh"
+#include <sfml/Graphics.hpp>
+
+// Forawrd declare game.
 
 namespace jesh {
 
-// Forward declare Game class
 class Game;
 
 /* abstract */ class GameState {
     public:
-        GameState(Game&, EventEmitter&, RenderSurface&);
+        GameState(Game&, sf::RenderTarget&);
         virtual ~GameState();
 
         // Advance the game a given number of seconds
@@ -19,8 +19,7 @@ class Game;
 
     protected:
         Game &game;
-        EventEmitter &emitter;
-        RenderSurface &surface;
+        sf::RenderTarget &target;
 
     private:
         virtual void anchor();

@@ -2,18 +2,18 @@
 #define JESH_GAME_H_
 
 #include "gamestate.hh"
-#include "window.hh"
+#include <sfml/Graphics.hpp>
 
 namespace jesh {
 
 class Game {
     public:
-        Game(Window&);
+        Game(sf::RenderWindow &window);
         void run();
         void setState(GameState*);
     private:
         void trackFPS(double);
-        Window &window;
+        sf::RenderWindow &window;
         GameState *state;
 };
 

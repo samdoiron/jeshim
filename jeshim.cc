@@ -1,8 +1,8 @@
 #include "game.hh"
-#include "teststate.hh"
-#include "dimensions.hh"
+#include "engine/levelstate.hh"
+#include "geometry/dimensions.hh"
+#include "engine/sprite.hh"
 
-#include <SFML/OpenGL.hpp>
 #include <SFML/window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -15,12 +15,13 @@
 #define GAME_HEIGHT 600
 
 int main(void) {
-    jesh::Window window(GAME_TITLE, jesh::Dimensions(GAME_WIDTH, GAME_HEIGHT));
+    jesh::Sprite::initialize();
+    sf::RenderWindow window(sf::VideoMode(GAME_WIDTH, GAME_HEIGHT), "Jeshim");
 
     jesh::Game jeshim(window);
-    jesh::TestState testState(jeshim, window, window);
+    jesh::LevelState levelState(jeshim, window);
 
-    jeshim.setState(&testState);
+    jeshim.setState(&levelState);
     jeshim.run();
 
     return 0;

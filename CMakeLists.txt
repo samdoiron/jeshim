@@ -1,58 +1,34 @@
 cmake_minimum_required (VERSION 2.6)
 
 project (Jeshim)
-
+set (JESH_VERSION_MAJOR 0)
+set (JESH_VERSION_MINOR 1)
 set (EXECUTABLE_NAME "jeshim")
 
-add_executable(${EXECUTABLE_NAME}
-  basiccollisionsystem.cc
-  collidable.cc
-  collisionsystem.cc
-  debugutils.cc
-  dimensions.cc
-  enemy.cc
-  entity.cc
-  event.cc
-  eventemitter.cc
-  eventlistener.cc
-  fixedtile.cc
-  game.cc
-  gamestate.cc
-  gridcollisionsystem.cc
-  jeshim.cc
-  keypressevent.cc
-  keyreleaseevent.cc
-  level.cc
-  levelview.cc
-  mousemoveevent.cc
-  player.cc
-  playerview.cc
-  point.cc
-  rectangle.cc
-  rendersurface.cc
-  singlespriteview.cc
-  spritesurface.cc
-  slime.cc
-  sprite.cc
-  teststate.cc
-  tile.cc
-  vector.cc
-  view.cc
-  window.cc
-)
-
+# Compile Flags
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-omit-frame-pointer -Weverything -g -std=c++11 -Wno-c++98-compat -Wno-c++11-extensions -Wno-padded -Wno-c++98-compat -Wno-c++98-compat-pedantic")
-
 set (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+add_subdirectory(engine)
+add_subdirectory(geometry)
+add_subdirectory(physics)
+add_subdirectory(util)
+
+add_executable(${EXECUTABLE_NAME}
+  game.cc
+  gamestate.cc
+  jeshim.cc
+)
+target_link_libraries(${EXECUTABLE_NAME} physics geometry engine)
+
+# Include SFML
 find_package(SFML 2 REQUIRED system window graphics network audio)
 if (SFML_FOUND)
   include_directories(${SFML_INCLUDE_DIR})
   target_link_libraries(${EXECUTABLE_NAME} ${SFML_LIBRARIES})
 endif()
-
-set (HACK_VERSION_MAJOR 0)
-set (HACK_VERSION_MINOR 1)
 
 # Include Boost
 set (Boost_STATIC_LIBRARIES TRUE)

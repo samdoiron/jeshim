@@ -1,14 +1,12 @@
 #include "gamestate.hh"
-
-#include "eventemitter.hh"
-#include "rendersurface.hh"
+#include "game.hh"
+#include <sfml/Graphics.hpp>
 
 namespace jesh {
 
-GameState::GameState(Game &_game, EventEmitter &outsideWorld, RenderSurface &gameSurface) :
-    game(_game),
-    emitter(outsideWorld),
-    surface(gameSurface) {
+GameState::GameState(Game &theGame, sf::RenderTarget &theTarget) :
+    game(theGame),
+    target(theTarget) {
 }
 
 void GameState::anchor() {
