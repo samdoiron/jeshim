@@ -19,7 +19,7 @@ namespace jesh {
 // Storing entity and player position
 
 typedef std::vector<Tile*> Row;
-const int kNumSlimes = 13;
+const int kNumSlimes = 100;
 
 Level::Level(Player &_player, std::string filePath) :
     player(_player) {
@@ -77,20 +77,20 @@ void Level::checkCollisions() {
 void Level::loadFromFile(std::string filePath) {
   std::ifstream levelFile;
   levelFile.open(filePath);
+  int iRow = 0, iCol = 0;
 
-  int numRows, numCols;
-  levelFile >> numRows >> numCols;
-
-  for (int iRow = 0; iRow < numRows; iRow++) {
-    std::vector<Tile*> row;
-    for (int iCol = 0; iCol < numCols; iCol++) {
-      char tileChar;
-      levelFile >> tileChar;
-      Tile *tile = getTileFromChar(tileChar);
-      tile->setPosition(Point(iCol * Tile::kSize, iRow * Tile::kSize));
-      row.push_back(tile);
-    }
-    tiles.push_back(row);
+  std::string line;
+  while (std::getline(levelFile, line)) {
+      std::vector<Tile*> row;
+      iCol = 0;
+      for (char tileChar : line) {
+          Tile *tile = getTileFromChar(tileChar);
+          tile->setPosition(Point(iCol * Tile::kSize, iRow * Tile::kSize));
+          row.push_back(tile);
+          iCol += 1;
+      }
+      tiles.push_back(row);
+      iRow += 1;
   }
 
   levelFile.close();

@@ -34,6 +34,8 @@ void Game::run() {
         throw_error("Attempt to run game without setting state.");
     }
 
+    sf::View view = window.getView();
+    window.setView(view);
     window.setVerticalSyncEnabled(true);
 
     while (window.isOpen()) {
@@ -44,6 +46,8 @@ void Game::run() {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
+                return;
+            } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 return;
             }
         }

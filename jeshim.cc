@@ -16,7 +16,7 @@
 
 int main(void) {
     jesh::Sprite::initialize();
-    sf::RenderWindow window(sf::VideoMode(GAME_WIDTH, GAME_HEIGHT), "Jeshim");
+    sf::RenderWindow window(sf::VideoMode(GAME_WIDTH, GAME_HEIGHT), "Jeshim", sf::Style::Fullscreen);
 
     jesh::Game jeshim(window);
     jesh::LevelState levelState(jeshim, window);

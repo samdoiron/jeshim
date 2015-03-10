@@ -17,6 +17,10 @@ void Collidable::setPosition(Point thePosition) {
     setTopLeft(thePosition);
 }
 
+Point Collidable::getPosition() {
+    return getTopLeft();
+}
+
 bool Collidable::isFixed() {
   return fixed;
 }

@@ -20,7 +20,6 @@ class Slime : public Enemy {
         SingleSpriteView view;
         double moveSpeed;
         double timeRunning;
-        double timeToRun;
         Vector velocity;
 };
 

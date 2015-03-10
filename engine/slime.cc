@@ -10,25 +10,23 @@
 
 namespace jesh {
 
-const double kMaxRunTime = 1.5;
+const double kRunTime = 1.5;
 
 Slime::Slime() :
-    Enemy(view, Dimensions(64, 25)),
-    view(*this, Sprite::get(Sprite::kPlayer)),
+    Enemy(view, Dimensions(38, 13)),
+    view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
-    timeRunning(1),
-    timeToRun(0),
+    timeRunning(kRunTime),
     velocity(0, 0) {
 }
 
 void Slime::advance(double secondsPassed) {
     timeRunning += secondsPassed;
-    if (timeRunning >= timeToRun) {
+    if (timeRunning >= kRunTime) {
         setRandomVelocity();
         timeRunning = 0;
-        timeToRun = static_cast<double>(rand() / RAND_MAX) * kMaxRunTime;
     }
-    // topLeft += velocity * secondsPassed;
+    topLeft += velocity * secondsPassed;
 }
 
 void Slime::handleCollision(Slime&) {

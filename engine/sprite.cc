@@ -24,7 +24,6 @@ sf::Texture Sprite::spritesheet;
         kSpriteSize, kSpriteSize
     ));
     sprite.setTexture(spritesheet);
-    sprite.setScale(2, 2);
     return sprite;
 }
 

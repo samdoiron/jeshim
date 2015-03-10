@@ -30,20 +30,25 @@ void LevelView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) co
 
 
 void LevelView::drawTiles(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
-    std::vector<std::vector<Tile*>> grid = level.tiles;
-
-    for (size_t i = 0; i < grid.size(); i++) {
-        for (size_t j = 0; j < grid.size(); j++) {
-            sf::Sprite tileSprite = tileSprites[grid[i][j]->getType()];
-            tileSprite.setPosition(
-                i * Tile::kSize,
-                j * Tile::kSize
-            );
+    for (size_t iRow = 0; iRow < level.tiles.size(); iRow++) {
+        std::vector<Tile*> row = level.tiles[iRow];
+        for (size_t iCol = 0; iCol < row.size(); iCol++) {
+            Tile *eachTile = row[iCol];
+            sf::Sprite tileSprite;
+            if (eachTile->getType() == Tile::kWall) {
+                bool wallBefore = iCol < row.size() - 1 && row[iCol + 1]->getType() == Tile::kWall;
+                bool wallAfter = iCol > 0 && row[iCol - 1]->getType() == Tile::kWall;
+                bool partOfHorizontalWall = wallBefore || wallAfter;
+                if (partOfHorizontalWall) {
+                    tileSprite = Sprite::get(Sprite::kWall);
+                } else {
+                    tileSprite = Sprite::get(Sprite::kWallSide);
+                }
+            } else {
+                tileSprite = tileSprites[eachTile->getType()];
+            }
+            tileSprite.setPosition(eachTile->getPosition().asSFMLVector());
             theTarget.draw(tileSprite, theStates);
-        }
-    }
-    for (std::vector<Tile*> row : grid) {
-        for (Tile *tile : row) {
         }
     }
 }

@@ -24,6 +24,8 @@ class Player : public Entity {
     private:
         void knockbackFrom(Collidable&);
         void readKeyboard();
+        void checkPulse();
+        int health;
         double timeSinceKnockback;
         bool isKnockedBack;
         Vector currentKnockback;

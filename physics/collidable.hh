@@ -23,6 +23,7 @@ class Collidable : public Rectangle {
       virtual void sendCollision(Collidable&) = 0;
 
       virtual void setPosition(Point);
+      virtual Point getPosition();
 
       bool isCollidingWith(Collidable&);
       bool isFixed();
