@@ -20,17 +20,20 @@ class Player : public Entity {
         void advance(double);
         void handleCollision(Enemy&);
         void sendCollision(Collidable&);
+        void setLevel(Level*);
 
     private:
         void knockbackFrom(Collidable&);
         void readKeyboard();
         void checkPulse();
         int health;
+        Sword sword;
         double timeSinceKnockback;
         bool isKnockedBack;
         Vector currentKnockback;
         Vector velocity;
         PlayerView view;
+        Level *currentLevel;
 };
 
 }

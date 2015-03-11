@@ -36,10 +36,10 @@ void LevelView::drawTiles(sf::RenderTarget &theTarget, sf::RenderStates theState
             Tile *eachTile = row[iCol];
             sf::Sprite tileSprite;
             if (eachTile->getType() == Tile::kWall) {
-                bool wallBefore = iCol < row.size() - 1 && row[iCol + 1]->getType() == Tile::kWall;
-                bool wallAfter = iCol > 0 && row[iCol - 1]->getType() == Tile::kWall;
-                bool partOfHorizontalWall = wallBefore || wallAfter;
-                if (partOfHorizontalWall) {
+                bool isWallBefore = iCol < row.size() - 1 && row[iCol + 1]->getType() == Tile::kWall;
+                bool isWallAfter = iCol > 0 && row[iCol - 1]->getType() == Tile::kWall;
+                bool isHorizontal = isWallBefore || isWallAfter;
+                if (isHorizontal) {
                     tileSprite = Sprite::get(Sprite::kWall);
                 } else {
                     tileSprite = Sprite::get(Sprite::kWallSide);
