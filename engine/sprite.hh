@@ -40,6 +40,7 @@ class Sprite {
             kPlayerRunDown5,
             kPlayerRunDown6,
             kHeart,
+            kSword,
             kNumSprites
         };
 

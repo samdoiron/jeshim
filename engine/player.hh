@@ -5,6 +5,7 @@
 #include "enemy.hh"
 #include "slime.hh"
 #include "playerview.hh"
+#include "sword.hh"
 
 #include "entity.hh"
 
@@ -12,6 +13,7 @@ namespace jesh {
 
 class Player : public Entity {
     friend class PlayerView;
+
     public:
         Player();
         ~Player();
