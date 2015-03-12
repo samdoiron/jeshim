@@ -20,7 +20,7 @@ class Entity : public Collidable, public sf::Drawable {
         Entity(sf::Drawable&, Dimensions);
         virtual ~Entity();
         virtual void advance(double);
-        virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+        void draw(sf::RenderTarget&, sf::RenderStates) const;
 
     private:
         virtual void anchor();

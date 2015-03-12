@@ -6,6 +6,7 @@ namespace jesh {
 
 Sword::Sword() :
     Entity(view, Dimensions(3, 10)),
+    view(*this),
     isSwinging(false),
     timeSinceSwing(0),
     timeToSwing(0) {

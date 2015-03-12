@@ -3,16 +3,20 @@
 
 #include "physics/collidable.hh"
 #include "entity.hh"
+#include "swordview.hh"
 
 namespace jesh {
 
 class Sword : public Entity {
+    friend class SwordView;
+
     public:
         Sword();
+        virtual ~Sword() {}
+        void advance(double) override;
+        void sendCollision(Collidable&) override;
         int getDamage();
         void swing(double);
-        void advance(double);
-        void sendCollision(Collidable&);
 
     private:
         SwordView view;

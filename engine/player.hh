@@ -22,7 +22,6 @@ class Player : public Entity {
         void advance(double);
         void handleCollision(Enemy&);
         void sendCollision(Collidable&);
-        void setLevel(Level*);
 
     private:
         void knockbackFrom(Collidable&);
@@ -35,7 +34,6 @@ class Player : public Entity {
         Vector currentKnockback;
         Vector velocity;
         PlayerView view;
-        Level *currentLevel;
 };
 
 }

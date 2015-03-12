@@ -1,4 +1,7 @@
 #include "swordview.hh"
+
+#include "sword.hh"
+
 #include "sprite.hh"
 #include "geometry/point.hh"
 
@@ -10,6 +13,7 @@ SwordView::SwordView(Sword &theSword) :
 }
 
 void SwordView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
+    Point position = sword.getTopLeft();
     swordSprite.setPosition(
         static_cast<float>(10),
         static_cast<float>(10)

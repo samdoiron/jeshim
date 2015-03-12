@@ -2,9 +2,10 @@
 #define JESH_SWORDVIEW_H_
 
 #include <sfml/Graphics.hpp>
-#include "sword.hh"
 
 namespace jesh {
+
+class Sword;
 
 class SwordView : public sf::Drawable {
     public:
