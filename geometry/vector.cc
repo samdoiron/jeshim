@@ -47,6 +47,12 @@ Vector::Vector(Point start, Point stop) :
     {
 }
 
+Vector Vector::withMagnitude(double theMagnitude) const {
+    Vector copy = *this;
+    copy.setMagnitude(theMagnitude);
+    return copy;
+}
+
 double Vector::getX() const {
     return deltaX;
 }

@@ -21,6 +21,8 @@ class Vector {
         void setX(double);
         void setY(double);
 
+        Vector withMagnitude(double) const;
+
         Vector operator*(double) const;
         Vector operator*=(double);
 

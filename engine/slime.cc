@@ -18,6 +18,7 @@ Slime::Slime() :
     Enemy(view, Dimensions(38, 13), 5),
     view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
+    isKnockedBack(false),
     timeRunning(kRunTime),
     velocity(0, 0) {
 }
@@ -36,9 +37,12 @@ void Slime::handleCollision(Slime&) {
 }
 
 void Slime::takeDamage(Point theSource, int theDamage) {
-    Vector knockback = getMiddle() - theSource;
-    knockback.setMagnitude(kKnockbackDistance);
-    currentKnockback = knockback;
+    if (!isKnockedBack) {
+        isKnockedBack = true;
+        Vector knockback = getMiddle() - theSource;
+        knockback.setMagnitude(kKnockbackDistance);
+        currentKnockback = knockback;
+    }
 }
 
 void Slime::sendCollision(Collidable &other) {
