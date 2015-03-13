@@ -1,24 +1,42 @@
 #include "swordview.hh"
-
 #include "sword.hh"
-
 #include "sprite.hh"
 #include "geometry/point.hh"
+#include <sfml/Graphics.hpp>
 
 namespace jesh {
 
 SwordView::SwordView(Sword &theSword) :
-    sword(theSword),
-    swordSprite(Sprite::get(Sprite::kSword)) {
+    sword(theSword) {
 }
 
 void SwordView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
-    Point position = sword.getTopLeft();
-    swordSprite.setPosition(
-        static_cast<float>(10),
-        static_cast<float>(10)
+    if (!sword.isSwinging) {
+        return;
+    }
+
+    Point position = sword.getPosition();
+    Dimensions size = sword.getDimensions();
+
+    sf::RectangleShape rect;
+    sf::CircleShape circle;
+    rect.setSize(sf::Vector2f(
+        static_cast<float>(size.getWidth()),
+        static_cast<float>(size.getHeight())
+    ));
+    rect.setPosition(
+        static_cast<float>(position.getX()),
+        static_cast<float>(position.getY())
     );
-    theTarget.draw(swordSprite, theStates);
+    circle.setRadius(3);
+    circle.setPosition( 
+        sword.origin.getX(),
+        sword.origin.getY()
+    );
+    circle.setFillColor(sf::Color::Red);
+    rect.setFillColor(sf::Color::White);
+    theTarget.draw(rect, theStates);
+    theTarget.draw(circle, theStates);
 }
     
 }

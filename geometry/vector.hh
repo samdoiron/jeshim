@@ -2,6 +2,7 @@
 #define JESH_VECTOR_H_
 
 #include "point.hh"
+#include "direction.hh"
 
 namespace jesh {
 
@@ -11,24 +12,26 @@ class Vector {
     public:
         Vector();
         static Vector random(double);
+        static Vector inDirection(Direction, double);
+
         Vector(double, double);
         Vector(Point, Point);
-        double getX();
-        double getY();
+        double getX() const;
+        double getY() const;
         void setX(double);
         void setY(double);
 
-        Vector operator*(double);
+        Vector operator*(double) const;
         Vector operator*=(double);
 
-        Vector operator-(double);
+        Vector operator-(double) const;
         Vector operator-=(double);
 
-        Vector operator+(Vector);
+        Vector operator+(Vector) const;
         Vector operator+=(Vector);
 
         void setMagnitude(double);
-        double getMagnitude();
+        double getMagnitude() const;
     private:
         double deltaX;
         double deltaY;

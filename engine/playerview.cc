@@ -61,34 +61,17 @@ PlayerView::PlayerView(Player &_player) :
 void PlayerView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
     sf::Sprite currentSprite = *neutralSprite;
 
-    if (player.velocity.getMagnitude() > 0) {
-        framesWithAnimation += 1;
-        if (framesWithAnimation == kFramesPerAnimation) {
-            animationFrame += 1;
-            animationFrame %= 8;
-            framesWithAnimation = 0;
-        }
-        if (player.velocity.getY() > 0) {
-            currentSprite = runDown[animationFrame];
-            neutralSprite = &runDown[3];
-        } else if (player.velocity.getY() < 0) {
-            currentSprite = runUp[animationFrame];
-            neutralSprite = &runUp[3];
-        } else if (player.velocity.getX() < 0) {
-            currentSprite = runRight[animationFrame];
-            neutralSprite = &runRight[3];
-        } else {
-            currentSprite = runLeft[animationFrame];
-            neutralSprite = &runLeft[3];
-        }
-    } else {
-    }
-
-    if (!player.isKnockedBack || rand() % 3 == 0) {
-        Point position = player.getTopLeft();
-        currentSprite.setPosition(position.getX(), position.getY());
-        theTarget.draw(currentSprite, theStates);
-    }
+    sf::RectangleShape rect;
+    rect.setSize(sf::Vector2f(
+        static_cast<float>(player.dimensions.getWidth()),
+        static_cast<float>(player.dimensions.getHeight())
+    ));
+    rect.setPosition(sf::Vector2f(
+        static_cast<float>(player.getTopLeft().getX()),
+        static_cast<float>(player.getTopLeft().getY())
+    ));
+    rect.setFillColor(sf::Color::Green);
+    theTarget.draw(rect, theStates);
 
     // Draw hearts
     for (int i = 0; i < player.health; i++) {
@@ -96,6 +79,48 @@ void PlayerView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) c
         theTarget.draw(heart, theStates);
     }
 
+    // Draw sword
+    theTarget.draw(player.sword, theStates);
+
+    if (player.velocity.getMagnitude() > 0) {
+        framesWithAnimation += 1;
+        if (framesWithAnimation == kFramesPerAnimation) {
+            animationFrame += 1;
+            animationFrame %= 8;
+            framesWithAnimation = 0;
+        }
+        switch (player.facing) {
+            case kUp:
+                currentSprite = runUp[animationFrame];
+                neutralSprite = &runUp[3];
+                break;
+            case kDown:
+                currentSprite = runDown[animationFrame];
+                neutralSprite = &runDown[3];
+                break;
+            case kLeft:
+                currentSprite = runLeft[animationFrame];
+                neutralSprite = &runLeft[3];
+                break;
+            case kRight:
+                currentSprite = runRight[animationFrame];
+                neutralSprite = &runRight[3];
+                break;
+            default:
+                break;
+        }
+    } else {
+        // Keep previous facing.
+    }
+
+    if (!player.isKnockedBack || rand() % 3 == 0) {
+        Point position = player.getTopLeft();
+        currentSprite.setPosition(
+            static_cast<float>(position.getX()),
+            static_cast<float>(position.getY())
+        );
+        theTarget.draw(currentSprite, theStates);
+    }
 }
 
 }

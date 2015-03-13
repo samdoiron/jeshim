@@ -15,8 +15,8 @@ class PlayerView : public sf::Drawable {
         void draw(sf::RenderTarget&, sf::RenderStates) const;
     private:
         mutable int framesWithAnimation;
-        mutable int animationFrame;
-        mutable int knockbackFrame;
+        mutable size_t animationFrame;
+        mutable size_t knockbackFrame;
         Player &player;
         mutable sf::Sprite *neutralSprite;
         mutable std::vector<sf::Sprite> runRight;

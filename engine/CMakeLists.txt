@@ -1,5 +1,6 @@
 set (engine_source_files
   enemy.cc
+  enemyview.cc
   entity.cc
   fixedtile.cc
   level.cc

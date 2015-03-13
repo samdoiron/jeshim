@@ -14,7 +14,6 @@ class SwordView : public sf::Drawable {
 
     private:
         Sword &sword;
-        mutable sf::Sprite swordSprite;
 };
 
 }

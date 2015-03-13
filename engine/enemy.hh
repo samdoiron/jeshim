@@ -10,9 +10,17 @@
 namespace jesh {
 
 /* abstract */ class Enemy : public Entity {
+    friend class EnemyView;
     public:
-        Enemy(sf::Drawable&, Dimensions);
+        Enemy(sf::Drawable&, Dimensions, int);
+        virtual void takeDamage(Point, int);
         virtual void sendCollision(Collidable&) override;
+
+    protected:
+        bool isDead();
+
+    private:
+        int health;
 };
 
 }

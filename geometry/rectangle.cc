@@ -15,6 +15,10 @@ Rectangle::Rectangle(Point theTopLeft, Dimensions theDimensions) :
     dimensions(theDimensions) {
 }
 
+void Rectangle::setDimensions(Dimensions theDimensions) {
+    dimensions = theDimensions;
+}
+
 bool Rectangle::isIntersecting(Rectangle other) {
     return (
         getLeft()       <= other.getRight()  &&

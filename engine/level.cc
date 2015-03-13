@@ -60,6 +60,7 @@ void Level::setupCollisions() {
         }
     }
     collisions.addCollidable(&player);
+    collisions.addCollidable(&player.getSword());
 }
 
 void Level::advanceEntities(double secondsPassed) {

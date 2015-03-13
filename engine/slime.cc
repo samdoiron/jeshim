@@ -4,16 +4,18 @@
 #include "singlespriteview.hh"
 #include "entity.hh"
 #include "tile.hh"
+#include "units.hh"
 
 #include <random>
 #include <iostream>
 
 namespace jesh {
 
-const double kRunTime = 1.5;
+const double kRunTime = 1.5 SECONDS;
+const double kKnockbackDistance = 100 PIXELS;
 
 Slime::Slime() :
-    Enemy(view, Dimensions(38, 13)),
+    Enemy(view, Dimensions(38, 13), 5),
     view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
     timeRunning(kRunTime),
@@ -27,9 +29,16 @@ void Slime::advance(double secondsPassed) {
         timeRunning = 0;
     }
     topLeft += velocity * secondsPassed;
+    topLeft += currentKnockback * secondsPassed;
 }
 
 void Slime::handleCollision(Slime&) {
+}
+
+void Slime::takeDamage(Point theSource, int theDamage) {
+    Vector knockback = getMiddle() - theSource;
+    knockback.setMagnitude(kKnockbackDistance);
+    currentKnockback = knockback;
 }
 
 void Slime::sendCollision(Collidable &other) {
@@ -37,7 +46,7 @@ void Slime::sendCollision(Collidable &other) {
     Enemy::sendCollision(other);
 }
 
-// private
+// --- private
 
 void Slime::setRandomVelocity() {
     velocity = Vector::random(moveSpeed);

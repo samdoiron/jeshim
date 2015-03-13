@@ -12,7 +12,7 @@ class Rectangle {
         Rectangle(Point, Dimensions);
 
         bool isIntersecting(Rectangle);
-
+        void setDimensions(Dimensions);
 
         double getTop();
         double getBottom();

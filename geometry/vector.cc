@@ -1,5 +1,6 @@
 #include "vector.hh"
 #include "point.hh"
+#include "util/exceptions.hh"
 
 #include <cmath>
 
@@ -18,6 +19,21 @@ Vector::Vector() :
     );
 }
 
+/* static */ Vector Vector::inDirection(Direction theDirection, double theMagnitude) {
+    switch (theDirection) {
+        case kUp:
+            return Vector(0, -theMagnitude);
+        case kDown:
+            return Vector(0, theMagnitude);
+        case kLeft:
+            return Vector(-theMagnitude, 0);
+        case kRight:
+            return Vector(theMagnitude, 0);
+        default:
+            throw_error("Invalid direction");
+    }
+}
+
 Vector::Vector(double dx, double dy) :
     deltaX(dx),
     deltaY(dy) {
@@ -31,11 +47,11 @@ Vector::Vector(Point start, Point stop) :
     {
 }
 
-double Vector::getX() {
+double Vector::getX() const {
     return deltaX;
 }
 
-double Vector::getY() {
+double Vector::getY() const {
     return deltaY;
 }
 
@@ -52,11 +68,11 @@ void Vector::setMagnitude(double theMagnitude) {
     *this *= scale;
 }
 
-double Vector::getMagnitude() {
+double Vector::getMagnitude() const {
     return std::sqrt((deltaX * deltaX) + (deltaY * deltaY));
 }
 
-Vector Vector::operator*(double multiplier) {
+Vector Vector::operator*(double multiplier) const {
     return Vector(deltaX * multiplier, deltaY * multiplier);
 }
 
@@ -66,7 +82,7 @@ Vector Vector::operator*=(double multiplier) {
     return *this;
 }
 
-Vector Vector::operator-(double subtraction) {
+Vector Vector::operator-(double subtraction) const {
     return Vector(deltaX - subtraction, deltaY - subtraction);
 }
 
@@ -76,7 +92,7 @@ Vector Vector::operator-=(double subtraction) {
     return *this;
 }
 
-Vector Vector::operator+(Vector theOther) {
+Vector Vector::operator+(Vector theOther) const {
     return Vector(deltaX + theOther.getX(), deltaY + theOther.getY());
 }
 

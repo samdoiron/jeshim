@@ -3,7 +3,7 @@
 
 #include "physics/collidable.hh"
 #include "enemy.hh"
-#include "singlespriteview.hh"
+#include "enemyview.hh"
 #include "tile.hh"
 
 namespace jesh {
@@ -14,13 +14,15 @@ class Slime : public Enemy {
         virtual void advance(double);
         virtual void handleCollision(Slime&);
         virtual void sendCollision(Collidable&);
+        virtual void takeDamage(Point, int) override;
         virtual ~Slime() {}
     private:
         void setRandomVelocity();
-        SingleSpriteView view;
+        EnemyView view;
         double moveSpeed;
         double timeRunning;
         Vector velocity;
+        Vector currentKnockback;
 };
 
 }
