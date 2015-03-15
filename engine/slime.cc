@@ -12,36 +12,40 @@
 namespace jesh {
 
 const double kRunTime = 1.5 SECONDS;
-const double kKnockbackDistance = 100 PIXELS;
+const double kKnockbackTime = 1;
 
 Slime::Slime() :
     Enemy(view, Dimensions(38, 13), 5),
     view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
-    isKnockedBack(false),
     timeRunning(kRunTime),
+    isKnockedBack(false),
     velocity(0, 0) {
 }
 
 void Slime::advance(double secondsPassed) {
     timeRunning += secondsPassed;
-    if (timeRunning >= kRunTime) {
-        setRandomVelocity();
-        timeRunning = 0;
+    if (isKnockedBack) {
+        topLeft += velocity * secondsPassed;
+        if (timeRunning >= kRunTime) {
+            setRandomVelocity();
+            timeRunning = 0;
+        }
+    } else {
+        timeSinceKnockback += secondsPassed;
+        if (timeSinceKnockback > kKnockbackTime) {
+            isKnockedBack = false;
+        }
     }
-    topLeft += velocity * secondsPassed;
-    topLeft += currentKnockback * secondsPassed;
 }
 
 void Slime::handleCollision(Slime&) {
 }
 
 void Slime::takeDamage(Point theSource, int theDamage) {
-    if (!isKnockedBack) {
+    if (isKnockedBack) {
         isKnockedBack = true;
-        Vector knockback = getMiddle() - theSource;
-        knockback.setMagnitude(kKnockbackDistance);
-        currentKnockback = knockback;
+        timeSinceKnockback = 0;
     }
 }
 
@@ -57,6 +61,4 @@ void Slime::setRandomVelocity() {
 }
 
 }
-
-
 

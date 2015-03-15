@@ -18,10 +18,11 @@ class Slime : public Enemy {
         virtual ~Slime() {}
     private:
         void setRandomVelocity();
-        bool isKnockedBack;
         EnemyView view;
+        bool isKnockedBack;
         double moveSpeed;
         double timeRunning;
+        double timeSinceKnockback;
         Vector velocity;
         Vector currentKnockback;
 };

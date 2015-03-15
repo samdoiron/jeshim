@@ -104,7 +104,9 @@ void Sword::handleCollision(Collidable&) {
 }
 
 void Sword::handleCollision(Enemy& enemy) {
-    enemy.takeDamage(getMiddle(), getDamage());
+    if (isSwinging) {
+        enemy.takeDamage(getMiddle(), getDamage());
+    }
 }
 
 // --- private
