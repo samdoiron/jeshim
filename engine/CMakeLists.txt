@@ -14,5 +14,6 @@ set (engine_source_files
   sword.cc
   swordview.cc
   tile.cc
+  timer.cc
 )
 add_library(engine ${engine_source_files})

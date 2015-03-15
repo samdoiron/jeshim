@@ -28,7 +28,7 @@ void EnemyView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) co
     );
 
     if (!enemy.isDead()) {
-        theTarget.draw(rect, theStates);
+        // theTarget.draw(rect, theStates);
         theTarget.draw(sprite, theStates);
     }
 }

@@ -8,6 +8,7 @@
 #include "slime.hh"
 #include "playerview.hh"
 #include "sword.hh"
+#include "timer.hh"
 
 #include "entity.hh"
 
@@ -36,9 +37,10 @@ class Player : public Entity {
         void applyKnockback(double);
         void move(double);
 
+        Timer knockbackTimer;
+
         int health;
         Sword sword;
-        double timeSinceKnockback;
         bool isKnockedBack;
         bool swungLastFrame;
         Vector currentKnockback;

@@ -17,11 +17,12 @@ class LevelView : public sf::Drawable {
         ~LevelView();
 
         void draw(sf::RenderTarget&, sf::RenderStates) const;
+    private:
         void drawRow(sf::RenderTarget&, sf::RenderStates, std::vector<Tile>) const;
         void drawTile(sf::RenderTarget&, sf::RenderStates, Tile) const;
         void drawTiles(sf::RenderTarget&, sf::RenderStates) const;
+        void drawPlayer(sf::RenderTarget&, sf::RenderStates) const;
         void drawEntities(sf::RenderTarget&, sf::RenderStates) const;
-    private:
         Level &level;
         mutable std::vector<sf::Sprite> tileSprites;
 };

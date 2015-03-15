@@ -8,13 +8,14 @@ namespace jesh {
 class Timer {
     public:
         Timer(double);
-        void reset();
+        void start();
         void onDone(std::function<void()>);
         void advance(double);
 
     private:
         double timeRunning;
         double timeToRun;
+        bool isRunning;
         std::function<void()> func;
 };
 

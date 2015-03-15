@@ -25,7 +25,7 @@ LevelView::LevelView(Level &_level) :
 void LevelView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
     drawTiles(theTarget, theStates);
     drawEntities(theTarget, theStates);
-    theTarget.draw(level.player, theStates);
+    drawPlayer(theTarget, theStates);
 }
 
 
@@ -58,6 +58,10 @@ void LevelView::drawEntities(sf::RenderTarget &theTarget, sf::RenderStates theSt
     for (Entity *eachEntity : level.entities) {
         theTarget.draw(*eachEntity, theStates);
     } 
+}
+
+void LevelView::drawPlayer(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
+    theTarget.draw(level.player, theStates);
 }
 
 LevelView::~LevelView() {

@@ -28,33 +28,16 @@ Slime::Slime(Level &theLevel) :
 }
 
 void Slime::advance(double secondsPassed) {
-    if (isKnockedBack) {
-        moveRelative(currentKnockback * secondsPassed);
-        timeSinceKnockback += secondsPassed;
-        currentKnockback *= kKnockbackDecay;
-        if (timeSinceKnockback > kKnockbackTime) {
-            isKnockedBack = false;
-        }
-    } else {
-        timeRunning += secondsPassed;
-        moveRelative(velocity * secondsPassed);
-        if (timeRunning >= kRunTime) {
-            setRandomVelocity();
-            timeRunning = 0;
-        }
-    }
 }
 
+// Make a BIGGER slime?
 void Slime::handleCollision(Slime&) {
 }
 
 void Slime::takeDamage(Point theSource, int theDamage) {
-    if (!isKnockedBack) {
-        currentKnockback = (getMiddle() - theSource)
-            .withMagnitude(kKnockbackAmount);
-        isKnockedBack = true;
-        timeSinceKnockback = 0;
-    }
+    health -= 1;
+    isKnockedBack = true;
+    timeSinceKnockback = 0;
 }
 
 void Slime::sendCollision(Collidable &other) {

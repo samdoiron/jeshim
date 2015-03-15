@@ -19,6 +19,7 @@ class Slime : public Enemy {
         virtual void takeDamage(Point, int) override;
         virtual ~Slime() {}
     private:
+        int health;
         void setRandomVelocity();
 
         Level &currentLevel;

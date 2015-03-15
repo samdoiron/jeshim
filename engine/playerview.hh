@@ -4,6 +4,7 @@
 #include <sfml/Graphics.hpp>
 #include <vector>
 #include "sprite.hh"
+#include "timer.hh"
 
 namespace jesh {
 

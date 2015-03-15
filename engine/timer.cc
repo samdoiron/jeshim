@@ -5,11 +5,14 @@
 namespace jesh {
 
 Timer::Timer(double theTimeoutLength) :
+    isRunning(true),
+    timeToRun(theTimeoutLength),
     func([]{}) {
 }
 
-void Timer::reset() {
+void Timer::start() {
     timeRunning = 0;
+    isRunning = true;
 }
 
 void Timer::onDone(std::function<void()> theCallback) {
@@ -17,9 +20,12 @@ void Timer::onDone(std::function<void()> theCallback) {
 }
 
 void Timer::advance(double theSecondsPassed) {
+    if (!isRunning) return;
+
     timeRunning += theSecondsPassed;
     if (timeRunning > timeToRun) {
         func();
+        isRunning = false;
     }
 }
 

@@ -6,7 +6,9 @@
 
 namespace jesh {
 
-const int kFramesPerAnimation = 6;
+const int kFramesPerAnimation = 10;
+const int kNumInvisFrames     = 4; // Number of frames to be invisible when hurt.
+const double kFlickerTime = 0.1;
 
 PlayerView::PlayerView(Player &_player) :
     player(_player),
@@ -61,18 +63,6 @@ PlayerView::PlayerView(Player &_player) :
 void PlayerView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
     sf::Sprite currentSprite = *neutralSprite;
 
-    sf::RectangleShape rect;
-    rect.setSize(sf::Vector2f(
-        static_cast<float>(player.dimensions.getWidth()),
-        static_cast<float>(player.dimensions.getHeight())
-    ));
-    rect.setPosition(sf::Vector2f(
-        static_cast<float>(player.getTopLeft().getX()),
-        static_cast<float>(player.getTopLeft().getY())
-    ));
-    rect.setFillColor(sf::Color::Green);
-    theTarget.draw(rect, theStates);
-
     // Draw hearts
     for (int i = 0; i < player.health; i++) {
         heart.setPosition(theTarget.mapPixelToCoords(sf::Vector2i(10 + (40 * i), 10)));
@@ -113,13 +103,17 @@ void PlayerView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) c
         // Keep previous facing.
     }
 
-    if (!player.isKnockedBack || rand() % 3 == 0) {
+    if (player.isKnockedBack) {
+        knockbackFrame += 1;
+    }
+    if (!player.isKnockedBack || knockbackFrame % kNumInvisFrames == 0) {
         Point position = player.getTopLeft();
         currentSprite.setPosition(
             static_cast<float>(position.getX()),
             static_cast<float>(position.getY())
         );
         theTarget.draw(currentSprite, theStates);
+        return;
     }
 }
 

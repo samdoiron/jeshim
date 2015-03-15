@@ -23,7 +23,8 @@ namespace jesh {
 const double kRunSpeed          = 300 PIXELS PER SECOND;
 const double kKnockbackTime     = 0.5 SECONDS;
 const double kKnockbackDistance = 1000 PIXELS;
-const double kSwordSwingTime    = 0.1 SECONDS;
+const double kSwordSwingTime    = 0.25 SECONDS;
+const double kKnockbackDecay    = 0.8;
 
 const int kStartingHealth = 6;
 
@@ -39,13 +40,21 @@ Player::Player() :
     velocity(0, 0),
     facing(kDown),
     view(*this),
+    knockbackTimer(kKnockbackTime),
     swungLastFrame(false) {
+
     setPosition(Point(500, 500));
+
+    knockbackTimer.onDone([&] {
+        currentKnockback = Vector(0, 0);
+        isKnockedBack = false;
+    });
 }
 
 void Player::advance(double theSecondsPassed) {
     readKeyboard();
     move(theSecondsPassed);
+    knockbackTimer.advance(theSecondsPassed);
     applyKnockback(theSecondsPassed);
     updateFacing();
     updateSword(theSecondsPassed);
@@ -99,14 +108,9 @@ void Player::move(double theSecondsPassed) {
 }
 
 void Player::applyKnockback(double theSecondsPassed) {
-    if (timeSinceKnockback >= kKnockbackTime) {
-        isKnockedBack = false;
-        currentKnockback = Vector(0, 0);
-    }
     if (isKnockedBack) {
-        timeSinceKnockback += theSecondsPassed;
         moveRelative(currentKnockback * theSecondsPassed);
-        currentKnockback *= 0.8; // TODO Magic number.
+        currentKnockback *= kKnockbackDecay;
     }
 }
 
@@ -154,16 +158,15 @@ void Player::swingSword() {
 }
 
 void Player::knockbackFrom(Collidable &theOther) {
-    Vector newKnockback = getMiddle() - theOther.getMiddle();
-    newKnockback.setMagnitude(kKnockbackDistance);
-    currentKnockback = newKnockback;
-    timeSinceKnockback = 0;
+    currentKnockback = (getMiddle() - theOther.getMiddle())
+        .withMagnitude(kKnockbackDistance);
     isKnockedBack = true;
+    knockbackTimer.start();
 }
 
 void Player::checkPulse() {
     if (health <= 0) {
-        std::exit(0);
+        // std::exit(0);
     }
 }
 
