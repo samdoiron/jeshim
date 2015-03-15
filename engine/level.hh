@@ -22,8 +22,14 @@ class Level {
     friend LevelView;
 
     public:
-        Level(Player&, std::string);
+        Level(std::string);
         void advance(double);
+
+        // Is this really the best place to put this?
+        // Maybe split up into Environment for use with AI?
+        // But what about LevelState / Camera Positioning?
+        Point getPlayerPosition();
+
         Dimensions getDimensions();
         ~Level();
 
@@ -35,7 +41,8 @@ class Level {
         void addEnemies();
         void addEnemy(Enemy*);
         Tile *getTileFromChar(char);
-        Player &player;
+        Player player;
+
         GridCollisionSystem collisions;
         std::vector<std::vector<Tile*>> tiles;
         std::vector<Enemy*> enemies;

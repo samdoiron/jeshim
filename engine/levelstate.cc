@@ -11,7 +11,7 @@ namespace jesh {
 LevelState::LevelState(Game &_game, sf::RenderTarget &theTarget) :
     GameState(_game, theTarget),
     target(theTarget),
-    currentLevel(player, "etc/levels/test.jesh"),
+    currentLevel("etc/levels/test.jesh"),
     levelView(currentLevel) {
     updateCamera();
 }
@@ -26,10 +26,10 @@ void LevelState::advance(double secondsPassed) {
 
 void LevelState::updateCamera() {
     sf::View view = target.getView();
-    Point playerMiddle = player.getMiddle();
+    Point playerPosition = currentLevel.getPlayerPosition();
     view.setCenter(
-        static_cast<float>(playerMiddle.getX()),
-        static_cast<float>(playerMiddle.getY())
+        static_cast<float>(playerPosition.getX()),
+        static_cast<float>(playerPosition.getY())
     );
     target.setView(view);
 }

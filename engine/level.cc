@@ -21,8 +21,7 @@ namespace jesh {
 typedef std::vector<Tile*> Row;
 const int kNumSlimes = 100;
 
-Level::Level(Player &_player, std::string filePath) :
-    player(_player) {
+Level::Level(std::string filePath) {
   loadFromFile(filePath);
   addEnemies();
   setupCollisions();
@@ -31,6 +30,10 @@ Level::Level(Player &_player, std::string filePath) :
 void Level::advance(double secondsPassed) {
   advanceEntities(secondsPassed);
   checkCollisions();
+}
+
+Point Level::getPlayerPosition() {
+    return player.getMiddle();
 }
 
 Dimensions Level::getDimensions() {
@@ -42,7 +45,10 @@ Dimensions Level::getDimensions() {
 void Level::addEnemies() {
     for (int i = 0; i < kNumSlimes; i++) {
         Enemy *slime = new Slime();
-        slime->setPosition(Point(rand() % static_cast<int>(getDimensions().getWidth()), rand() % static_cast<int>(getDimensions().getHeight())));
+        slime->setPosition(Point(
+            rand() % static_cast<int>(getDimensions().getWidth()),
+            rand() % static_cast<int>(getDimensions().getHeight())
+        ));
         addEnemy(slime);
     }
 }
