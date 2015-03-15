@@ -30,6 +30,9 @@ class Level {
         // But what about LevelState / Camera Positioning?
         Point getPlayerPosition();
 
+        void addEntity(Entity*);
+        void removeEntity(Entity*);
+
         Dimensions getDimensions();
         ~Level();
 
@@ -39,13 +42,12 @@ class Level {
         void checkCollisions();
         void advanceEntities(double);
         void addEnemies();
-        void addEnemy(Enemy*);
         Tile *getTileFromChar(char);
         Player player;
 
         GridCollisionSystem collisions;
         std::vector<std::vector<Tile*>> tiles;
-        std::vector<Enemy*> enemies;
+        std::vector<Entity*> entities;
 };
 
 }

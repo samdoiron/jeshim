@@ -8,9 +8,11 @@
 
 namespace jesh {
 
+class Level;
+
 class Slime : public Enemy {
     public:
-        Slime();
+        Slime(Level&);
         virtual void advance(double);
         virtual void handleCollision(Slime&);
         virtual void sendCollision(Collidable&);
@@ -18,6 +20,8 @@ class Slime : public Enemy {
         virtual ~Slime() {}
     private:
         void setRandomVelocity();
+
+        Level &currentLevel;
         EnemyView view;
         bool isKnockedBack;
         double moveSpeed;

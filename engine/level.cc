@@ -22,9 +22,11 @@ typedef std::vector<Tile*> Row;
 const int kNumSlimes = 100;
 
 Level::Level(std::string filePath) {
-  loadFromFile(filePath);
-  addEnemies();
-  setupCollisions();
+      loadFromFile(filePath);
+      setupCollisions();
+      addEntity(&player);
+      addEntity(&player.getSword());
+      addEnemies();
 }
 
 void Level::advance(double secondsPassed) {
@@ -44,18 +46,18 @@ Dimensions Level::getDimensions() {
 
 void Level::addEnemies() {
     for (int i = 0; i < kNumSlimes; i++) {
-        Enemy *slime = new Slime();
+        Entity *slime = new Slime(*this);
         slime->setPosition(Point(
             rand() % static_cast<int>(getDimensions().getWidth()),
             rand() % static_cast<int>(getDimensions().getHeight())
         ));
-        addEnemy(slime);
+        addEntity(slime);
     }
 }
 
-void Level::addEnemy(Enemy* enemy) {
-    collisions.addCollidable(enemy);
-    enemies.push_back(enemy);
+void Level::addEntity(Entity *theEntity) {
+    collisions.addCollidable(theEntity);
+    entities.push_back(theEntity);
 }
 
 void Level::setupCollisions() {
@@ -65,14 +67,11 @@ void Level::setupCollisions() {
             eachTile->addToCollisionSystem(collisions);
         }
     }
-    collisions.addCollidable(&player);
-    collisions.addCollidable(&player.getSword());
 }
 
 void Level::advanceEntities(double secondsPassed) {
-  player.advance(secondsPassed);
-  for (Enemy *enemy : enemies) {
-      enemy->advance(secondsPassed);
+  for (Entity *eachEntity : entities) {
+      eachEntity->advance(secondsPassed);
   }
 }
 
@@ -116,8 +115,8 @@ Tile *Level::getTileFromChar(char tileSymbol) {
 }
 
 Level::~Level() {
-    for (Enemy *enemy : enemies) {
-        delete enemy;
+    for (Entity *eachEntity : entities) {
+        delete eachEntity;
     }
 }
 

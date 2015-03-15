@@ -24,7 +24,7 @@ LevelView::LevelView(Level &_level) :
 
 void LevelView::draw(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
     drawTiles(theTarget, theStates);
-    drawEnemies(theTarget, theStates);
+    drawEntities(theTarget, theStates);
     theTarget.draw(level.player, theStates);
 }
 
@@ -54,9 +54,9 @@ void LevelView::drawTiles(sf::RenderTarget &theTarget, sf::RenderStates theState
 }
 
 // TODO Add EnemyType enum to enemies to be able to display them distinctly.
-void LevelView::drawEnemies(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
-    for (Enemy *enemy : level.enemies) {
-        theTarget.draw(*enemy, theStates);
+void LevelView::drawEntities(sf::RenderTarget &theTarget, sf::RenderStates theStates) const {
+    for (Entity *eachEntity : level.entities) {
+        theTarget.draw(*eachEntity, theStates);
     } 
 }
 

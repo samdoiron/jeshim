@@ -5,6 +5,7 @@
 #include "entity.hh"
 #include "tile.hh"
 #include "units.hh"
+#include "level.hh"
 
 #include <random>
 #include <iostream>
@@ -12,10 +13,13 @@
 namespace jesh {
 
 const double kRunTime = 1.5 SECONDS;
-const double kKnockbackTime = 1;
+const double kKnockbackTime = 0.5 SECOND;
+const double kKnockbackAmount = 400 PIXELS PER SECOND;
+const double kKnockbackDecay = 0.9;
 
-Slime::Slime() :
+Slime::Slime(Level &theLevel) :
     Enemy(view, Dimensions(38, 13), 5),
+    currentLevel(theLevel),
     view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
     timeRunning(kRunTime),
@@ -24,17 +28,19 @@ Slime::Slime() :
 }
 
 void Slime::advance(double secondsPassed) {
-    timeRunning += secondsPassed;
     if (isKnockedBack) {
-        topLeft += velocity * secondsPassed;
+        moveRelative(currentKnockback * secondsPassed);
+        timeSinceKnockback += secondsPassed;
+        currentKnockback *= kKnockbackDecay;
+        if (timeSinceKnockback > kKnockbackTime) {
+            isKnockedBack = false;
+        }
+    } else {
+        timeRunning += secondsPassed;
+        moveRelative(velocity * secondsPassed);
         if (timeRunning >= kRunTime) {
             setRandomVelocity();
             timeRunning = 0;
-        }
-    } else {
-        timeSinceKnockback += secondsPassed;
-        if (timeSinceKnockback > kKnockbackTime) {
-            isKnockedBack = false;
         }
     }
 }
@@ -43,7 +49,9 @@ void Slime::handleCollision(Slime&) {
 }
 
 void Slime::takeDamage(Point theSource, int theDamage) {
-    if (isKnockedBack) {
+    if (!isKnockedBack) {
+        currentKnockback = (getMiddle() - theSource)
+            .withMagnitude(kKnockbackAmount);
         isKnockedBack = true;
         timeSinceKnockback = 0;
     }

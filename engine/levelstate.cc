@@ -22,7 +22,7 @@ void LevelState::advance(double secondsPassed) {
     render();
 }
 
-// === private
+// --- private
 
 void LevelState::updateCamera() {
     sf::View view = target.getView();
