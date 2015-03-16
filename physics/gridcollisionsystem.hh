@@ -16,6 +16,7 @@ class CollisionSquare : public CollisionSystem, public Rectangle {
 
         void checkCollisions();
         void addCollidable(Collidable*);
+        void removeCollidable(Collidable*);
         void clearDynamic();
     private:
         void checkFixedCollisions();
@@ -31,6 +32,7 @@ class GridCollisionSystem : public CollisionSystem {
         GridCollisionSystem();
         GridCollisionSystem(Dimensions);
         virtual void addCollidable(Collidable*);
+        void removeCollidable(Collidable*);
         virtual void checkCollisions();
         void setDimensions(Dimensions);
 

@@ -24,9 +24,9 @@ const int kNumSlimes = 100;
 Level::Level(std::string filePath) {
       loadFromFile(filePath);
       setupCollisions();
+      addEnemies();
       addEntity(&player);
       addEntity(&player.getSword());
-      addEnemies();
 }
 
 void Level::advance(double secondsPassed) {
@@ -55,9 +55,25 @@ void Level::addEnemies() {
     }
 }
 
+// Keep track of enemies so we can free them.
+void Level::addEnemy(Enemy* theEnemy) {
+    addEntity(theEnemy);
+    enemies.push_back(theEnemy);
+}
+
 void Level::addEntity(Entity *theEntity) {
     collisions.addCollidable(theEntity);
     entities.push_back(theEntity);
+}
+
+void Level::removeEntity(Entity *theEntity) {
+    collisions.removeCollidable(theEntity);
+    for (size_t i = 0; i < entities.size(); i++) {
+        Entity *each = entities[i];
+        if (each == theEntity) {
+            entities.erase(entities.begin() + i);
+        }
+    }
 }
 
 void Level::setupCollisions() {
@@ -115,8 +131,11 @@ Tile *Level::getTileFromChar(char tileSymbol) {
 }
 
 Level::~Level() {
-    for (Entity *eachEntity : entities) {
-        delete eachEntity;
+    // The only reason we keep "enemies" seperate is so we know to delete
+    // them. Maybe this could be handled better? More explicitly declare
+    // the ownership of different entities.
+    for (Enemy *each : enemies) {
+        delete each;
     }
 }
 

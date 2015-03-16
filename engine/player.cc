@@ -20,8 +20,8 @@
 
 namespace jesh {
 
-const double kRunSpeed          = 300 PIXELS PER SECOND;
-const double kKnockbackTime     = 0.5 SECONDS;
+const double kRunSpeed          = 250 PIXELS PER SECOND;
+const double kKnockbackTime     = 1 SECOND;
 const double kKnockbackDistance = 1000 PIXELS;
 const double kSwordSwingTime    = 0.25 SECONDS;
 const double kKnockbackDecay    = 0.8;
@@ -66,16 +66,16 @@ Sword &Player::getSword() {
 
 // --- Collisions
 
+void Player::sendCollision(Collidable &theCollidable) {
+    theCollidable.handleCollision(*this);
+}
+
 void Player::handleCollision(Enemy &enemy) {
     if (!isKnockedBack) {
         knockbackFrom(enemy);
         health -= 1;
         checkPulse();
     }
-}
-
-void Player::sendCollision(Collidable &other) {
-  other.handleCollision(*this);
 }
 
 // --- private
@@ -152,7 +152,7 @@ void Player::swingSword() {
             toSwing = kDown;
             break;
         default:
-            break;
+            throw_error("Invalid direction");
     }
     sword.swing(toSwing, kSwordSwingTime);
 }

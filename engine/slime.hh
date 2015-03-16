@@ -5,6 +5,7 @@
 #include "enemy.hh"
 #include "enemyview.hh"
 #include "tile.hh"
+#include "timer.hh"
 
 namespace jesh {
 
@@ -20,14 +21,16 @@ class Slime : public Enemy {
         virtual ~Slime() {}
     private:
         int health;
+        void decreaseHealth(int);
+        void die();
         void setRandomVelocity();
 
-        Level &currentLevel;
+        Timer hurtTimer;
+        Timer runTimer;
+        bool isHurt;
+        Level &level;
         EnemyView view;
-        bool isKnockedBack;
         double moveSpeed;
-        double timeRunning;
-        double timeSinceKnockback;
         Vector velocity;
         Vector currentKnockback;
 };

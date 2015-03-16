@@ -37,6 +37,7 @@ class Level {
         ~Level();
 
     private:
+        void addEnemy(Enemy*);
         void loadFromFile(std::string);
         void setupCollisions();
         void checkCollisions();
@@ -48,6 +49,7 @@ class Level {
         GridCollisionSystem collisions;
         std::vector<std::vector<Tile*>> tiles;
         std::vector<Entity*> entities;
+        std::vector<Enemy*> enemies;
 };
 
 }

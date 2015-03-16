@@ -24,9 +24,10 @@ void Timer::advance(double theSecondsPassed) {
 
     timeRunning += theSecondsPassed;
     if (timeRunning > timeToRun) {
-        func();
         isRunning = false;
+        func();
     }
+
 }
 
 }

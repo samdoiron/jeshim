@@ -23,6 +23,26 @@ void GridCollisionSystem::addCollidable(Collidable *theCollidable) {
     insertIntoSquares(theCollidable);
 }
 
+void GridCollisionSystem::removeCollidable(Collidable *theCollidable) {
+    if (theCollidable->isFixed()) {
+        for (size_t i = 0; i < fixedCollidables.size(); i++) {
+            if (fixedCollidables[i] == theCollidable) {
+                fixedCollidables.erase(fixedCollidables.begin() + i);
+            }
+        }
+    } else {
+        for (size_t i = 0; i < dynamicCollidables.size(); i++) {
+            if (dynamicCollidables[i] == theCollidable) {
+                dynamicCollidables.erase(dynamicCollidables.begin() + i);
+            }
+        }
+    }
+    for (CollisionSquare &each : squares) {
+        each.removeCollidable(theCollidable);
+    }
+}
+
+
 void GridCollisionSystem::checkCollisions() {
     clearGrid();
     reinsertDynamic();
@@ -97,6 +117,22 @@ void CollisionSquare::addCollidable(Collidable *theCollidable) {
         fixedCollidables.push_back(theCollidable);
     } else {
         dynamicCollidables.push_back(theCollidable);
+    }
+}
+
+void CollisionSquare::removeCollidable(Collidable *theCollidable) {
+    if (theCollidable->isFixed()) {
+        for (size_t i = 0; i < fixedCollidables.size(); i++) {
+            if (fixedCollidables[i] == theCollidable) {
+                fixedCollidables.erase(fixedCollidables.begin() + i);
+            }
+        }
+    } else {
+        for (size_t i = 0; i < dynamicCollidables.size(); i++) {
+            if (dynamicCollidables[i] == theCollidable) {
+                dynamicCollidables.erase(dynamicCollidables.begin() + i);
+            }
+        }
     }
 }
 

@@ -12,22 +12,42 @@
 
 namespace jesh {
 
-const double kRunTime = 1.5 SECONDS;
-const double kKnockbackTime = 0.5 SECOND;
+const double kRunTime = 1.5 SECONDS;   // Time between random direction switches.
+const double kHurtTime = 0.5 SECONDS;  // Time to be "frozen" when hurt.
 const double kKnockbackAmount = 400 PIXELS PER SECOND;
 const double kKnockbackDecay = 0.9;
 
 Slime::Slime(Level &theLevel) :
     Enemy(view, Dimensions(38, 13), 5),
-    currentLevel(theLevel),
+    hurtTimer(kHurtTime),
+    runTimer(kRunTime),
+    level(theLevel),
     view(*this, Sprite::get(Sprite::kSlime)),
     moveSpeed(100),
-    timeRunning(kRunTime),
-    isKnockedBack(false),
+    isHurt(false),
     velocity(0, 0) {
+
+    hurtTimer.onDone([&] {
+        isHurt = false;
+        currentKnockback = Vector(0, 0);
+    });
+
+    runTimer.onDone([&] {
+        setRandomVelocity();
+        runTimer.start();
+    });
+    runTimer.start();
+    setRandomVelocity();
 }
 
-void Slime::advance(double secondsPassed) {
+void Slime::advance(double theSecondsPassed) {
+    hurtTimer.advance(theSecondsPassed);
+    runTimer.advance(theSecondsPassed);
+    if (isHurt) {
+        moveRelative(currentKnockback * theSecondsPassed);
+    } else {
+        moveRelative(velocity * theSecondsPassed);
+    }
 }
 
 // Make a BIGGER slime?
@@ -35,9 +55,7 @@ void Slime::handleCollision(Slime&) {
 }
 
 void Slime::takeDamage(Point theSource, int theDamage) {
-    health -= 1;
-    isKnockedBack = true;
-    timeSinceKnockback = 0;
+    decreaseHealth(1);
 }
 
 void Slime::sendCollision(Collidable &other) {
@@ -46,6 +64,19 @@ void Slime::sendCollision(Collidable &other) {
 }
 
 // --- private
+
+void Slime::decreaseHealth(int theDecrease) {
+    health -= theDecrease;
+    if (health <= 0) {
+        die();
+    }
+    hurtTimer.start();
+    isHurt = true;
+}
+
+void Slime::die() {
+    level.removeEntity(this);
+}
 
 void Slime::setRandomVelocity() {
     velocity = Vector::random(moveSpeed);

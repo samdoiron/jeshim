@@ -14,6 +14,7 @@ namespace jesh {
 /* abstract */ class CollisionSystem {
     public:
       virtual void addCollidable(Collidable*) = 0;
+      virtual void removeCollidable(Collidable*) = 0;
       virtual void checkCollisions() = 0;
       virtual ~CollisionSystem();
 
