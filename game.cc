@@ -13,7 +13,7 @@ namespace jesh {
 const double kMaxFrameDifference = 1.0 / 20;
 
 // UGLY: game must have a pointer to state because it needs to bootstrap
-// without one, because GameState needs a reference to state.
+// without one, because GameState needs a reference to Game.
 
 // A potential fix to this would be to give GameState two methods, isCurrent()
 // and getNextState(), which game would poll.
@@ -34,8 +34,6 @@ void Game::run() {
         throw_error("Attempt to run game without setting state.");
     }
 
-    sf::View view = window.getView();
-    window.setView(view);
     window.setVerticalSyncEnabled(true);
 
     while (window.isOpen()) {
@@ -46,8 +44,10 @@ void Game::run() {
         sf::Event event;
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
+                window.close();
                 return;
             } else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+                window.close();
                 return;
             }
         }
